@@ -1,0 +1,167 @@
+/* packageA/pages/design-community/design-community.wxss */
+
+page {
+  background: #f4f4f4;
+}
+
+.scroll-view-H {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.scroll-view-H > .item {
+  display: inline-block;
+  width: 163rpx;
+  height: 278rpx;
+  background-color: #cfb3a0;
+  margin-right: 20rpx;
+}
+
+.tab {
+  width: 100%;
+  height: 140rpx;
+  box-sizing: border-box;
+  padding: 0 22rpx;
+  display: flex;
+  justify-content: space-around;
+}
+
+.tab .item {
+  display: inline-block;
+  width: 25%;
+  box-sizing: border-box;
+  font-size: 26rpx;
+  color: #787878;
+  text-align: center;
+  line-height: 140rpx;
+}
+
+.tab .item.ac {
+  color: #f8b303;
+}
+
+.list {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 22rpx;
+}
+
+.list .card {
+  width: 708rpx;
+  box-sizing: border-box;
+  background: #fff;
+  border-radius: 4rpx;
+  margin-bottom: 25rpx;
+}
+
+.list .card .title {
+  width: 100%;
+  height: 126rpx;
+  box-sizing: border-box;
+  padding-left: 18rpx;
+  padding-right: 42rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list .card .title .person-info {
+  width: 85%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.list .card .title .person-info .avatar {
+  flex: 0 0 82rpx;
+  height: 82rpx;
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+
+.list .card .title .person-info .desc {
+  margin-left: 16rpx;
+  flex: 1;
+}
+
+.list .card .title .person-info .desc .caption {
+  font-size: 28rpx;
+  color: #1e1e1e;
+}
+
+.list .card .title .person-info .desc .label {
+  font-size: 22rpx;
+  color: #bbbaba;
+}
+
+.list .card .title .attention {
+  width: 117rpx;
+  height: 51rpx;
+  box-sizing: border-box;
+  border-radius: 25rpx;
+  background: #474849;
+  color: #fff;
+  text-align: center;
+  line-height: 51rpx;
+  font-size: 26rpx;
+  letter-spacing: 4rpx;
+}
+
+.list .card > .desc {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 18rpx;
+}
+
+.list .card > .desc .caption {
+  font-size: 26rpx;
+  line-height: 45rpx;
+  color: #1f1e1e;
+}
+
+.list .card > .desc .info {
+  font-size: 24rpx;
+  line-height: 38rpx;
+  color: #9b9999;
+}
+
+.list .card > .desc .date {
+  font-size: 22rpx;
+  color: #c8c8c8;
+  line-height: 40rpx;
+  margin-bottom: 10rpx;
+}
+
+.list .card .picture {
+  width: 100%;
+  height: 281rpx;
+  box-sizing: border-box;
+}
+
+.list .card .function {
+  width: 100%;
+  height: 90rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.list .card .function .iconfont {
+  font-size: 25rpx;
+  color: #959595;
+}
+
+.list .card .function .num {
+  font-size: 22rpx;
+  color: #9b9999;
+  margin-left: 6rpx;
+}
+
+.hasMore {
+  text-align: center;
+  padding: 10rpx;
+  color: #ccc;
+  font-size: 28rpx;
+}

@@ -1,0 +1,9 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">付款成功</view>
+</cu-custom>
+<view class="wrapper">
+  <view class='iconfont icon-selected'></view>
+  <view class='pay-success'>付款成功</view>
+  <view class='order-sn'>订单号{{order_sn}}</view>
+  <view class='btn-wrap' bindtap='goHome'>回到订单页</view>
+</view>

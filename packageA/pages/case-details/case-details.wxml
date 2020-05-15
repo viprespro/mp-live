@@ -1,0 +1,41 @@
+<view class='picture-box'>
+  <swiper class='picture-inner-box' indicator-dots="{{false}}" autoplay="{{true}}" circular='{{ true }}' bindchange='swiperChange'>
+    <swiper-item wx:for="{{pictures}}" wx:key="*this">
+      <image src="{{item}}" class="slide-image" width="355" height="560" />
+    </swiper-item>
+  </swiper>
+  <view class='dot'>
+    <text class='color'>{{ count+1 }}</text>/{{ pictures.length }}</view>
+  <view class='package-info'>{{packageInfo.package_info.package_name}}/{{packageInfo.package_info.apartment_area}}</view>
+  <view class='three flex-center' wx:if="{{pano_pic}}" bindtap='goLink'>
+    <image src='/images/three.png' mode='widthFix'></image>
+    <text class='c-fff'>3D</text>
+  </view>
+</view>
+
+<view class='caption'>商品清单</view>
+
+<view class='goods-list'>
+  <view class="good-card {{ item.key?'ac':'' }}" data-index="{{ index }}" data-key="{{ item.key }}" bindtap='selectGoods' wx:for="{{ goods }}" wx:key="*this">
+    <view class='good-picture'>
+      <image class='picture' src='{{item.imgs[0]}}'></image>
+      <text class='filter'><text class='iconfont icon-gouxuan'></text></text>
+    </view>
+    <text class='good-caption overflow-text1'>{{item.name}}</text>
+    <text class='check-detail' catchtap='goDetail' data-id='{{item.goods_id}}'>查看详情</text>
+  </view>
+</view>
+
+<view style="height:100rpx;"></view>
+
+<view class='footer'>
+  <view class='goods-num'>共
+    <text class='num'>{{ total }}</text>件</view>
+  <view class='price-box'>
+    <view class='final-price'>合计：
+      <text class='icon'>￥</text>
+      <text class='num'>{{ totalPrice }}</text>
+    </view>
+    <view class='pay' bindtap='linkToPay'>一键付款</view>
+  </view>
+</view>

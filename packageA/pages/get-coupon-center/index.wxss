@@ -1,0 +1,5 @@
+@import '../my-coupon/index.wxss';
+
+.wrapper {
+  margin: 16rpx 24rpx;
+}

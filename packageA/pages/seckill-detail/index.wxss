@@ -1,0 +1,128 @@
+@import '/pages/product-detail/index.wxss';
+
+.tp-seckill-wrapper {
+  height: 100rpx;
+  background-image:-webkit-gradient(linear,79% 0%, 0% 100%, from(#323B44), to(#57606A));
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.tp-seckill-wrapper .timer-wrap {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 240rpx;
+  background-image:-webkit-gradient(linear,79% 0%, 0% 100%, from(#F6B816), to(#F0C459));
+  border-radius: 150rpx 0 0 150rpx;
+  font-size: 24rpx;
+  color: #fff;
+  text-align: center;
+  padding: 15rpx;
+}
+
+.tp-seckill-wrapper .seckill-logo-wrap {
+  width: 88rpx;
+  height: 65rpx;
+  background-color: pink;
+  margin-left: 23rpx;
+}
+
+.tp-seckill-wrapper .price-wrap {
+  position: relative;
+  width: 212rpx;
+  height: 65rpx;
+  margin-left: 100rpx;
+}
+
+.tp-seckill-wrapper .price-wrap .seckill-price {
+  color: #F7B711;
+  font-size: 50rpx;
+}
+
+.tp-seckill-wrapper .price-wrap > .del-text {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  font-size: 24rpx;
+  color: #fff;
+  text-decoration: line-through;
+}
+
+.timer-wrap > .text {
+  margin-left: 23rpx;
+}
+
+.timer-wrap .count {
+  margin-top: 15rpx;
+  margin-left: 33rpx;
+  display: flex;
+  width: 80%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.timer-wrap .count .timer-count-box {
+  padding: 4rpx;
+  background-color: #fff;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+
+.c-3 {
+  color: #333!important;
+}
+
+.spec-between {
+  display: flex!important;
+  justify-content: space-between;
+  align-content: center;
+}
+
+.service-list {
+  padding: 46rpx 0 35rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 24rpx;
+  color: #888;
+  flex-wrap: wrap;
+}
+
+.service-list .item-wrap {
+  margin-right: 20rpx;
+  margin-bottom: 20rxp;
+}
+
+.brand-wrapper {
+  height: 120rpx;
+  background-color: #fff;
+  margin-top: 10rpx;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.brand-img-wrap {
+  width: 133rpx;
+  height: 82rpx;
+  margin-left: 25rpx;
+}
+
+.brand-desc {
+  height: 82rpx;
+  padding: 10rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  font-size: 30rpx;
+}
+
+.sub-desc {
+  color: #999;
+  font-size: 26rpx;
+}
+

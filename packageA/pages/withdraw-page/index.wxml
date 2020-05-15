@@ -1,0 +1,26 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">申请提现</view>
+</cu-custom>
+
+<view class="wrapper">
+  <view class='realname-wrap'>
+    <input placeholder='请填写您的真实姓名' type='text' bindinput='bindRealname'></input>
+  </view>
+  <view class='realname-wrap'>
+    <input placeholder='请填写您的支付宝账号' type='text' bindinput='bindAliAccount'></input>
+  </view>
+  <view class='withdraw-wrap'>提现金额</view>
+  <view class='num-wrap flex'>
+    <text class='symbol'>￥</text>
+    <input maxlength='10' value='{{curVal}}' type='number' bindinput='bindMoney'></input>
+  </view>
+  <view class='row-bundle'></view>
+  <view class='balance-wrap'>
+    <view class='balance'>余额:￥{{balance}}</view>
+    <view style="color:#FFA170;" bindtap='withdrawAll'>全部提现</view>
+  </view>
+</view>
+
+<view class='common-btn-wrapper balance-spec' bindtap='applyToWithdraw'>
+  提交申请
+</view>

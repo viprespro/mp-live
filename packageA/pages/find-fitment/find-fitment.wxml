@@ -1,0 +1,81 @@
+<!--packageA/pages/find-fitment/find-fitment.wxml-->
+<view class='container'>
+
+  <view class='classify'>
+    <scroll-view scroll-y style='height:{{windowH}}px'>
+      <block wx:for="{{cateList}}" wx:key="{{item.pid}}">
+        <view class='item {{status == index ? "ac" :""}}' data-index='{{index}}' data-pid='{{item.pid}}' bindtap='alertSort'>{{item.type_name}}</view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <!-- 地区选择 -->
+  <!-- 城市遮罩 -->
+  <view class='mask' wx:if="{{city_status}}" bindtap='tapMask'></view>
+
+  <view class='shade' wx:if="{{city_status}}">
+    <view class='first-class'>
+      <view class='title-wrap flex-between'>
+        <text class='city-choose'>地区选择</text>
+      </view>
+      <view class='area-wrapper'>
+        <scroll-view class='scroll-view-H' scroll-x>
+          <block wx:for="{{childCityList}}" wx:key="{{item.region_id}}">
+            <view class='area-item' bindtap='chooseCurrentArea' data-id='{{item.region_id}}' data-name='{{item.name}}'>{{item.name}}</view>
+          </block>
+        </scroll-view>
+      </view>
+      <view class='title-wrap flex-between'>
+        <text class='city-choose' bindtap='showCity'>城市选择<text class='iconfont icon-triangle-down'></text></text>
+        <view bindtap='changeCity'>
+          <text class='another' wx:if="{{show_city_status}}">换一批 </text>
+          <text class='iconfont icon-refresh' wx:if="{{show_city_status}}" style='font-size:26rpx;position:relative;top:3rpx;'></text>
+        </view>
+      </view>
+
+      <view class='city-container flex' wx:if="{{show_city_status}}">
+        <block wx:for="{{cityList}}" wx:key="{{item.id}}">
+          <view class='city-item {{current_selected_city_id == item.id ? "active" : ""}}' bindtap='chooseCity' data-id='{{item.id}}' data-name='{{item.short_name}}'>{{item.short_name}}</view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <!-- 地区选择ends -->
+
+  <view class='content'>
+    <view class='taptab'>
+
+      <view class='item' bindtap='sort' data-index='0'>
+        <text class='text'>工作经验</text>
+        <text class='iconfont icon-triangle-down' wx:if="{{exp_num}}"> </text>
+        <text class='iconfont icon-triangle-up' wx:else></text>
+      </view>
+      <view class='item' bindtap='sort' data-index='1'>
+        <text class='text'>{{location ? location : '地区'}}</text>
+        <text class='iconfont icon-triangle-down'></text>
+      </view>
+    </view>
+
+    <view class='list' style="position:relative">
+      <scroll-view scroll-y style='height:{{windowH - 48}}px;'>
+        <block wx:for="{{workerList}}" wx:key="{{item.worker_id}}">
+          <navigator hover-class='none' url='/packageA/pages/worker-detail/index?id={{item.worker_id}}'>
+            <view class='item'>
+              <image class='avatar' src='{{item.pic}}'></image>
+              <view class='desc'>
+                <view class='title'>
+                  <text class='name'>{{item.realname}}</text>
+                  <text class='address overflow-text1'>{{item.address}}</text>
+                </view>
+                <view class='like {{!item.is_follow ? "followed" : ""}}' catchtap='follow' data-id='{{item.worker_id}}'>{{item.is_follow ? '已关注' : '+关注'}}</view>
+              </view>
+            </view>
+          </navigator>
+        </block>
+      </scroll-view>
+
+      <view class='hasMore' wx:if="{{workerList.length == 0}}">暂无数据~</view>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,29 @@
+<view class="confirm-wrapper">
+  <view class='choose'>选择您的身份</view>
+  <view class='choose-box' bindtap='clickToChoose'>
+    {{roled ? roled : '设计师'}}
+    <text class='iconfont icon-triangle-down'></text>
+    <scroll-view scroll-y class='draw-down-box {{status == 1 ? "visible" : "none"}}'>
+      <block wx:for="{{rolesList}}" wx:key="{{item.id}}">
+        <view class='draw-item' bindtap='chooseCurrent' data-id='{{item.id}}' data-name='{{item.role}}'>
+          {{item.role}}
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <view class='identity-wrap'>
+    <text class='item {{item.selected ? "active" : ""}}' data-index='0' bindtap='goFillProfile' wx:if="{{currentIdentity == '设计师'}}">设计师</text>
+    <block wx:for="{{workerCateList}}" wx:key="{{unique}}" wx:if="{{currentIdentity == '工人'}}">
+      <text class='item {{item.selected ? "active" : ""}}' data-id='{{item.pid}}' data-index='1' bindtap='getSub'>{{item.type_name}}</text>
+    </block>
+  </view>
+</view>
+
+<view class='work-type-wrapper' wx:if="{{sub_active}}">
+  <scroll-view scroll-x class='scroll-view-H-type'>
+    <block wx:for="{{subCateList}}" wx:key="{{item.pid}}">
+      <view class='scroll-item' bindtap='goFillProfile' data-id='{{item.pid}}'>{{item.type_name}}</view>
+    </block>
+  </scroll-view>
+</view>

@@ -1,0 +1,42 @@
+<cu-custom bgColor='common-base-bg' isTitle="{{true}}" >
+  <view slot="content" class="common-title-color">动态</view>
+</cu-custom>
+
+<view class="moments-list">
+  <block wx:for='{{ list }}' wx:key="time">
+    <view class="item">
+      <view class="head flex-between">
+        <view class="left flex">
+          <image src="{{ item.avatar }}"></image>
+          <view class="flex name">
+            <text class="info">{{ item.nickname }}</text>
+            <text class="date">{{ item.time }}</text>
+          </view>
+        </view>
+        <!-- <view class="right">
+          <image src="/images/cart-icon.png"></image>
+        </view> -->
+      </view>
+
+      <view class="content">
+        <view class="title">{{ item.title }}</view>
+        <text class="summary">{{ item.content }}</text>
+        <view class="imgs-box">
+          <image bindtap="previewImg" data-list="{{ item.imgs }}" data-src="{{ innerItem }}" src="{{ innerItem }}" wx:for='{{ item.imgs}}' wx:for-item='innerItem' wx:key='innerItem'></image>
+        </view>
+      </view>
+
+      <view class="goods-info flex" bindtap="toDetail" data-id="{{ item.goods_id}}" >
+        <image src="{{ item.cover }}"></image>
+        <view class="name flex">
+          <view class="title">{{ item.goods_name }}</view>
+          <view class="price flex">
+            <text class="sign">￥</text>
+            <text class="num">{{ item.price }}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+  </block>
+</view>

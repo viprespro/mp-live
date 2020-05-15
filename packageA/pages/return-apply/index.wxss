@@ -1,0 +1,169 @@
+page {
+  background: #F3F3F3;
+}
+
+.caption {
+  padding: 20rpx 24rpx 4rpx;
+}
+
+.goods-wrap {
+  background: #fff;
+  box-sizing: border-box;
+  padding: 20rpx 24rpx;
+  display: flex;
+}
+
+.goods-wrap .img-wrap {
+  flex: 0 0 140rpx;
+  width: 140rpx;
+  height: 140rpx;
+  margin-right: 15rpx;
+}
+
+.goods-wrap .right {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 10rpx 0 6rpx;
+}
+
+.goods-wrap .right .title {
+  font-size: 26rpx;
+  min-height: 68rpx;
+}
+
+.goods-wrap .right .sku-info {
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 10rpx;
+}
+
+.reason-wrap {
+  margin-top: 10rpx;
+  background: #fff;
+  padding: 24rpx;
+}
+
+.reason-wrap .reason-item {
+  height: 80rpx;
+  line-height: 80rpx;
+  box-sizing: border-box;
+  background:#F3F3F3;
+  width: 100%;
+  font-size: 28rpx;
+  padding: 0 20rpx;
+  text-align: center;
+  margin-bottom: 16rpx;
+  border-radius: 10rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.reason-wrap .reason-item .item-left-txt {
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #666;
+  margin-left: 20rpx;
+}
+
+.reason-wrap .reason-item .item-right-icon {
+  position: absolute;
+  right: 0;
+  top: 0;
+  color: #666;
+  margin-right: 20rpx;
+}
+
+.reason-item > input {
+  box-sizing: border-box;
+  width: 100%;
+  margin-left: 140rpx;
+  text-align: left;
+}
+
+.upload-wrap {
+  /* height: 90rpx; */
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  border: 1px dashed rgba(153,153,153,1);
+  border-radius: 10rpx;
+  padding: 15rpx 20rpx;
+  position: relative;
+}
+
+.upload-wrap .left {
+  color: #666;
+  font-size: 28rpx;
+  margin-right: 10rpx;
+}
+
+.upload-wrap .right {
+  flex: 1;
+  margin-right: 30rpx;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.upload-wrap .right .right-item-img-wrap {
+  width: 40px;
+  height: 40px;
+  margin-right: 20rpx;
+  background: transparent;
+  position: relative;
+}
+
+.upload-wrap .right .icon-close-01 {
+  position: absolute;
+  right: -4rpx;
+  top: -10rpx;
+}
+
+.instr-txt {
+  position: absolute;
+  right: 0;
+  color: #999;
+  font-size: 28rpx;
+}
+/* basic style ends */
+.cu-bar .confirm {
+  width: 100rpx;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  position: absolute;
+  left: 0;
+  top:0;
+  font-size: 32rpx;
+}
+
+.padding-xl {
+  padding: 0!important;
+  background: #fff!important;
+  max-height: 600rpx;
+}
+
+.modal-reason-item {
+  position: relative;
+  font-size: 28rpx;
+  padding: 30rpx 24rpx 28rpx;
+  border-bottom: 1px solid #eee;
+}
+
+.modal-reason-item  .icon-non-selected,.modal-reason-item .icon-selected {
+  position: absolute;
+  right: 0;
+  margin-right: 24rpx;
+}
+
+.modal-reason-item .icon-selected {
+  color: #f8b303;
+}
+
+
+

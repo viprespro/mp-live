@@ -1,0 +1,43 @@
+<scroll-view scroll-x class="bg-white nav">
+  <view class="flex text-center">
+    <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tabsList}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+      {{item}}
+    </view>
+  </view>
+</scroll-view>
+
+
+<view class='content-wrap'>
+  <view class='content-item' wx:for="{{reserveList}}" wx:key="{{item.id}}">
+    <navigator url='/pages/yuyue-detail/index?id={{item.id}}' hover-class='none'>
+      <view class='order-number'>
+        <view class='num'>订单号:{{item.preorder_sn}}</view>
+        <view class='time'>{{item.create_time}}</view>
+      </view>
+      <view class='item-wraper'>
+        <view class='detail'>
+          <view class='strong name' style='margin-bottom:15rpx;'>{{item.region_name}}</view>
+          <text class='desc'>{{item.status_name}}</text>
+
+          <!-- 操作按钮-->
+          <text class='ops-btn-wrap' wx:if="{{item.status == 0 && currentIndex == 4}}" catchtap='depositPay' data-id='{{item.id}}'>支付定金</text>
+          <text class='ops-btn-wrap' wx:if="{{item.status == 2 && currentIndex == 4}}">预约失败</text>
+          <text class='ops-btn-wrap' wx:if="{{item.status == 3 && currentIndex == 5}}" catchtap='sign' data-id='{{item.id}}'>签订合同</text>
+          <text class='ops-btn-wrap' wx:if="{{item.status == 5 && currentIndex == 5}}" catchtap='retainagePay' data-id='{{item.id}}'>尾款待支付</text>
+          <text class='ops-btn-wrap' wx:if="{{item.status == 4 && currentIndex == 5}}">预约成功</text>
+          <text class='ops-btn-wrap' wx:if="{{item.status == 1 && currentIndex == 5}}">预约中</text>
+          <text class='ops-btn-wrap' wx:if="{{item.status == 7 && currentIndex == 5}}" data-id='{{item.id}}' catchtap='unConfirm'>待确认</text>
+        </view>
+      </view>
+    </navigator>
+  </view>
+</view>
+
+
+
+<!-- 缺省 -->
+<view class='empty-order-wrapper' wx:if="{{list.length == 0}}">
+  <view class='img-show-wrap'>
+  </view>
+  <view class='empty-text-wrap'>您还没有订单哦~</view>
+</view>

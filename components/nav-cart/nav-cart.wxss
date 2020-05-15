@@ -1,0 +1,32 @@
+.cart-wrap {
+  position: fixed;
+  right: 52rpx;
+  bottom: 42rpx;
+  background: rgba(0, 0, 0, 0.3);
+  width: 90rpx;
+  height: 90rpx;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-wrap image {
+  width: 52rpx;
+  height: 52rpx;
+}
+
+.cart-wrap .num {
+  position: absolute;
+  right: -10rpx;
+  top: -14rpx;
+  border-radius: 50%;
+  background: red;
+  color: #fff;
+  font-size: 24rpx;
+  border: 2rpx solid #fff;
+  width: 42rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+  text-align: center;
+}

@@ -1,0 +1,39 @@
+<!-- 头部banner -->
+<view class='header-banner-wrapper'>
+  <!-- <view class='group-low'>拼团享超低价</view>
+  <view class='invite'>邀请新老用户参团团满立即发货 </view> -->
+</view>
+<!-- 头部bannerends -->
+
+<!-- 超值拼团 -->
+<view class='worth-wrapper'>
+
+  <view class="content-wrap_worth flex f-26">
+    <view class="inner">
+      <view class="top">
+
+        <block wx:for="{{groupList}}" wx:key="{{item.goods_id}}">
+          <view class="item_worth">
+            <view class="img-box_worth group-list-img-wrap">
+              <image src='{{item.cover}}'></image>
+            </view>
+            <view class="overflow-text1 group-goods-name">{{item.goods_name}}</view>
+            <view class="price-wrap flex-between">
+              <text class="base-color">￥{{item.price}}</text>
+              <text class="c-9 f-24">{{item.person}}人成团</text>
+            </view>
+            <view class="together" bindtap='joinGroup' data-id='{{item.goods_id}}'>
+              立即参团
+            </view>
+          </view>
+        </block>
+
+      </view>
+
+    </view>
+  </view>
+
+</view>
+<!-- 超值拼团ends -->
+
+<view class='hasMore'>{{groupList.length > 0 ? '我是有底线的~' : '暂无数据~'}}</view>

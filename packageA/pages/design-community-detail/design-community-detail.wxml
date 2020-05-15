@@ -1,0 +1,84 @@
+<import src="../../../wxParse/wxParse.wxml" />
+
+<view class='container'>
+  <view class='top'>{{article_info.title}}</view>
+  <view class='title'>
+    <view class='person-info'>
+      <image class='avatar' src='{{article_info.designer_pic}}'></image>
+      <view class='desc'>
+        <view class='caption'>{{article_info.designer_name}}</view>
+        <view class='date'>{{article_info.create_time}}</view>
+      </view>
+    </view>
+    <view class='attention {{article_info.designer_follow ? "follow-ac" : ""}}' bindtap='tapFollow'>{{article_info.designer_follow ? '已关注' : '关注'}}</view>
+  </view>
+  <view class='content'>
+    <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+  </view>
+  <view style='height:40rpx;'></view>
+</view>
+
+
+
+<view class='footer' wx:if="{{modalName != 'cmtModel'}}">
+  <view class='input' bindtap='showModal' data-name='cmtModel'>文章不错的话说句话吧...</view>
+  <view class='cmt-icon-wrap' bindtap="tapGetCmtList" data-name="bottomModal">
+    <text class='cmt-item-num' wx:if="{{article_info.comment_num}}">{{article_info.comment_num}}</text>
+    <text class='iconfont icon-comment-Y'></text>
+  </view>
+  <view class='cmt-icon-wrap' bindtap='like'>
+    <text class='cmt-item-num like-item' wx:if="{{article_info.compliments}}">{{article_info.compliments}}</text>
+    <text class='iconfont icon-like-Y {{article_info.is_compliments ? "collect-active" : ""}}'></text>
+  </view>
+  <view bindtap='collect'>
+    <text class='iconfont icon-star {{article_info.is_follow ? "collect-active" : ""}}'></text>
+  </view>
+  <view>
+    <button open-type='share' bindtap='onShareAppMessage'>
+      <text class='iconfont icon-share}}'></text>
+    </button>
+  </view>
+</view>
+
+<!-- 评论的框 -->
+<view class='cmt-wrapper' wx:if="{{modalName == 'cmtModel'}}">
+  <view class='input-wrap'>
+    <textarea auto-focus='true' auto-focus='true' value='{{draft ? draft : ""}}' placeholder='优质评论将会被优先展示哦~' auto-height='true' maxlength='100' cursor-spacing='10' class='my-cmt-textarea' bindinput='bindInput' bindblur='hideModal'></textarea>
+  </view>
+
+  <view class="action" bindtap="postComment">
+    <text style='font-size:26rpx;'>发布</text>
+  </view>
+</view>
+
+<!-- 点击评论的时候弹出底部评论列表 -->
+<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class='action02' bindtap='hideModal'>
+        <text class='iconfont icon-close-01'></text>
+      </view>
+    </view>
+
+    <view class="padding-xl" style='padding:24rpx;height:600rpx;'>
+      <scroll-view scroll-y style='height:600rpx;' lower-threshold="10" bindscrolltolower="bindscrolltolower">
+        <block wx:for="{{cmtList}}" wx:key="{{item.create_time}}">
+          <view class='cu-cmt-item-wrap'>
+            <view class='avatar-box'>
+              <image src='{{item.avatar}}'></image>
+            </view>
+            <view class='cu-content'>
+              <text class='text'>{{item.nickname}}</text>
+              <view style='margin-top:10rpx;width:100%;' class='flex-between'>
+                <text class='content'>{{item.content}}</text>
+                <text class='create-time'>{{item.create_time}}</text>
+              </view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+
+<include src="/pages/back-home/home" />

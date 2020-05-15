@@ -1,0 +1,81 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">秒杀专区</view>
+</cu-custom>
+
+<view class="header">
+  <view class='time-slot-wrapper'>
+    <scroll-view scroll-x class='scroll-view-H'>
+      <block wx:for='{{ zoneList }}' wx:key='id'>
+        <view class='scroll-view-item' bindtap="tapItem" data-id="{{ item.status }}">
+          <view class="main {{ item.status == current_id ? 'active' : '' }}">{{ item.title }}</view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <!-- 秒杀商品列表 -->
+  <view class="wrap">
+
+    <view class="top flex" wx:if="{{ current_id == 0}}">
+      <text>秒杀活动已经结束！</text>
+    </view>
+
+    <view class="top flex" wx:if="{{ current_id == 1}}">
+      <text>本场剩余</text>
+      <view class="count flex">
+        <view class="circle">03</view>
+        <text class="dot">:</text>
+        <view class="circle">21</view>
+        <text class="dot">:</text>
+        <view class="circle">17</view>
+      </view>
+    </view>
+
+    <view class="top flex" wx:if="{{ current_id == 2}}">
+      <text>秒杀活动即将开始，敬请期待！</text>
+    </view>
+
+    <view class="list">
+      <scroll-view scroll-y class="scroll-view-V" lower-shreshold='20' bindscrolltolower='bindscrolltolower'>
+        <view class="scroll-item flex" wx:for="{{ seckillList }}" wx:key='goods_id'>
+          <image src="{{ item.cover }}"></image>
+          <view class="right">
+            <view class="title elilpsis">{{ item.name }}</view>
+            <view class="summary elilpsis">{{ item.summary }}</view>
+            <view class="price">
+              <text style="color: #E2631C; margin-right: 4rpx;">
+                  <text style="font-size: 20rpx;">￥</text>
+              <text style="font-size: 40rpx;">{{ item.price }}</text>
+              </text>
+              <text style="font-size: 24rpx; color: #9B9B9B;">￥{{ item.market_price }}</text>
+            </view>
+            <view class="process">
+              <text class="sold">已抢{{ item.sales || "0" }}件</text>
+              <text class="percent">{{ item.sales/item.total * 100 }}%</text>
+              <view class="float {{}}" wx:if="{{ item.sales/item.total*219 > 60 }}" style="width:{{ item.sales/item.total*219 }}rpx;"></view>
+            </view>
+            <view class="btn" bindtap="toDetail" data-id="{{ item.goods_id }}">马上抢
+              <text class="iconfont icon-forward" style="position:relative;left:-4rpx;"></text>
+            </view>
+          </view>
+        </view>
+
+        <view class='hasMore'>{{seckillList.length > 0 ? '我是有底线的~' : '暂无数据~'}}</view>
+      </scroll-view>
+    </view>
+
+  </view>
+
+</view>
+<!-- 秒杀商品列表ends -->
+
+<wxs module="sub">
+  var func = function(value) {
+    var len = value.length;
+    var newStr = value.substring(len - 6, len);
+    return newStr;
+  }
+  module.exports = {
+    subFunc: func
+  }
+</wxs>

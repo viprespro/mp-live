@@ -1,0 +1,16 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">入驻主播</view>
+</cu-custom>
+
+<image class="img img1" src="/packageB/imgs/bg1.png"></image>
+<image class="img img2" src="/packageB/imgs/bg2.png"></image>
+<image class="img img3" src="/packageB/imgs/bg3.png"></image>
+<image class="img img4" src="/packageB/imgs/bg4.png"></image>
+
+<view class="nav nav1" bindtap="handleTap" data-type="0"  data-url="/packageB/pages/apply-live/apply-live?type=0" hover-class="none">
+  <button class="btn platform">申请平台主播</button>
+</view>
+
+<view class="nav nav2" bindtap="handleTap" data-type="1" data-url="/packageB/pages/apply-live/apply-live?type=1" hover-class="none">
+  <button class="btn agency">申请机构主播</button>
+</view>

@@ -1,0 +1,73 @@
+page {
+  background: #f7f7f7;
+  font-size: 30rpx;
+}
+
+image {
+  border-radius: 50%;
+}
+
+.master-part-wrap {
+  padding: 30rpx 24rpx;
+  background: #fff;
+}
+
+.master {
+  margin-bottom: 30rpx;
+}
+
+.master-info-wrap {
+  display: flex;
+  align-items: center;
+  margin-bottom: 22rpx;
+}
+
+.img-box {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 30rpx;
+}
+
+.num {
+  margin-bottom: 20rpx;
+}
+
+.profit {
+  margin-bottom: 30rpx;
+}
+
+.prentice-part-wrap {
+  margin-top: 10rpx;
+  background: #fff;
+  overflow: hidden;
+}
+
+
+.title-item {
+  margin-bottom: 30rpx;
+  margin-top: 30rpx;
+  padding: 0 24rpx;
+}
+
+
+.row-item {
+  padding: 30rpx 24rpx;
+  border-bottom: 1px solid #E3E3E3;
+}
+
+.row-item  .left > image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.reward-wrap {
+  flex-direction: column;
+  justify-content: center;
+  margin-left: 20rpx;
+  font-size: 26rpx;
+}
+
+.right {
+  font-size: 26rpx;
+}

@@ -1,0 +1,4 @@
+<view class='search-wrap' bindtap="navSearchPage" style="background: {{ bg }}">
+  <image class="search-icon" src="/images/search-icon.png" style="width:24rpx;height:24rpx;"></image>
+  <view class="holder" style="font-size:{{ size }}rpx">{{ inputHint }}</view>
+</view>

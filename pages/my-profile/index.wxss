@@ -1,0 +1,30 @@
+/* pages/my-profile/index.wxss */
+page {
+  background-color: #ffff;
+  font-size: 28rpx;
+}
+
+.col-item-wrapper {
+  padding: 20rpx 24rpx;
+  border-bottom: 1px solid #ddd;
+}
+
+.col-item-wrapper  image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.not-first {
+  padding: 40rpx 24rpx;
+}
+
+.btn-wrapper {
+  width: 580rpx;
+  height: 88rpx;
+  color: #fff;
+  line-height:88rpx;
+  text-align: center;
+  border-radius: 44rpx;
+  margin: 40rpx auto;
+   background: linear-gradient(90deg, rgba(255, 103, 96, 1), rgba(255, 147, 118, 1));
+}

@@ -1,0 +1,6 @@
+<view class="wrapper">
+  <view class='img-wrap'>
+    <image src='/packageA/images/404.png'></image>
+  </view>
+  <view class='message'>{{message ? message : '没有找到符合条件的结果'}}</view>
+</view>

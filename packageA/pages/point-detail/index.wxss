@@ -1,0 +1,46 @@
+page {
+  background: #fff;
+}
+
+.header-wrapper {
+  background: #F8B303;
+  height: 188rpx;
+  color: #fff;
+  overflow: hidden;
+}
+
+.header-wrapper .total {
+  text-align: center;
+  font-size: 34rpx;
+  margin-top: 36rpx;
+  margin-bottom: 20rpx;
+}
+
+.header-wrapper .num {
+  text-align: center;
+  font-size: 40rpx;
+}
+
+.col-item-wrapper {
+  font-size: 26rpx;
+}
+
+.col-item-wrapper .col-item {
+  padding: 24rpx;
+}
+
+
+.col-item-wrapper .date {
+  color: #999;
+}
+
+.icon-scores,.icon-order {
+  color: #FAC052;
+}
+
+.hasMore {
+  text-align: center;
+  padding: 10rpx;
+  color: #ccc;
+  font-size: 28rpx;
+}

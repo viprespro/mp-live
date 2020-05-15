@@ -1,0 +1,17 @@
+page {
+  background: #fff;
+}
+
+.qr-wrap {
+  width: 180rpx;
+  height: 182rpx;
+  margin: 169rpx auto 44rpx;
+  background: #ccc;
+}
+
+.row-item {
+  text-align: center;
+  font-size: 28rpx;
+  color: #747373;
+  margin-bottom: 10rpx;
+}

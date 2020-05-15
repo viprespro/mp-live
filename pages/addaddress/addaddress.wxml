@@ -1,0 +1,112 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">地址(添加/编辑)</view>
+</cu-custom>
+
+<form bindsubmit="formSubmit">
+  <view class='information'>
+    <view class='information-li flex'>
+      <label class='label-item'>收货人</label>
+      <input type='text' placeholder='请输入姓名' placeholder-class='placeholder' name="name" value='{{userAddress.realname}}' />
+    </view>
+    <view class='information-li flex'>
+      <label  class='label-item'>联系电话</label>
+      <input type='number' placeholder-class='placeholder' placeholder='请输入联系电话' name="phone" value='{{userAddress.mobile}}'></input>
+    </view>
+
+    <view class='information-li flex'>
+      <label class='area label-item'>所在省市</label>
+      <view class='cur-area' bindtap="showModal" data-target="ChooseModal">
+          <text style='font-size:28rpx;'>{{province}}，{{city}}，{{area}}，</text>
+          <text class='iconfont icon-location' style='color:#f8b303;'></text>
+      </view>
+    </view>
+
+    <view class='information-li flex'>
+      <label  class='label-item'>详细地址</label>
+      <input type='text' placeholder-class='placeholder' placeholder='请填写具体地址' name="fulladdress" value='{{userAddress.address}}'></input>
+    </view>
+    <!-- <view class='information-li flex' bindtap="showModal" data-target="bottomModal">
+      <label class='time-balel label-item'>收货时间</label>
+      <view class='time'>
+        <text style='color:#333;font-size:26rpx;'>{{final_time}}</text>
+        <text class='iconfont icon-forward'></text>
+      </view>
+    </view> -->
+  </view>
+  <view class='default flex' bindtap='defaulttap'>
+    <image src='{{ _num == 1 ? "/images/selected-icon.png" : "/images/select-icon.png"}}' style='widht:32rpx;height:32rpx;'></image>
+    设置为默认地址
+  </view>
+  <button class='but' formType="submit">保存</button>
+</form>
+
+
+<!-- 选择地区 -->
+<view class="cu-modal bottom-modal {{modalName=='ChooseModal'?'show':''}}" bindtap="hideModal">
+  <view class="cu-dialog" catchtap>
+    <view class="cu-bar bg-white">
+      <view class="action text-grey" bindtap="hideModal">取消</view>
+      <view class="action" style='color:#f8b303;' bindtap="hideModal">确定</view>
+    </view>
+    <view class='chose-wrap flex-around'>
+      <text>省份(市):{{province}}</text>
+      <text>城市：{{city}}</text>
+      <text>区县：{{area}}</text>
+    </view>
+    <view class='addr-wrapper'>
+      <view class='top-box flex-around'>
+        <view>
+          <view class='province-wrap'>
+            <scroll-view scroll-y="true" class='scroll-view-V' scroll-into-view style='height:386rpx;' bindscroll="getCurrent">
+              <block wx:for="{{provinceList}}" wx:key="{{item.region_id}}">
+                <view class='scroll-view-item' bindtap='getSub' data-id='{{item.region_id}}' data-name='{{item.name}}'>{{item.name}}</view>
+              </block>
+            </scroll-view>
+          </view>
+        </view>
+        <view>
+          <view class='province-wrap'>
+            <scroll-view scroll-y="true" class='scroll-view-V' scroll-into-view style='height:386rpx;' bindscroll="getCurrent">
+              <block wx:for="{{cityList}}" wx:key="{{item.region_id}}">
+                <view class='scroll-view-item' bindtap='getThird' data-id='{{item.region_id}}' data-name='{{item.name}}'>{{item.name}}</view>
+              </block>
+            </scroll-view>
+          </view>
+        </view>
+        <view>
+          <view class='province-wrap'>
+            <scroll-view scroll-y="true" class='scroll-view-V' scroll-into-view style='height:386rpx;' bindscroll="getCurrent">
+              <block wx:for="{{areaList}}" wx:key="{{item.region_id}}">
+                <view class='scroll-view-item' bindtap='getFinal' data-id='{{item.region_id}}' data-name='{{item.name}}'>{{item.name}}</view>
+              </block>
+            </scroll-view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 底部模态框 -->
+<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="action" bindtap="hideModal">取消</view>
+      <view class="action text-black">选择收货地址</view>
+      <view class="action"></view>
+    </view>
+    <view class='border'></view>
+    <view class="bg-white action-list">
+      <block wx:for="{{ array }}">
+        <view class='item' bindtap='selectCurrent' data-flag='{{item.selected}}' data-index='{{index}}'>
+          <image class='icon-select' src='{{ item.selected ? "/images/selected-icon.png" : "/images/select-icon.png"}}'></image>
+          <view class='caption'>{{item.time}}</view>
+        </view>
+        <view class='border'></view>
+      </block>
+      <view class='add-address'>
+        <text class='info' bindtap='confirmTime'>确定</text>
+      </view>
+    </view>
+  </view>
+</view>

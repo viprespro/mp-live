@@ -1,0 +1,255 @@
+<!--pages/product-detail/index.wxml-->
+ <import src="../../wxParse/wxParse.wxml" /> 
+
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">商品详情</view>
+</cu-custom>
+
+<view class='swiper_banner'>
+  <swiper class="swiper-box" style="height:{{swiperH}}px;" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" circular='true'  indicator-active-color="{{indicatorActivecolor}}">
+    <block wx:for="{{productInfo.flash}}" wx:key="item">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image"  data-index="{{index}}" bindtap="previewSwiperImg"/>
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<!-- 涂邦秒杀 -->
+<view class='tp-seckill-wrapper' wx:if="{{productInfo.type == 1}}">
+
+  <view class='price-wrap'>
+    <view class='seckill-price'>
+      <text style='font-size:26rpx;'><text wx:if="{{productInfo.type !=3}}">￥</text></text>{{productInfo.price}}</view>
+    <view style='height:20rpx;'></view>
+    <text class='del-text'>即将恢复至原价</text>
+  </view>
+
+  <view class='timer-wrap'>
+    <view class='text'>距离结束剩余</view>
+    <view style='height:10rpx;'></view>
+    <view class='count'>
+      <view class='timer-count-box'>{{countDown.days}}</view>
+      <text class='c-3' style='color:#fff;'>天</text>
+      <view class='timer-count-box'>{{countDown.hrs}}</view>
+      <text class='c-3'>:</text>
+      <view class='timer-count-box'>{{countDown.mm}}</view>
+      <text class='c-3'>:</text>
+      <view class='timer-count-box'>{{countDown.ss}}</view>
+    </view>
+  </view>
+
+
+</view>
+<!-- 涂邦秒杀ends -->
+
+
+
+<view class='pro-wrapper'>
+  <view class='pro-infos'>
+    <view class='title overflow-text2'>
+      {{productInfo.goods_name}}
+    </view>
+
+    <view class='material overflow-text1 f-26 c-9'>{{productInfo.summary}}</view>
+
+    <view class='price-wrapper flex'>
+
+      <view class='price'>
+        <text><text wx:if="{{productInfo.type !=3}}">￥</text></text>{{current_spec_price ? current_spec_price : productInfo.price }}
+      </view>
+
+      <view class='price orginal' wx:if="{{key}}">
+        <text>￥</text>{{storeInfo.price}}
+      </view>
+      <text style='color:#A2A2A2;font-size:24rpx;' wx:if="{{productInfo.type == 0}}">{{productInfo.sales}}人已买</text>
+
+      <!-- 拼团 -->
+      <view class='group-info-wrap' wx:if="{{productInfo.type == 2}}">
+        <text class='item'>拼团价</text>
+        <text class='item'>{{productInfo.group_info.person}}人团</text>
+        <text class='group-num'>{{productInfo.group_info.sales}}人已团</text>
+      </view>
+    </view>
+
+    <!-- 七天退换... -->
+    <view class='service-list'>
+      <view class='item-wrap'>
+        <text class='iconfont icon-select-white-bg'></text>
+        <text space="ensp"> 7天退换</text>
+      </view>
+
+      <view class='item-wrap'>
+        <text class='iconfont icon-select-white-bg'></text>
+        <text space="ensp"> 贴心服务</text>
+      </view>
+
+      <view class='item-wrap'>
+        <text class='iconfont icon-select-white-bg'></text>
+        <text space="ensp"> 包邮</text>
+      </view>
+
+      <view class='item-wrap'>
+        <text class='iconfont icon-select-white-bg'></text>
+        <text space="ensp"> 运费险</text>
+      </view>
+    </view>
+
+
+  </view>
+
+  <view class='attr-wrapper'>
+    <view class='block-bar selected' bindtap='showModal' data-target="DrawerModalR">
+      <text class='title c-9'>商品参数</text>
+      <text>商品编号 上市年份 颜色 规格...</text>
+    </view>
+    <view class='block-bar selected flex' bindtap='getAttrInfo'>
+      <text class='title c-9' style='flex:0 0 120rpx;'>选择规格</text>
+      <view wx:if="{{sku_choose}}" style='color:#ff7676;font-size:26rpx;overflow:hidden;flex-grow:1;overflow-text1'>已选择{{sku_choose}}</view>
+      <text wx:else>选择颜色、规格等</text>
+    </view>
+  </view>
+
+</view>
+
+<!-- 显示可拼团列表 -->
+<view class='available-group-wrapper' wx:if="{{productInfo.type == 2 && !group_invite_flag}}">
+  <view class='title-wrap flex-between'>
+    <text style='color:#222;'>可直接参TA们的团</text>
+    <text class='process' bindtap='groupGuide'>拼团流程<text class='iconfont icon-forward' style='position:relative;top:3rpx;'></text></text>
+  </view>
+  <view class='group-list-wrap'>
+    <block wx:for="{{productInfo.group_list}}" wx:key="avatar">
+      <view class='group-item'>
+        <view class='img-box'>
+          <image src='{{item.avatar}}'></image>
+        </view>
+        <view class='item-info flex'>
+          <text>{{item.nickname}}</text>
+          <text>仅差<text class='s-color'>{{productInfo.group_info.person - item.person}}</text>人成团
+          <text class='s-color'>{{end_time_hint}}</text></text>
+        </view>
+        <view class='lanunch-btn-wrap' bindtap='joinGroup' data-id='{{item.group_record_id}}'>去参团</view>
+      </view>
+    </block>
+
+    <view class='if-no-group' wx:if="{{productInfo.group_list.length == 0}}">暂无可参加的团！</view>
+  </view>
+</view>
+
+
+<!-- 关于该商品的评论 -->
+<view class='comments-wrapper'>
+  <view class='comments-title-wrap flex-between'>
+    <text>评价({{total_comments || 0}})</text>
+    <view class='check-all-wrap' bindtap='commentsCheckAll' wx:if="{{ commentsList.length }}">
+      <text>查看全部</text>
+      <text class='iconfont icon-forward'></text>
+    </view>
+  </view>
+  <view class='comments-list-wrap'>
+    <block wx:for="{{commentsList}}" wx:key="create_time">
+      <view class='comments-item-wrap'>
+        <view class='top'>
+          <view class='avatar-box'>
+            <image src='{{item.avatar}}'></image>
+          </view>
+          <view class='username-d-wrap'>
+            <text>{{item.nickname}}</text>
+            <text class='date'>{{item.create_time}}</text>
+          </view>
+          <view class='stars-wrap'>
+            <i-rate value="{{item.goods_score}}">
+            </i-rate>
+          </view>
+        </view>
+        <view class='bot'>
+          {{item.comment}}
+        </view>
+      </view>
+    </block>
+
+    <view class='if-no-comments' wx:if="{{total_comments == 0 }}">暂无评论！</view>
+  </view>
+</view>
+
+<!-- 详情展示 -->
+<view class='content-wrapper'>
+  <view class='common-title flex'>
+    <view class='line'></view>
+    <view class='iconfont icon-tupian'></view>
+    <view class='text'>详情</view>
+    <view class='line'></view>
+  </view>
+  <!-- <rich-text nodes="{{productInfo.details}}"></rich-text> -->
+  <template is="wxParse" data="{{wxParseData:details.nodes}}" />
+</view>
+
+
+<view style='height:130rpx;'></view>
+
+<!-- 普通商品情况 -->
+<view class='foot flex'>
+  <view class='fn-btns flex'>
+    <view class='item flex' bindtap='alertCollection'>
+      <text class='iconfont {{productInfo.is_follow ? "iconshoucang" : "icon-star" }}'></text>
+      <text class='collection'>{{productInfo.is_follow ? '已收藏' : '收藏'}}</text>
+    </view>
+    <view class='item flex'>
+      <text class='iconfont icon-service'></text>
+      <button open-type='contact' class="contact">咨询客服</button>
+    </view>
+  </view>
+  <view class='btns-wrapper flex'>
+    <view class='buy-btn' style='flex:1' bindtap='addToCart'>加入购物车</view>
+    <view class='payment-btn' style='flex:1' bindtap='goOrder'>确认下单</view>
+  </view>
+</view>
+
+<!-- 拼团商品情况 -->
+<view class='foot flex' wx:if="{{productInfo.type == 2}}">
+  <view class='fn-btns flex' style='width:100%;'>
+    <view class='item flex' bindtap='alertCollection'>
+      <view class='iconfont icon-star {{productInfo.is_follow ? "collected" : ""}}'></view>
+      <text class='collection'>{{productInfo.is_follow ? '已收藏' : '收藏'}}</text>
+    </view>
+    <view class='item flex' bindtap='consult'>
+      <view class='iconfont icon-service'></view>
+      <text class='consult'>咨询客服</text>
+    </view>
+  </view>
+  <view class='btns-wrapper flex'>
+    <view class='payment-btn' style='flex:1' bindtap='joinGroupByInvited' wx:if="{{group_invite_flag}}">去参团</view>
+    <view class='payment-btn' style='flex:1' bindtap='launch' wx:else>立即开团</view>
+  </view>
+</view>
+
+
+<!-- 兑换的时候 -->
+<view class='exchange-footer flex' bindtap='exchange' wx:if='{{ productInfo.type == 3}}'>
+  马上兑换
+</view>
+
+<!-- 右侧抽屉 -->
+<view class="cu-modal drawer-modal justify-end {{modalName=='DrawerModalR'?'show':''}}" bindtap="hideModal">
+  <view class="cu-dialog basis-lg" catchtap style="top:{{CustomBar}}px;height:calc(100vh - {{CustomBar}}px)">
+    <view class="cu-list menu text-left">
+      <view class='param-title'>商品参数</view>
+      <view class='param-content'>
+        <block wx:for="{{paramsList}}" wx:key="index">
+          <view class='param-content-item flex-between'>
+            <view class='left'>{{item.attribute_name}}</view>
+            <view class='overflow-text1' style='width:300rpx;text-align:right;'>{{item.value}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='mask' wx:if="{{posterImageStatus}}"></view>
+
+<include src="/pages/foo-tan/foo-tan.wxml" />
+<import src="/wxParse/wxParse.wxml" />
+
+<include src="/pages/back-home/home" />

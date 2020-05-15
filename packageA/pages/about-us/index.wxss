@@ -1,0 +1,23 @@
+page {
+  background: #fff;
+}
+
+.title-wrap {
+  width: 200rpx;
+  height: 60rpx;
+  margin: 20rpx  auto 30rpx;
+}
+
+.contact-wrap {
+  padding: 15rpx 24rpx;
+  color: #E2631C;
+  font-size: 28rpx;
+}
+
+.rich-wrap {
+  padding:0 24rpx 20rpx;
+  font-size: 26rpx;
+  color: #666;
+  line-height: 1.75;
+}
+@import "/wxParse/wxParse.wxss"; 

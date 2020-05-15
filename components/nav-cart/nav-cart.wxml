@@ -1,0 +1,5 @@
+<!-- 导航到购物车 -->
+<view class="cart-wrap" bindtap="navCartPage">
+  <image src="/images/cart-nav.png"></image>
+  <view class="num" wx:if='{{ cartNum }}'>{{ cartNum }}</view>
+</view>

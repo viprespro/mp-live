@@ -1,0 +1,16 @@
+<!--pages/logistics/logistics.wxml-->
+
+<view class='status-wrapper'>
+  <view class='content'>
+    <text class='strong'>物流信息如下：</text>
+  </view>
+</view>
+
+
+<view class='info-wrapper'>
+  <block wx:for="{{logisticsList}}" wx:key="unique">
+    <view class='info-item {{index == 0 ? "alert-c" : ""}}' space="ensp">{{item.context}} {{item.ftime}}</view>
+  </block>
+</view>
+
+<view class='empty' wx:if="{{logisticsList.length == 0}}">暂无物流信息~</view>

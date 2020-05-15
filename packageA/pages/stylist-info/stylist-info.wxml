@@ -1,0 +1,59 @@
+<!--packageA/pages/stylist-details/stylist-details.wxml-->
+<view class='container'>
+  <view class='avatar'>
+    <text class='caption'>头像</text>
+    <view class='info'>
+      <image class='avatar-img' src='http://img5.imgtn.bdimg.com/it/u=3300305952,1328708913&fm=26&gp=0.jpg'></image>
+      <text class='iconfont icon-forward'></text>
+    </view>
+  </view>
+  <view class='border'></view>
+  <view class='item'>
+    <text class='caption'>姓名</text>
+    <view class='info'>
+      <input class='placeholder' placeholder='请输入您的真实姓名'></input>
+      <text class='iconfont icon-forward'></text>
+    </view>
+  </view>
+  <view class='border'></view>
+  <view class='item'>
+    <text class='caption'>手机号</text>
+    <view class='info'>
+      <input class='placeholder' placeholder='请输入您的手机号'></input>
+      <text class='iconfont icon-forward'></text>
+    </view>
+  </view>
+  <view class='border'></view>
+  <view class='item'>
+    <text class='caption'>身份证号</text>
+    <view class='info'>
+      <input class='placeholder' placeholder='请输入您的身份证号'></input>
+      <text class='iconfont icon-forward'></text>
+    </view>
+  </view>
+  <view class='border'></view>
+  <view class='item'>
+    <text class='caption'>所在区域</text>
+    <view class='info'>
+      <input class='placeholder' placeholder='请选择您所在城市' readonly></input>
+      <text class='iconfont icon-forward'></text>
+    </view>
+  </view>
+  <view class='border'></view>
+  <view class='item'>
+    <text class='caption'>详细地址</text>
+    <view class='info'>
+      <input class='placeholder' placeholder='请填写您的详细地址'></input>
+      <text class='iconfont icon-forward'></text>
+    </view>
+  </view>
+  <view class='border'></view>
+  <view class='item'>
+    <text class='caption'>毕业证书/设计证书</text>
+  </view>
+  <view class='add-picture'>
+    <text class='horizontal'></text>
+    <text class='vertical'></text>
+  </view>
+  <view class='save'>保存</view>
+</view>

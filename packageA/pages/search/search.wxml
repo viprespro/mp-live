@@ -1,0 +1,27 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">搜索</view>
+</cu-custom>
+
+<view class="wrapper">
+  <view class="outer" style="display:flex;align-items:center;justify-content:space-between;">
+    <form bindsubmit="inputSearch" report-submit='true' class="head-wrap">
+      <view class='search-box flex'>
+        <view class='iconfont icon-search'></view>
+        <input type='text' value="{{ inputValue }}" placeholder='搜你想搜的' bindinput='bindInput' placeholder-class='placeholder' bindconfirm="inputSearch" confirm-type='search' name="search"></input>
+      </view>
+    </form>
+    <view class='search-text' bindtap='inputSearch' style="top:{{CustomBar + 14}}px">搜索</view>
+  </view>
+
+  <view class='hot-search-wrap'>
+    <view class='hot'>热门搜索</view>
+    <view class='hot-wrap'>
+      <block wx:for="{{wordsList}}" wx:key="keywords">
+        <navigator hover-class='none' url='/pages/sort-column/index?keywords={{item.keywords}}'>
+          <text class='item'>{{item.keywords}}</text>
+        </navigator>
+      </block>
+    </view>
+  </view>
+
+</view>

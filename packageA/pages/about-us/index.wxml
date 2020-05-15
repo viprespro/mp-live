@@ -1,0 +1,25 @@
+<import src="/wxParse/wxParse.wxml" />
+
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">关于我们</view>
+</cu-custom>
+
+<view class="wrapper">
+  <!-- <view class='title-wrap'>
+    <image src='../../images/profile.png'></image>
+  </view> -->
+
+  <view class='rich-wrap'>
+    <template is="wxParse" data="{{wxParseData:introduction.nodes}}" />
+  </view>
+
+  <!-- <view class='contact-wrap'>
+    <text class='iconfont icon-search'></text>
+    <text>023 6892 6866</text>
+  </view> -->
+
+  <!-- <view class='contact-wrap'>
+    <text class='iconfont icon-location'></text>
+    <text>地址：重庆市大渡口区天安数码城2栋4F</text>
+  </view> -->
+</view>

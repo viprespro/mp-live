@@ -1,0 +1,110 @@
+<!-- 参加拼团的商品 -->
+<view class='group-product-wrapper'>
+  <view class='product-img-wrap'>
+    <image src='{{groupInfo.goods_image}}'></image>
+  </view>
+
+  <view class='product-detail-wrap'>
+    <view class='name overflow-text2'>{{groupInfo.goods_name}}</view>
+    <view class='number'>{{groupInfo.person}}人团</view>
+    <view class='price'>￥{{groupInfo.price}}
+      <!-- <text class='origin'>￥9.9</text> -->
+    </view>
+
+    <button class='share-btn-wrap' open-type='share' bindtap='onShareAppMessage'>
+      <text class='iconfont icon-share'></text>
+      <text class='share-txt'>分享</text>
+    </button>
+
+  </view>
+</view>
+<!-- 参加拼团的商品ends -->
+
+
+<view class='service-wrapper'>
+  <view class='item'>
+    <text class='iconfont icon-select-white-bg'></text>
+    <text space="ensp"> 贴心服务</text>
+  </view>
+  <view class='item'>
+    <text class='iconfont icon-select-white-bg'></text>
+    <text space="ensp"> 包邮</text>
+  </view>
+
+  <view class='item'>
+    <text class='iconfont icon-select-white-bg'></text>
+    <text space="ensp"> 运费险</text>
+  </view>
+</view>
+
+
+<!-- 拼团人数不足时 -->
+<view class='group-wrapper' wx:if="{{groupInfo.person-groupInfo.record_person != 0}}">
+  <text class='lack'>还差<text class='number'>{{groupInfo.person-groupInfo.record_person}}</text>人成团</text>
+  <view class='timer'>
+    <text>剩余 </text>
+    <text class='timer-box' wx:if="{{countDown.days > 0}}">{{countDown.days}}</text>
+    <text style='margin:0 10rpx;'>天</text>
+    <text class='timer-box'>{{countDown.hrs}}</text>
+    <text>：</text>
+    <text class='timer-box'>{{countDown.mm}}</text>
+    <text>：</text>
+    <text class='timer-box'>{{countDown.ss}}</text>
+    <text> 结束</text>
+  </view>
+  <view class='invite'>马上分享，邀请好友成团
+    <view class='row-bundle'></view>
+    <view class='row-bundle right-dec'></view>
+  </view>
+  <view class='must'>再邀请<text class='number'>{{groupInfo.person-groupInfo.record_person}}</text>人即可拼团成功！</view>
+  <button class='btn-style' open-type='share' bindtap='onShareAppMessage'>邀请好友参团</button>
+</view>
+
+
+<!-- 拼团人数满时 即拼团成功时 -->
+<view class="wrapper" wx:if="{{groupInfo.person-groupInfo.record_person == 0}}">
+  <view wx:if="{{status}}" class='col-1 {{status ? "success-color" : "fail-color"}}'>
+    <text class='iconfont icon-select-white-bg' style='font-size:40rpx;color:#F8B303;'></text> 拼团成功
+  </view>
+
+  <view wx:else class='col-1 {{status ? "success-color" : "fail-color"}}'>
+    <text class='iconfont icon-close-01' style='font-size:40rpx;color:#999;'></text> 拼团失败
+  </view>
+
+  <view class='col-2'>
+    <text wx:if="{{status}}">商家正在努力发货，请耐心等待！</text>
+    <text wx:else>人数不足，不要灰心，再接再厉哦！</text>
+  </view>
+
+  <view class='col-3 {{status ? "sucess-q" : "fail-q"}}' bindtap='goDetail'>抢好货</view>
+</view>
+
+
+<view class='group-people-wrapper'>
+  <view class='team-wrap'>
+    <block wx:for="{{groupInfo.list}}" wx:key="{{item.pid}}">
+      <view class='peo-item'>
+        <image src='{{item.avatar}}'></image>
+        <text wx:if="{{item.pid == 0}}" class='group-leader'>团长</text>
+      </view>
+    </block>
+
+    <block wx:for="{{groupInfo.person-groupInfo.record_person}}" wx:key="{{unique}}">
+      <view class='peo-item'></view>
+    </block>
+  </view>
+
+  <view class='date-wrap'>
+    <text>参团时间</text>
+    <text>{{groupInfo.create_time}}</text>
+  </view>
+</view>
+
+
+<view class='other-instr-wrapper'>
+  <view class='inner overflow-text1'>
+    开团后邀请好友参团,人数不足自动退款
+  </view>
+</view>
+
+<include src="/pages/back-home/home" />

@@ -1,0 +1,72 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">我的收藏</view>
+</cu-custom>
+<!-- 
+<view class="tabs-wrapper">
+  <view wx:for="{{ ['商品'] }}" class="{{ acTab==index ? 'active' : '' }}" data-index='{{ index }}' bindtap='taptab'>{{ item }}</view>
+</view> -->
+
+<!-- 商品列表 -->
+<view hidden="{{ acTab != 0 }}" class="product-wrapper">
+  <block wx:for="{{products}}" wx:key="goods_id">
+    <view class='product-item-wrap' bindtap='goDetail' data-id='{{item.goods_id}}'>
+      <view class='pro-img-wrap'>
+        <image src='{{item.cover}}'></image>
+      </view>
+      <view class='pro-detail-wrap'>
+        <view class='desc overflow-text2'>{{item.goods_name}}</view>
+        <view class='style'>
+          <view class='style-item'>{{item.style_name}}</view>
+          <view class='isDeliver'>包邮</view>
+        </view>
+        <view class='price flex-between'>
+          <text class='price-num'>￥{{item.price}}</text>
+          <text class='trade'>{{item.sales}}人付款</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+
+<!-- 设计师列表 -->
+<view hidden="{{ acTab != 1 }}" class="designer-wrapper">
+  <block wx:for="{{designers}}" wx:key="designer_id">
+    <navigator hover-class="none" url='/packageA/pages/stylist-details/stylist-details?id={{item.designer_id}}'>
+      <view class='card'>
+        <view class='person'>
+          <image src='{{item.pic}}'></image>
+          <view class='desc'>
+            <view class='title'>{{item.realname}}</view>
+            <view class='info overflow-text1'>{{item.introduction || '这个人很懒，什么都没留下~'}}</view>
+            <view class='address'>
+              <view class='localtion overflow-text1'>{{item.dist}}</view>
+              <view class='age'>{{item.years}}年经验</view>
+            </view>
+          </view>
+        </view>
+        <view class='attention {{!item.is_follow ? "diff-bg" : ""}}' catchtap='follow' data-id='{{item.designer_id}}'>{{item.is_follow ? '已关注' : '+关注'}}</view>
+      </view>
+      <view class='border'></view>
+    </navigator>
+  </block>
+</view>
+
+<!-- 论坛圈子列表 -->
+<view hidden="{{ acTab != 2 }}" class="article-wrapper">
+  <block wx:for="{{articles}}" wx:key="article_id">
+    <navigator hover-class='none' url='/packageA/pages/design-community-detail/design-community-detail?id={{item.article_id}}'>
+      <view class='item'>
+        <view class='img-wrap'>
+          <image src='{{item.designer_pic}}' class='img-circle'></image>
+        </view>
+        <view class='detail'>
+          <view class='strong name'>{{item.title}}</view>
+          <text class='desc'>{{item.content}}</text>
+          <text class='date'>{{item.create_time}}</text>
+        </view>
+      </view>
+    </navigator>
+  </block>
+</view>
+
+<view class="hasMore" wx:if="{{ isShow }}">{{ emptyOrMore ? '我是有底线的~' : '暂无数据~' }}</view>

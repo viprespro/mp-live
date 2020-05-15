@@ -1,0 +1,49 @@
+<view class="row-item-wrap">
+  派单时间:{{reserveInfo.create_time}}
+</view>
+
+<view class="row-item-wrap">
+  房屋户型:{{reserveInfo.room}}室{{reserveInfo.hall}}厅{{reserveInfo.toilet}}卫
+</view>
+
+<view class="row-item-wrap">
+  客户电话:{{reserveInfo.mobile}}
+</view>
+
+<view class="row-item-wrap">
+  费用:{{reserveInfo.total_price}}
+</view>
+
+<view class="row-item-wrap">
+  面积:{{reserveInfo.area}}平
+</view>
+
+<view class="row-item-wrap">
+  姓名:{{reserveInfo.realname}}
+</view>
+
+<!-- 上传图片 -->
+<view class="cu-bar bg-white margin-top">
+  <view class="action">
+    图片上传
+  </view>
+  <view class="action">
+    {{imgList.length}}/8
+  </view>
+</view>
+<view class="cu-form-group">
+  <view class="grid col-4 grid-square flex-sub">
+    <view class="bg-img" wx:for="{{imgList}}" wx:key="{{index}}" bindtap="ViewImage" data-url="{{imgList[index]}}">
+      <image src='{{imgList[index]}}'></image>
+      <view class="cu-tag bg-red" catchtap="DelImg" data-index="{{index}}">
+        <text class='iconfont icon-close-01'></text>
+      </view>
+    </view>
+    <view class="solids" bindtap="uploadImg" data-index='0' wx:if="{{imgList.length<8}}">
+      <text class="cuIcon-cameraadd"></text>
+    </view>
+  </view>
+</view>
+
+
+<view class='common-btn-wrapper' bindtap='save'>保存</view>

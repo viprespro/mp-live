@@ -1,0 +1,97 @@
+page {
+  background: #ededed;
+}
+
+.wrapper {
+  margin: 42rpx 24rpx;
+}
+
+.top-wrap {
+  padding: 35rpx 20rpx;
+  background: #fff;
+  display: flex;
+  justify-content: flex-start;
+  border-radius: 10rpx;
+}
+
+.avatar-box {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+}
+
+.avatar-box > image {
+  border-radius: 50%;
+}
+
+.scores-wrap {
+  margin-left: 27rpx;
+  font-size: 30rpx;
+}
+
+.bot-wrap {
+  margin-top: 20rpx;
+  padding: 26rpx 32rpx;
+  background: #fff;
+  border-radius: 10rpx;
+}
+
+.bot-wrap > textarea {
+  font-size: 28rpx;
+  line-height: 1.75;
+  height: 200rpx;
+}
+
+.img-container {
+  display: flex;
+  align-items: center;
+}
+
+.img-container > .item {
+  width: 140rpx;
+  height: 140rpx;
+  margin-right: 20rpx;
+  border-radius: 8rpx;
+  position: relative;
+  margin-top: 10rpx;
+}
+
+.img-container > .item > image {
+  border-radius: 8rpx;
+}
+
+.icon-close-01 {
+  position: absolute;
+  right: 8rpx;
+  top: -9rpx;
+  color: #ffe;
+}
+
+.icon-camera {
+  font-size: 46rpx !important;
+}
+
+.tap-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 24rpx;
+  color: #999;
+  height: 140rpx;
+  width: 140rpx;
+  border: 1px dashed #ccc;
+  border-radius: 8rpx;
+}
+
+.tap-text {
+  margin-top: 10rpx;
+}
+
+.score-item-wrap {
+  align-items: center;
+}
+
+.star-wrap {
+  margin-left: 10rpx;
+}

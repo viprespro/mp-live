@@ -1,0 +1,54 @@
+<!-- 拼图流程 -->
+<view class='wrapper'>
+  <view class='process-wrap'>
+    <view class='item'>选择心仪商品
+      <view class='order'>1</view>
+    </view>
+    <text class='iconfont icon-forward'></text>
+    <view class='item'>支付开团或参团
+      <view class='order'>2</view>
+    </view>
+    <text class='iconfont icon-forward'></text>
+    <view class='item'>邀请好友参团拼团
+      <view class='order'>3</view>
+    </view>
+    <text class='iconfont icon-forward'></text>
+    <view class='item'>团满发货不满退款
+      <view class='order'>4</view>
+    </view>
+  </view>
+
+  <view class='detail-instr-wrap'>
+    <view class='col-item'>
+      <text class='strong title'>开团:</text>
+      <text class='text'>选择心仪商品支付开团并邀请好友开团</text>
+    </view>
+
+    <view class='col-item'>
+      <text class='strong title'>参团:</text>
+      <text class='text'>进入朋友分享的页面,点击“立即参团”，付款后即参团成功</text>
+    </view>
+
+    <view class='col-item'>
+      <text class='strong title'>拼团成功:</text>
+      <text class='text'>开团或参团成功后，在24小时内达到指定人数，则拼 团成功。系统将生成订单，由商家安排发货。您可在“我的拼团” 内查看</text>
+    </view>
+
+    <view class='col-item'>
+      <text class='strong title'>拼团失败:</text>
+      <text class='text'>团长开团24小时内未达到指定人数，则拼团失败，将 退还支付款项；</text>
+    </view>
+
+    <view class='col-item'>
+      <text class='strong title'>退款：</text>
+      <text class='text'>拼团退款将在1-7个工作日内安排退至原支付账户，具体到 账时间以支付宝/微信/银行为准，请注意查收。 退款进度可在“我的拼团”内查看。</text>
+    </view>
+
+    <view class='col-item'>
+      <text class='strong title'>创建订单失败:</text>
+      <text class='text'>拼团商品数量有限，先成团先得。商品被抢光后， 将无法再创建发货订单或开/参团</text>
+    </view>
+
+  </view>
+</view>
+<!-- 拼图流程ends -->

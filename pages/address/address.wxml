@@ -1,0 +1,30 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">添加地址</view>
+</cu-custom>
+<view class="header"></view>
+<view class='address_ul'>
+  <block wx:for="{{addressArray}}" wx:key="{{item.address_id}}">
+    <view class='address_li'>
+      <view class='addressx' data-id="{{item.address_id}}" bindtap='goOrder'>
+        <view class='addressName'>收货人：{{item.realname}}
+          <text class='addressphone'>{{item.mobile}}</text>
+        </view>
+        <view class='addressLock'>收货地址：{{item.address}}</view>
+      </view>
+      <view class='addressc flex'>
+        <!-- <view data-idx='{{item.id}}' class='Maddress' bindtap='activetap'>
+          <text class='iconfont icon-duihao1 Choice {{_num==item.id || item.status ? "active":""}}' data-idx='{{item.id}}'></text> 设为默认地址
+        </view> -->
+        <view>
+          <text class='edit' data-id="{{item.address_id}}" data-title="编辑地址" bindtap='editAddress'>编辑</text>
+          <text class='del' data-id="{{item.address_id}}" bindtap='delAddress'>删除</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+<view style='height:80rpx'></view>
+
+<view class='footer flex-center'>
+  <view class='system-address' bindtap='addAddress' data-title="添加地址">添加地址</view>
+</view>

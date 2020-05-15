@@ -1,0 +1,311 @@
+page {
+  background: #fff;
+}
+
+.head {
+  z-index: 99;
+  position: fixed;
+  left: 0;
+  /* top: 0; */
+  width: 100%;
+  height: 70rpx;
+  padding: 0 28rpx;
+  color: #7E7E7E;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  background: #DFDFDF;
+  font-size: 26rpx;
+}
+
+.car-list {
+  position: relative;
+  margin-top: 70rpx;
+  background-color: #fff;
+}
+
+.car-list .list-item {
+  position: relative;
+  padding: 20rpx;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 15rpx;
+}
+
+.select-btn {
+  width: 83rpx;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.select-btn checkbox .wx-checkbox-input {
+  border-radius: 50%;
+}
+
+
+.select-btn checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  color: #fff !important;
+  border: 1px solid #ff4c17;
+  background-color: #ff4c17;
+  border-radius: 50%; 
+}
+
+
+.picture {
+  width: 170rpx!important;
+  height: 170rpx!important;
+}
+
+.picture image {
+  width: 100%;
+  height: 100%;
+}
+
+.pro-info {
+  width: 425rpx;
+  margin: 0 20rpx;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.pro-info .pro-title {
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  -moz-line-clamp: 2;
+  overflow: hidden;
+  color: #262626;
+}
+
+.pro-info .pro-des {
+  font-size: 24rpx;
+  color: #ababab;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.pro-info .pro-price {
+  font-size: 38rpx;
+  color: #F8B303;
+}
+
+.pro-info .pro-price text {
+  font-size: 25rpx;
+}
+
+.count-wrapper {
+  position: absolute;
+  right: 20rpx;
+  bottom: 20rpx;
+  width: 160rpx;
+  height: 47rpx;
+  line-height: 47rpx;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  align-items: center;
+}
+
+.count-wrapper text {
+  flex: 1;
+  text-align: center;
+  height: 100%;
+  font-size: 36rpx;
+  color: #454545;
+  line-height: 37rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.count-wrapper .num {
+  flex: initial;
+  width: 66rpx;
+  color: #333;
+  font-size: 28rpx;
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  line-height: 47rpx;
+  text-align: center;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.disabled {
+  color: #ccc !important;
+}
+
+.fail-list .title-bar {
+  width: 100%;
+  height: 118rpx;
+  align-items: center;
+  color: #aaa;
+  justify-content: center;
+}
+
+.fail-list .title-bar .line {
+  width: 70rpx;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.fail-list .title-bar .txt {
+  margin: 0 35rpx;
+}
+
+.fail-item {
+  position: relative;
+  padding: 20rpx;
+  background-color: #fff;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+}
+
+.fail-item .pro-img, .fail-item .pro-img image {
+  width: 185rpx;
+  height: 185rpx;
+}
+
+.fail-item .pro-infos {
+  width: 495rpx;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.fail-item .pro-infos .title {
+  color: #777;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  -moz-line-clamp: 2;
+  overflow: hidden;
+}
+
+.fail-item .pro-infos .price {
+  font-size: 38rpx;
+  color: #999;
+}
+
+.fail-item .pro-infos .price text {
+  font-size: 25rpx;
+}
+
+.fail-item .del-btn {
+  position: absolute;
+  right: 20rpx;
+  bottom: 30rpx;
+  width: 130rpx;
+  height: 50rpx;
+  box-sizing: border-box;
+  text-align: center;
+  line-height: 50rpx;
+  border: 1px solid #ff4c17;
+  font-size: 24rpx;
+  color: #ff4c17;
+  border-radius: 3px;
+}
+
+.foot {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 99rpx;
+  background-color: #fff;
+  border-top: 1px solid #eee;
+}
+
+.foot .all-select {
+  width: 87rpx;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.foot .all-select  checkbox .wx-checkbox-input {
+  border-radius: 50%;
+}
+
+.foot .all-select checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  color: #fff !important;
+  border: 1px solid #F8B303;
+  background-color: #F8B303;
+  border-radius: 50%;
+}
+
+.foot .count-num {
+  margin-left: 75rpx;
+  color: #F8B303;
+}
+
+
+.foot .pay-btn {
+  width: 240rpx;
+  height: 99rpx;
+  text-align: center;
+  line-height: 99rpx;
+  background: #F8B303;
+}
+
+.foot .left-wrapper {
+  flex: 1;
+  align-items: center;
+}
+
+.delete-wrapper {
+  align-items: center;
+  height: 100%;
+}
+
+.delete-wrapper .right-wrapper {
+  width: 370rpx;
+  padding-right: 20rpx;
+  justify-content: flex-end;
+}
+
+.delete-wrapper .right-wrapper .collection-btn {
+  width: 175rpx;
+  height: 65rpx;
+  text-align: center;
+  line-height: 65rpx;
+  color: #ff4c17;
+  border: 1px solid #ff4c17;
+  border-radius: 3px;
+}
+
+.delete-wrapper .right-wrapper  .delete-btn {
+  width: 175rpx;
+  height: 65rpx;
+  text-align: center;
+  line-height: 65rpx;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 3px;
+}
+
+.f-size {
+  font-size: 40rpx;
+}
+
+.none {
+  display: none;
+}
+
+.invalid-txt-wrap .txt {
+  padding: .3rem;
+  color: #777;
+}
+
+.icon-delete {
+  color: #777;
+}

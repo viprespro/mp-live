@@ -1,0 +1,39 @@
+page {
+  background: #fff;
+}
+
+.wrapper {
+  padding: 38rpx 24rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon-selected {
+  font-size: 70rpx;
+  color: #F8B403;
+}
+
+.pay-success  {
+  margin-top: 44rpx;
+  font-size: 36rpx;
+  margin-bottom: 55rpx;
+}
+
+.order-sn {
+  font-size: 30rpx;
+   margin-bottom: 75rpx;
+}
+
+.btn-wrap  {
+  height: 88rpx;
+  line-height: 88rpx;
+  border-radius: 44rpx;
+  width: 100%;
+  text-align: center;
+  background: #F8B403;
+  color: #fff;
+  font-size: 36rpx;
+}
+

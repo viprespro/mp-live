@@ -1,0 +1,36 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">退款/售后</view>
+</cu-custom>
+<view class="return-wrapper">
+  <view class="return-goods-list">
+    <block wx:for="{{list}}" wx:key="refund_id">
+      <view class='item'>
+        <view class="item-order-num flex-between">
+          <view class="order-num-txt">订单号：{{item.refund_sn}}</view>
+          <!-- <text class="iconfont icon-delete"></text> -->
+        </view>
+        <view class='content-item'>
+          <view class='img-wrap'>
+            <image src='{{item.goods_img}}' class='img'></image>
+          </view>
+          <view class='detail'>
+            <view class='strong name'>{{item.goods_name}}</view>
+            <text class='desc'>{{item.spec_name}}</text>
+            <text class='red-like'>￥{{item.price}}</text>
+          </view>
+        </view>
+        <view class="item-status">
+          <text>{{item.type ? '退款退货' : '仅退款'}}</text>
+          <text class="right-txt" wx:if="{{item.status == 0}}">申请中</text>
+          <text class="right-txt" wx:if="{{item.status == 1}}">待用户填写物流信息</text>
+          <text class="right-txt" wx:if="{{item.status == 2}}">退款中</text>
+          <text class="right-txt" wx:if="{{item.status == 3}}">退款成功 </text>
+          <text class="right-txt" wx:if="{{item.status == 4}}">已驳回</text>
+        </view>
+        <view class="item-detail-btn" catchtap="checkDetail" data-id="{{item.refund_id}}">查看详情</view>
+      </view>
+    </block>
+  </view>
+</view>
+
+<view class='hasMore'>{{list.length > 0 ? '我是有底线的~' : '暂无数据~'}}</view>

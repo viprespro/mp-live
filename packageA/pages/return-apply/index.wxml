@@ -1,0 +1,100 @@
+<view class='return-container'>
+  <view class="caption">商品</view>
+  <view class="goods-wrap">
+    <view class="img-wrap">
+      <image src="{{info.img}}"></image>
+    </view>
+    <view class="right">
+      <view class="overflow-text2 title">{{info.goods_name}}</view>
+      <view class="sku-info">{{info.spec_name}}</view>
+    </view>
+  </view>
+  <view class="reason-wrap">
+    <view class="reason-item" bindtap="showModal" data-target="reason-modal">
+      <text class="item-left-txt">*退款原因</text>
+      <text>请选择退款原因</text>
+      <text class="iconfont icon-drop-up item-right-icon"></text>
+    </view>
+
+    <view class="reason-item" bindtap="showModal" data-target="type-modal">
+      <text class="item-left-txt">*退款类型</text>
+      <text>请选择退款类型</text>
+      <text class="iconfont icon-drop-up item-right-icon"></text>
+    </view>
+
+    <view class="reason-item">
+      <text class="item-left-txt">*退款金额</text>
+      <text>￥{{info.max_price || 0.00}}</text>
+    </view>
+
+    <view class="reason-item">
+      <text class="item-left-txt">*退款说明</text>
+      <input class="input" bindinput="bindDescribe"></input>
+    </view>
+
+    <view class="upload-wrap">
+      <view class="left" bindtap="uploadImg" data-index="0">
+        <text class="iconfont icon-upload"></text>
+        <text>上传凭证</text>
+      </view>
+      <view class="right">
+        <block wx:for="{{proveList}}" wx:key="*this">
+          <view class="right-item-img-wrap">
+            <image src="{{item}}"></image>
+            <view class="iconfont icon-close-01" catchtap="delImg" data-index="{{index}}" ></view>
+          </view>
+        </block>
+      </view>
+      <view class="instr-txt">（最多3张）</view>
+    </view>
+
+  </view>
+</view>
+
+<view class="common-btn-wrapper" bindtap="submitApply">提交申请</view>
+
+
+<!-- 退款原因-modal -->
+<view class="cu-modal {{modalName=='reason-modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="confirm" bindtap="confirmReason">确定</view>
+      <view class="content">请选择退款原因</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close iconfont icon-close-01"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <scroll-view scroll-y style="height:600rpx;">
+        <block wx:for='{{reasonList}}' wx:key='{{item.name}}'>
+          <view class="modal-reason-item" bindtap="selectCur" data-flag="0" data-index="{{index}}">
+            <text>{{item.name}}</text>
+            <text class="iconfont {{item.check ? 'icon-selected' : 'icon-non-selected'}}"></text>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 退款类型-modal -->
+<view class="cu-modal {{modalName=='type-modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="confirm" bindtap="confirmType">确定</view>
+      <view class="content">请选择退款类型</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close iconfont icon-close-01"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <block wx:for="{{typeList}}" wx:key="{{item.name}}">
+        <view class="modal-reason-item" bindtap="selectCur" data-flag='1' data-index="{{index}}">
+          <text>{{item.name}}</text>
+          <text class="iconfont {{item.check ? 'icon-selected' : 'icon-non-selected'}}"></text>
+        </view>
+      </block>
+    </view>
+  </view>
+</view>

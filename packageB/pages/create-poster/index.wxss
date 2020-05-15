@@ -1,0 +1,23 @@
+@import '../start-live/start-live.wxss';
+
+.time-wrap {
+  background:#fff;
+  flex: 1;
+}
+
+.time-wrap picker {
+  padding: 18rpx;
+  font-size: 24rpx;
+  background: #F5F5F7;
+  margin-bottom: 20rpx;
+  color: #989898;
+  border-radius: 6rpx;
+}
+
+.time-wrap .start,.time-wrap .end{
+  justify-content: space-around;
+}
+
+.icon-triangle-down {
+  color: #989898;
+}

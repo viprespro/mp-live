@@ -1,0 +1,52 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">我的优惠券</view>
+</cu-custom>
+
+<view class="wrapper">
+  <view class='title-wrap flex-between'>
+    <view>我的优惠券</view>
+    <view class='center'>
+      <navigator hover-class='none' url='/packageA/pages/get-coupon-center/index'>领券中心</navigator>
+    </view>
+  </view>
+
+  <view class='coupon-list-wrap'>
+    <block wx:for="{{couponList}}" wx:key="*this">
+      <view class='outer'>
+        <view class='coupon-item'>
+          <view class='left'>
+            <view class='num'>
+              <text class='symbol'>￥</text>
+              <text class='big'>{{parse.jsonParse(item.value).price}}</text>
+            </view>
+            <view class='good'>{{item.coupon_name}}</view>
+          </view>
+          <view class='right'>
+            <view class='name strong'>{{item.shop_name}}</view>
+            <view class='discount'>
+              <text class='inner-discount overflow-text1'>满{{parse.jsonParse(item.value).max_price}}减{{parse.jsonParse(item.value).price}}</text>
+            </view>
+            <view class='valid'>有效期：{{item.start_time}} — {{item.end_time}}</view>
+          </view>
+        </view>
+        <view class='half-circle'></view>
+        <view class='half-bot'></view>
+      </view>
+
+    </block>
+
+  </view>
+
+</view>
+
+<view class='hasMore'>{{couponList.length > 0 ? '我是有底线的~' : '暂无数据~'}}</view>
+
+
+<wxs module="parse">
+  var jsonParse = function(value) {
+    return JSON.parse(value)
+  }
+  module.exports = {
+    jsonParse: jsonParse
+  }
+</wxs>

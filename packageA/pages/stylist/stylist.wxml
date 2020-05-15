@@ -1,0 +1,106 @@
+<!--packageA/pages/stylist/stylist.wxml-->
+<view class='taptab'>
+  <view class='item' bindtap='selectCity' data-index='0'>
+    <text>{{location}}</text>
+    <text class='iconfont icon-drop-up'></text>
+  </view>
+  <view class='item' bindtap='selectCity' data-index='1'>
+    <text>{{style_name ? style_name : '风格'}}</text>
+    <text class='iconfont icon-drop-up'></text>
+  </view>
+  <view class='item' bindtap='selectCity' data-index='2'>
+    <text>{{gender_name ? gender_name : '性别'}}</text>
+    <text class='iconfont icon-drop-up'></text>
+  </view>
+  <view class='item' bindtap='selectCity' data-index='3'>
+    <text>{{default_name ? default_name : '默认排序'}}</text>
+    <text class='iconfont icon-drop-up'></text>
+  </view>
+</view>
+<view class='border'></view>
+<view class='container'>
+
+  <!-- 风格下拉 -->
+  <view class='style-down-wrapper' wx:if="{{style_status}}">
+    <scroll-view scroll-x class='scroll-view-H-style'>
+      <view class='style-item' bindtap='selectCurrentStyle' data-id='0' data-name='全部'>全部</view>
+      <block wx:for="{{styleList}}" wx:key="{{item.style_id}}">
+        <view class='style-item' bindtap='selectCurrentStyle' data-id='{{item.style_id}}' data-name='{{item.style_name}}'>{{item.style_name}}</view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <!-- 性别下拉 -->
+  <view class='style-down-wrapper sex-down-wrapper' wx:if="{{sex_status}}">
+    <view class='sex-item' data-gender='0' bindtap='searchWithSex'>全部</view>
+    <view class='sex-item' data-gender='1' bindtap='searchWithSex'>男</view>
+    <view class='sex-item' data-gender='2' bindtap='searchWithSex'>女</view>
+  </view>
+
+  <!-- 默认排序下拉 -->
+  <view class='style-down-wrapper default-down-wrapper' wx:if="{{default_status}}">
+    <view class='default-item' data-def='2' bindtap='searchWithDefault'>默认</view>
+    <view class='default-item' data-def='0' bindtap='searchWithDefault'>年限</view>
+    <view class='default-item' data-def='1' bindtap='searchWithDefault'>人气</view>
+  </view>
+
+  <!-- 城市遮罩 -->
+  <view class='mask' wx:if="{{city_status || style_status || sex_status || default_status}}" bindtap='tapMask'></view>
+
+  <view class='shade' wx:if="{{city_status}}">
+
+    <view class='first-class'>
+
+      <view class='title-wrap flex-between'>
+        <text class='city-choose'>地区选择</text>
+      </view>
+
+      <view class='area-wrapper'>
+        <scroll-view class='scroll-view-H' scroll-x>
+          <block wx:for="{{childCityList}}" wx:key="{{item.region_id}}">
+            <view class='area-item' bindtap='chooseCurrentArea' data-id='{{item.region_id}}' data-name='{{item.name}}'>{{item.name}}</view>
+          </block>
+        </scroll-view>
+      </view>
+
+
+      <view class='title-wrap flex-between'>
+        <text class='city-choose' bindtap='showCity'>城市选择<text class='iconfont icon-triangle-down'></text></text>
+        <view bindtap='changeCity'>
+          <text class='another' wx:if="{{show_city_status}}">换一批 </text>
+          <text class='iconfont icon-refresh' wx:if="{{show_city_status}}" style='font-size:26rpx;position:relative;top:3rpx;'></text>
+        </view>
+      </view>
+
+      <view class='city-container flex' wx:if="{{show_city_status}}">
+        <block wx:for="{{cityList}}" wx:key="{{item.id}}">
+          <view class='city-item {{current_selected_city_id == item.id ? "active" : ""}}' bindtap='chooseCity' data-id='{{item.id}}' data-name='{{item.short_name}}'>{{item.short_name}}</view>
+        </block>
+      </view>
+    </view>
+
+  </view>
+
+  <block wx:for="{{designerList}}" wx:key="{{item.designer_id}}">
+    <navigator hover-class="none" url='/packageA/pages/stylist-details/stylist-details?id={{item.designer_id}}'>
+      <view class='card'>
+        <view class='person'>
+          <image src='{{item.pic}}'></image>
+          <view class='desc'>
+            <view class='title'>{{item.realname}}</view>
+            <view class='info overflow-text1'>{{item.introduction || '这个人很懒，什么都没留下~'}}</view>
+            <view class='address'>
+              <view class='localtion overflow-text1'>{{item.dist}}</view>
+              <view class='age'>{{item.years}}年经验</view>
+            </view>
+          </view>
+        </view>
+        <view class='attention {{item.is_follow ? "ac" : ""}}' catchtap='follow' data-id='{{item.designer_id}}'>{{item.is_follow ? '已关注' : '关注'}}</view>
+      </view>
+      <view class='border'></view>
+    </navigator>
+  </block>
+
+  <view class='hasMore'>{{designerList.length > 0 ? '我是有底线的~' : '暂无数据~'}}</view>
+
+</view>

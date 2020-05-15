@@ -1,0 +1,9 @@
+<import src="../../wxParse/wxParse.wxml" />
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="backText" class="common-title-color">返回</view>
+  <view slot="content" class="common-title-color">用户协议</view>
+</cu-custom>
+
+<view style="padding: 10rpx">
+    <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+</view>

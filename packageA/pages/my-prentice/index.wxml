@@ -1,0 +1,36 @@
+<view class="wrapper">
+
+  <view class='master-part-wrap'>
+    <view class='master'>我的师傅</view>
+    <view class='master-info-wrap'>
+      <view class='img-box'>
+        <image src="{{pageInfo.parent_info.avatar}}"></image>
+      </view>
+      <text>{{pageInfo.parent_info.nickname}}</text>
+    </view>
+
+    <view class='num'>徒弟数量：{{pageInfo.apprentice_count}}</view>
+    <view class='profit'>任务累计收益：0</view>
+  </view>
+
+  <view class='prentice-part-wrap'>
+    <view class='title-item flex-between'>
+      <text>我的徒弟<text class='base-color'>({{prenticeList.length}})</text></text>
+      <text bindtap='textCopy'>我的邀请码<text class='base-color'>[{{pageInfo.invite_code}}]点击复制</text></text>
+    </view>
+
+    <block wx:for="{{prenticeList}}" wx:key="{{item.avatar}}">
+      <view class='row-item flex-between'>
+        <view class='left flex'>
+          <image src='{{item.avatar}}'></image>
+          <view class='reward-wrap flex'>
+            <text>{{item.nickname}}</text>
+            <text>奖励佣金:{{item.reward}}</text>
+          </view>
+        </view>
+        <view class='right'>{{item.create_time}}</view>
+      </view>
+    </block>
+  </view>
+
+</view>

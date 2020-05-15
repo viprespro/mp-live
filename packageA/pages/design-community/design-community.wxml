@@ -1,0 +1,43 @@
+<!--packageA/pages/design-community/design-community.wxml-->
+<view class='tab'>
+  <scroll-view class='scroll-view-H' scroll-x>
+    <view class='item {{tabIndex == "999" ? "ac" : ""}}' data-index='999' bindtap='alertTabs' wx:if="{{followFlag}}">关注
+    </view>
+    <block wx:for="{{articleSortList}}" wx:key="{{item.id}}">
+      <view class='item {{index == tabIndex ? "ac" : ""}}' data-id='{{item.id}}' data-index='{{index}}' bindtap='alertTabs'>{{item.name}}</view>
+    </block>
+  </scroll-view>
+</view>
+<view class='list'>
+  <view class='card' wx:for="{{ articleList }}" wx:key="{{item.id}}" bindtap='goDetail' data-id='{{item.id}}'>
+    <view class='title'>
+      <view class='person-info'>
+        <image class='avatar' src='{{ item.designer_pic }}'></image>
+        <view class='desc'>
+          <view class='caption'>{{ item.realname }}</view>
+          <view class='label overflow-text1'>{{ item.introduction }}</view>
+        </view>
+      </view>
+      <view class='attention' catchtap='tapFollow' data-follow='{{item.designer_follow}}'>
+        {{item.designer_follow ? '已关注' : '关注'}}</view>
+    </view>
+    <view class='desc'>
+      <view class='caption overflow-text1'>{{ item.title }}</view>
+      <view class='date'>{{ item.create_time }}</view>
+      <view class='info overflow-text2'>{{ item.content }}</view>
+    </view>
+    <image class='picture' src='{{ item.images[0] }}'></image>
+    <view class='function'>
+      <view class='praise'>
+        <text class='iconfont icon-like-Y'></text>
+        <text class='num'>{{ item.compliments }}</text>
+      </view>
+      <view class='comment'>
+        <text class='iconfont icon-comment-Y'></text>
+        <text class='num'>{{ item.comment_num }}</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='hasMore'>{{articleList.length > 0 ? '我是有底线的~' : '暂无数据~'}}</view>

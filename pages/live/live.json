@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "nav-search": "/components/nav-search/index"
+  },
+  "enablePullDownRefresh": true,
+  "navigationBarTextStyle": "black"
+}

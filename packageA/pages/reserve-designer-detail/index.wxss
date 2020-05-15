@@ -1,0 +1,15 @@
+page {
+  background: #fff;
+}
+
+.row-item-wrap {
+  padding: 27rpx 25rpx;
+  font-size: 28rpx;
+  color: #666;
+  border-top: 0.5px solid #efefef;
+}
+
+.grid.grid-square .cu-tag {
+  right: 0rpx !important;
+  top: 0rpx !important;
+}

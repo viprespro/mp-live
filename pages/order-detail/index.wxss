@@ -1,0 +1,255 @@
+page {
+  background-color: #fff;
+}
+
+.status-wrapper {
+  height: 188rpx;
+  margin-bottom: 18rpx;
+  align-items: center;
+  padding: 0 38rpx;
+  background: #fff;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.row-separate {
+  height: 20rpx;
+  background: #F1F2F5;
+}
+
+.status-img-wrap {
+  width: 710rpx;
+  height: 180rpx;
+}
+
+.text-instr-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 26rpx;
+  margin-top: 10rpx;
+  color: #999;
+}
+
+.text-instr-wrap item {
+  flex: 1;
+  display: inline-block;
+}
+
+.active {
+  color: #ff605a;
+} 
+
+.logistics-wrapper {
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+.detail {
+  flex: 0 0 160rpx;
+  margin-left: 15rpx;
+  text-align: right;
+  font-size: 24rpx;
+}
+
+.logistics-wrapper .logistics-content {
+  padding: 20rpx 24rpx;
+}
+
+.address {
+  position: relative;
+  padding: 20rpx 35rpx;
+  background-color: #fff;
+  font-size: 30rpx;
+  display: flex;
+  align-items: center;
+}
+
+.address .icon-wrap {
+  width: 54rpx;
+  height: 54rpx;
+  background: #F8B403;
+  margin-right: 15rpx;
+  border-radius: 50%;
+  color: #fff;
+  line-height: 54rpx;
+  text-align: center;
+}
+
+
+.address-info {
+  margin-top: 20rpx;
+}
+
+.address-wrapper .name {
+  margin-right: 80rpx;
+}
+
+
+.order-info-wrapper {
+  margin-top: 15rpx;
+  background-color: #fff;
+}
+
+.title-wrap {
+  height: 88rpx;
+  align-items: center;
+  margin: 0 24rpx;
+  border-bottom: 1px solid #ccc;
+  font-size: 28rpx;
+  box-sizing: border-box;
+}
+
+.title-wrap > image {
+  width: 32rpx;
+  height: 32rpx;
+}
+
+.title-wrap .text {
+  margin-left: 10rpx;
+}
+
+.goods-item-wrapper {
+  background-color: #fff;
+  min-height: 220rpx;
+}
+
+.detail-info {
+  padding: 15rpx 24rpx;
+}
+
+.foot {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  width: 100%;
+  height: 100rpx;
+  background-color: #fff;
+  box-sizing: border-box;
+  border-top: 1px solid #efefef;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 20rpx;
+}
+
+.foot view {
+  width: 160rpx;
+  height: 58rpx;
+  line-height: 56rpx;
+  text-align: center;
+  box-sizing: border-box;
+  border: 1px solid #999;
+  color: #aaa;
+  border-radius: 30px;
+  font-size: 24rpx;
+}
+
+.foot view.pay-btn {
+  background-color: #ff3d3d;
+  border: 0;
+  color: #fff;
+}
+
+.delete-btn {
+  margin-right: 20rpx;
+  display: block;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  left: 0;
+  height: 120rpx;
+  background-color: #fff;
+  padding: 0 60rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer .btn {
+  width: 200rpx;
+  text-align: center;
+  height: 60rpx;
+  line-height: 60rpx;
+  background-color: #F8B303;
+  color: #fff;
+  border-radius: 30rpx;
+  margin: 0  10rpx;
+}
+@import '/pages/check-orders/index.wxss';
+
+.content-item {
+  align-items: center;
+}
+
+.content-item .img-wrap {
+  flex: 0 0 170rpx;
+}
+
+.unpaid-btn-wrapper {
+  margin-top: 75rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.unpaid-btn-wrapper .btn-item {
+  width: 200rpx;
+  height: 60rpx;
+  color: #fff;
+  line-height: 60rpx;
+  text-align: center;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+  background:linear-gradient(90deg,rgba(255,103,96,1),rgba(255,147,118,1));
+}
+
+.unpaid-btn-wrapper .cancel {
+  background: #fff;
+  box-sizing: border-box;
+  border: 1px solid #E6E6E6;
+  color: #666;
+}
+
+.group-link-wrap {
+  text-align: center;
+  padding: 0 10rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  font-size: 30rpx;
+  width: 60%;
+  margin: 0 auto;
+  background: #F8B403;
+  color: #fff;
+  letter-spacing: 3rpx;
+  margin-top: 20rpx;
+}
+
+.if-return-wrap {
+  text-align: right;
+  padding: 10rpx  25rpx;
+}
+
+.if-return-wrap > text {
+  display: inline-block;
+  height:48rpx;
+  line-height: 44rpx;
+  text-align: center;
+  box-sizing: border-box;
+  border-radius: 24rpx; 
+  border: 1px solid #ccc;
+  width: 120rpx;
+  font-size: 28rpx;
+}
+
+.ops-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}

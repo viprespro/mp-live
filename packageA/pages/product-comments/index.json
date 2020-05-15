@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "i-rate": "/packageA/common/components/rate/index"
+  }
+}

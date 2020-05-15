@@ -1,0 +1,106 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">直播设置</view>
+</cu-custom>
+
+<view class="room-info">
+  <view class="row-item flex">
+    <view class="title">直播间标题:</view>
+    <view class="input-wrap">
+      <input placeholder='请输入直播间标题' bindinput="bingName"></input>
+    </view>
+  </view>
+  <view class="row-item flex">
+    <view class="title">选择产品:</view>
+    <view class="ops-wrap">
+      <view class="ops-item" bindtap="tapOpts" data-index="0">
+        <image src="/packageB/imgs/add.png" style="width:19rpx;height:19rpx" wx:if='{{ !main }}'></image>
+        <text>{{ main || '主推选择' }}</text>
+      </view>
+      <view class="ops-item extra" bindtap="tapOpts" data-index="1">
+        <image src="/packageB/imgs/add.png" style="width:19rpx;height:19rpx" wx:if='{{ !extra }}'></image>
+        <text>{{ extra || '附带选择'}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="row-item flex type">
+    <view class="title">直播类型:</view>
+    <scroll-view scroll-y class="scroll-view-H" style="max-height:210rpx;">
+      <block wx:for='{{ cateList }}' wx:key='id'>
+        <view class="scroll-item" bindtap="itemSelect" data-id="{{ item.id }}">
+          <checkbox checked="{{ item.checked}}"></checkbox>
+          <label>{{ item.name }}</label>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+  <view class="row-item flex" style="align-items:center;">
+    <view class="title">直播间封面:</view>
+    <view class="cover-wrap" bindtap="uploadImg">
+      <image src="{{ cover || '/packageB/imgs/upload.png'}}" style="width:160rpx;height:240rpx;border-radius:15rpx;"></image>
+    </view>
+  </view>
+</view>
+
+<button class="start-live-btn" bindtap="startTap">开始直播</button>
+
+<!-- modal -->
+<view class="modal-wrap {{ showModal ? 'show' : '' }}" style="top:{{ navHeight }}px">
+  <view class="main">
+    <view class="header">
+      <image src="/packageB/imgs/close.png" style="width:32rpx;height:32rpx;" catchtap="hideModal"></image>
+    </view>
+    <view style="height:54px;"></view>
+    <view class="flex outer">
+      <form bindsubmit="searchSubmit" report-submit='true'>
+        <view class="search flex" style="align-items:center;">
+          <input type="text" value='{{inputVal}}' bindinput='bindSearchInput' maxlength='20' placeholder="请输入搜索内容" class="place-holder" bindconfirm="searchSubmit" confirm-type='search' name="search"></input>
+        </view>
+      </form>
+      <view class="search-txt" bindtap="tapSearch">搜索</view>
+    </view>
+    <view style="height:34px;"></view>
+    <view class="filter">
+      <view class="filter-item {{ curSortIdx == 0 ? 'active' : '' }}" catchtap="tapSort" data-index="0">佣金</view>
+      <view class="filter-item {{ curSortIdx == 1 ? 'active' : '' }}" catchtap="tapSort" data-index="1">销量</view>
+      <view class="filter-item {{ curSortIdx == 2 ? 'active' : '' }}" catchtap="tapSort" data-index="2">价格</view>
+
+    </view>
+    <view class="goods-list">
+      <scroll-view style="height: 100%" scroll-y scroll-with-animation bindscrolltolower='bindScrollToBottom'>
+        <block wx:for="{{ goodsList }}" wx:key="id">
+          <view class="item">
+            <view class="left flex">
+              <image src="{{ item.cover }}"></image>
+              <view class="desc flex">
+                <view class="title">{{ item.name }}</view>
+                <text class="price">￥{{ item.price}}</text>
+                <view class="txt flex">
+                  <view class="return">返利</view>
+                  <view class="percent">{{ item.commission_price }}元</view>
+                </view>
+              </view>
+            </view>
+            <view class="right" catchtap="tapItem" data-index="{{ index}}">
+              <image src="{{item.checked ? '/images/selected-icon.png' : '/images/select-icon.png'}}"></image>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+
+      <!-- 状态显示 -->
+      <view wx:if='{{ showDefault }}' style="position:absolute; top: 40%;width: 100%; font-size: 28rpx; color: #888; line-height: 88rpx; text-align: center; ">{{ dataStatus }}</view>
+
+    </view>
+
+    <view class="bot">
+      <view class="item-01 {{ opsIdx == 1 ? 'visiable' : ''}}">
+        <view class="all flex" catchtap="tapAllSelect">
+          <image src="{{ allSelected ? '/images/selected-icon.png' : '/images/select-icon.png' }}"></image>
+          <text>全选</text>
+        </view>
+        <text class="">共：{{ selectedLength }}个</text>
+      </view>
+      <view class="item-02" catchtap="confirmChoose">确认</view>
+    </view>
+  </view>
+</view>

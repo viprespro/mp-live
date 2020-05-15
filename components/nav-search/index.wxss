@@ -1,0 +1,23 @@
+.search-wrap {
+  height: 50rpx;
+  line-height: 50rpx;
+  border-radius: 25rpx;
+  box-sizing: border-box;
+  width: 400rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.search-wrap .search-icon {
+  margin-left: 20rpx;
+  margin-right: 10rpx;
+}
+
+.search-wrap .holder {
+  flex-grow: 1;
+  height: 100%;
+  font-size: 30rpx;
+  color: #aaa;
+}

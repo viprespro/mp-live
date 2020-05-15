@@ -1,0 +1,25 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="backText" class="common-title-color">返回</view>
+  <view slot="content" class="common-title-color">登录</view>
+</cu-custom>
+
+<view class="form">
+  <view class="item">
+    <input type="number" placeholder="请输入手机号" bindblur="bindBlur"  bindinput="bindCell"></input>
+  </view>
+  <view class="item">
+    <input type="password" placeholder="请输入密码" bindinput="bindPwd"></input>
+  </view>
+</view>
+
+<view class="login-btn" bindtap="loginTap">登录</view>
+
+<view class="nav-regisiter">没有账号？
+  <text class="base-color" bindtap="navRegister">立即注册>></text>
+</view>
+
+<view class="nav-wechat base-color" bindtap="backWxLogin">返回使用微信登录</view>
+
+<view class="agreement">登录或注册即表示您同意
+  <text class="base-color">《用户使用协议》</text>
+</view>

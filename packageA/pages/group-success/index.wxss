@@ -1,0 +1,63 @@
+page {
+  background-color: #F8F8F8;
+}
+
+.wrapper{
+  padding: 45rpx 24rpx 20rpx;
+}
+
+.success-color {
+  color: #F8B403;
+}
+
+.fail-color {
+  color: #999;
+}
+
+.icon-search {
+  font-size: 48rpx;
+}
+
+.col-1 {
+  text-align: center;
+  font-size: 48rpx;
+}
+
+.col-2 {
+  margin-top: 30rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: #B9B8B8;
+}
+
+.col-3 {
+  margin-top: 34rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  border-radius: 40rpx;
+  font-size: 30rpx;
+}
+
+.sucess-q {
+  background-color: #F8B403;
+  color: #333;
+}
+
+.fail-q {
+  background:rgba(153,153,153,1);
+  color: #fff;
+}
+
+.col-4 {
+  display: flex;
+  justify-content: space-around;
+}
+
+.col-4 .item {
+  margin-top: 52rpx;
+  height: 110rpx;
+  width: 110rpx;
+  border-radius: 50%;
+  background-color: #fff;
+}

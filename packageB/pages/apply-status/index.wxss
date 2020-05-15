@@ -1,0 +1,56 @@
+page {
+  background: #fff;
+}
+
+.top {
+  position: relative;
+}
+
+.top .img-box {
+  width: 245rpx;
+  height: 245rpx;
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+}
+
+.top .img-box .txt {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 26%;
+  color: #fff;
+  font-size: 28rpx;
+}
+
+.desc {
+  margin-top: 45rpx;
+}
+
+.desc .title {
+  color: #666;
+  font-size: 28rpx;
+  text-align: center;
+  padding: 0 24rpx;
+}
+
+.desc .reason {
+  color: #b1b3b4;
+  font-size: 24rpx;
+  text-align: center;
+  padding: 0 24rpx;
+  margin-top: 20rpx;
+}
+
+.desc .btn {
+  width: 343rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  color: #fff;
+  background: rgba(253, 211, 37, 1);
+  border-radius: 44rpx;
+  text-align: center;
+  margin: 48rpx auto 0;
+}

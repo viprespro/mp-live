@@ -1,0 +1,47 @@
+<view class="wrapper">
+  <view class='top-wrap'>
+    <view class='avatar-box'>
+      <image src='{{goods_img}}'></image>
+    </view>
+
+    <view class='scores-wrap'>
+      <view class='score-item-wrap flex'>
+        <text>描述相符</text>
+        <view class='star-wrap'>
+          <i-rate bind:change="onChange1" value="{{starIndex1}}">
+          </i-rate>
+        </view>
+      </view>
+      <view class='score-item-wrap flex'>
+        <text>商家服务</text>
+        <view class='star-wrap'>
+          <i-rate bind:change="onChange2" value="{{starIndex2}}">
+          </i-rate>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+  <view class='bot-wrap'>
+    <textarea placeholder='宝贝满足你的期待吗？说说你的使用心得，分享给想买的他们吧' maxlength='60' bindinput='bindInput'>
+
+    </textarea>
+
+    <view class='img-container'>
+      <block wx:for='{{cmtPicsList}}' wx:key="{{item}}">
+        <view class='item'>
+          <image src='{{item}}' data-src='{{item}}' bindtap="previewImage"></image>
+          <text class='iconfont icon-close-01' catchtap='delImg' data-src='{{item}}' data-index='0'></text>
+        </view>
+      </block>
+      <view class='tap-wrap' bindtap='uploadImg' data-index='0'>
+        <text class='iconfont icon-camera'></text>
+        <text class='tap-text'>添加图片</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class='common-btn-wrapper' bindtap='postComment'>发布</view>

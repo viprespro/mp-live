@@ -1,0 +1,66 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">海报生成</view>
+</cu-custom>
+
+<view class="room-info">
+  <view class="row-item flex">
+    <view class="title">直播间标题:</view>
+    <view class="input-wrap">
+      <input placeholder='请输入直播间标题' bindinput="bindTitle"></input>
+    </view>
+  </view>
+  <view class="row-item flex" style="align-items:center;">
+    <view class="title">直播间封面:</view>
+    <view class="cover-wrap" bindtap="uploadImg">
+      <image src="{{ cover || '/packageB/imgs/upload.png'}}" style="width:160rpx;height:240rpx;border-radius:15rpx;"></image>
+    </view>
+  </view>
+  <view class="row-item flex live-time" style="margin-top:50rpx;">
+    <view class="title">直播时间:</view>
+    <!-- <view class="input-wrap">
+      <input value="{{ time }}" bindinput="bindTime"></input>
+    </view> -->
+
+    <view class="time-wrap">
+      <view class="start flex">
+        <picker mode="date" value="{{date}}" start="2020-01-01" end="2050-01-01" data-index="0" bindchange="bindDateChange">
+          <view class="picker">
+            {{startDate || '开始日期'}}
+            <text class="iconfont icon-triangle-down"></text>
+          </view>
+        </picker>
+
+        <picker mode="time" value="{{time}}" start="09:01" end="21:01" data-index="1"  bindchange="bindTimeChange">
+          <view class="picker">
+            {{ startTime || '开始时间'}}
+            <text class="iconfont icon-triangle-down"></text>
+          </view>
+        </picker>
+      </view>
+
+      <view class="end flex">
+        <picker mode="date" value="{{date}}" start="2020-01-01" end="2050-01-01"  data-index="2" bindchange="bindDateChange">
+          <view class="picker">
+            {{ endDate || '结束日期'}}
+            <text class="iconfont icon-triangle-down"></text>
+          </view>
+        </picker>
+
+        <picker mode="time" value="{{time}}" start="09:00" end="22:00" data-index="3" bindchange="bindTimeChange">
+          <view class="picker">
+            {{ endTime || '结束时间'}}
+            <text class="iconfont icon-triangle-down"></text>
+          </view>
+        </picker>
+      </view>
+    </view>
+
+
+  </view>
+</view>
+
+<button class="start-live-btn" bindtap="onCreateOtherPoster">生成海报</button>
+
+<!-- about poster -->
+<poster id="poster" hide-loading="{{false}}" preload="{{false}}" config="{{posterConfig}}" bind:success="onPosterSuccess" bind:fail="onPosterFail">
+</poster>

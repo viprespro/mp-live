@@ -1,0 +1,27 @@
+<view class="wrapper">
+  <view class='row-item-wrap flex-between'>
+    <view>当前版本0.061</view>
+    <view>
+      <text class="check">检查更新</text>
+      <text class='iconfont icon-forward'></text>
+    </view>
+  </view>
+
+   <view class='row-item-wrap flex-between'>
+    <view>清除缓存</view>
+    <view>
+      <text class='iconfont icon-forward'></text>
+    </view>
+  </view>
+
+   <view class='row-item-wrap flex-between'>
+    <view>意见反馈</view>
+    <view>
+      <text class='iconfont icon-forward'></text>
+    </view>
+  </view>
+
+  <view class='btn-wrap'>
+    退出登录
+  </view>
+</view>

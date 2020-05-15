@@ -1,0 +1,8 @@
+.text-orange, .line-orange, .lines-orange {
+  color: #f8b60d !important;
+}
+
+.empty-order-wrapper {
+  margin: 40rpx;
+}
+@import '../my-reservation/index.wxss';

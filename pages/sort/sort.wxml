@@ -1,0 +1,43 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">商品分类</view>
+</cu-custom>
+
+<view class="page">
+  <view class='nav-bar'>
+
+    <scroll-view scroll-x="true" style='white-space:nowrap;'>
+      <block wx:for="{{catesList}}" wx:key="{{item.category_id}}">
+        <view class='bar-item  {{currentCateId == item.category_id ? "active" : ""}}' data-index='{{item.category_id}}' bindtap='tabsAlert'>{{item.name}}</view>
+      </block>
+    </scroll-view>
+
+  </view>
+
+  <view class='wraper'>
+
+    <scroll-view class='left-bar' scroll-y style='height:{{scrollHeight}}px'>
+      <view class='choose-list'>
+        <view class='list {{currentSecondCateId == item.category_id ? "active" :""}}' wx:for="{{secondCatesList}}" wx:key="unique" data-id='{{item.category_id}}' bindtap='catesAlert'>{{item.name}}</view>
+      </view>
+    </scroll-view>
+
+
+    <view class='right-content'>
+      <view class='content-wrap flex'>
+
+        <scroll-view style="height:{{scrollHeight}}px;" class="content-scroll-view" scroll-y>
+          <block wx:for="{{thirdCatesList}}" wx:key="unique">
+            <view class='item-wrap flex' bindtap='goColumList' data-id='{{item.category_id}}'>
+              <image src='{{item.img ? item.img : "/images/def-cate.png"}}'></image>
+              <text style='font-size:24rpx;text-align:center' class='overflow-text1'>{{item.name}}</text>
+            </view>
+          </block>
+
+          <view style="height:20px;width:1px;"></view>
+        </scroll-view>
+      </view>
+
+    </view>
+  </view>
+
+</view>

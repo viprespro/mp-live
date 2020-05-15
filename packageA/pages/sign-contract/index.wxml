@@ -1,0 +1,19 @@
+<view class="rich-wrapper" style='height:{{contractH_after}}px'>
+  <image src='{{contract[0]}}' bindtap='previewImage' mode='widthFix' data-src='{{contract[0]}}' bindload='bindLoad'></image>
+
+  <!-- 签完字生成的合同图片 -->
+  <canvas canvas-id='canvas' class='contract-canvas' wx:if="{{contract_canvas}}" style='height:{{contractH_after}}px' bindtap='previewAfter'></canvas>
+
+</view>
+
+
+<view class='sign-wrap'>
+  <view class='canvas-wrapper'>
+    <canvas canvas-id='mycanvas' class='canvas' disable-scroll='true' bindtouchstart='canvasStart' bindtouchmove='canvasMove' bindtouchend='canvasEnd' tochcancel="canvasEnd"></canvas>
+    <view class='btn'>
+      <view class='redraw' bindtap='clearDraw'>重置签名</view>
+      <view class='create' bindtap='setSign'>生成</view>
+      <view class='confirm' bindtap='uploadGenerated'>确定</view>
+    </view>
+  </view>
+</view>

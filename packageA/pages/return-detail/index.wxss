@@ -1,0 +1,143 @@
+page {
+  background: #fff;
+}
+
+.slicer {
+  width: 100%;
+  height: 10rpx;
+  background: #F1F2F5;
+}
+
+.return-detail-wrapper {
+  position: relative;
+}
+
+.return-detail-wrapper  .top .top-status {
+  padding: 56rpx 44rpx;
+  background: #333;
+  color: #fff;
+}
+
+.return-detail-wrapper  .top .top-status .status-txt {
+  font-size: 36rpx;
+}
+
+.return-detail-wrapper  .top .top-status .date {
+  margin-top: 22rpx;
+  font-size: 24rpx;
+}
+
+.return-detail-wrapper  .top .top-money {
+  padding: 30rpx 24rpx;
+  border-bottom: 1px solid #ddd;
+}
+
+.return-detail-wrapper  .top .top-money .total {
+  color: #666;
+  font-size: 28rpx;
+}
+
+.return-detail-wrapper  .top .top-money .num {
+  color: #E2631C;
+}
+
+.return-detail-wrapper  .mid .mid-title {
+  margin: 0 20rpx;
+  padding: 30rpx 0;
+  border-bottom: 2px solid #E9E9E9;
+  font-size: 28rpx;
+}
+
+.content-item {
+  display: flex;
+  padding: 20rpx 25rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+}
+
+.content-item .img-wrap {
+  flex: 0 0 162rpx;
+  width: 162rpx;
+  height: 162rpx;
+  position: relative;
+  border-radius: 10rpx;
+}
+
+.content-item .img-wrap .img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10rpx;
+}
+
+.content-item .img-wrap .rank {
+  width: 40rpx;
+  height: 50rpx;
+  position: absolute;
+  top: 0;
+  left: 10rpx;
+}
+
+.content-item .detail {
+  padding: 20rpx 0 20rpx 20rpx;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  min-width: 0;
+}
+
+.red-like {
+  color: #222B34;
+  font-weight: 500;
+}
+
+.content-item .detail .name {
+  width: auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 30rpx;
+}
+
+.content-item .detail .desc {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 24rpx;
+  color: #707070;
+  line-height: 1.75;
+}
+
+.return-detail-wrapper  .bot {
+  padding: 22rpx 24rpx;
+  color: #888;
+  font-size: 24rpx;
+}
+
+.return-detail-wrapper  .bot .bot-row-item {
+  display: flex;
+  margin-bottom: 20rpx;
+  align-items: center;
+}
+
+.return-detail-wrapper  .bot .bot-row-item .description {
+  white-space: wrap;
+}
+
+.special-item {
+  align-items: flex-start!important;
+}
+
+.express-btn {
+  width: 220rpx;
+  bottom: 20rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 28rpx;
+}
+

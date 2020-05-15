@@ -1,0 +1,92 @@
+<view class="header-wrapper flex">
+  <view class='avatar-wrap'>
+    <image src='{{worker_info.pic}}'></image>
+  </view>
+
+  <view class='right-part-wrap'>
+    <view class='name'>{{worker_info.realname}}
+      <block wx:for="{{worker_info.format}}" wx:key="unique">
+        <text class='type'>{{item.type_name}}</text>
+      </block>
+    </view>
+    <view class='addr'>
+      <text class='iconfont icon-location'></text>
+      <text style='margin-left:10rpx;color:#999;'>{{worker_info.address}}</text>
+    </view>
+    <view>{{worker_info.years}}年工作经验</view>
+  </view>
+</view>
+
+<view class='service-wrapper'>
+  <view class='title-wrap'>服务介绍</view>
+  <view class='detail-wrap'>
+    {{worker_info.summary}}
+  </view>
+</view>
+
+
+<view class='service-wrapper'>
+  <view class='title-wrap spec'>
+    <view class='item'>类型</view>
+    <view class='item'>价格</view>
+  </view>
+  <block wx:for="{{worker_info.format}}" wx:key="{{unique}}">
+    <view class='detail-wrap detail-spec'>
+      <view>{{item.type_name}}</view>
+      <view class='bundle'></view>
+      <view>{{item.refer_price}}</view>
+    </view>
+  </block>
+</view>
+
+
+<view class='common-btn-wrapper' bindtap='showModal' data-target="reserve">立即预约</view>
+
+<view class="cu-modal {{modalName=='reserve'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">预约详情</view>
+      <view class="action" bindtap="hideModal">
+        <text class="iconfont icon-close-01"></text>
+      </view>
+    </view>
+    <view class="padding">
+      <form bindsubmit='postInfo' data-target="handsel">
+        <view class='item'>
+          您的户型
+          <input class='room' name='room'></input>室
+          <input class='hall' name='hall'></input>厅
+          <input class='toilet' name='toilet'></input>卫
+        </view>
+        <view class='item'>
+          小区面积
+          <input class='home-name' placeholder='请输入小区名称' name='homeName'></input>
+          <input class='home-area' placeholder='输入您的房屋面积' name='homeArea'></input>
+        </view>
+        <view class='item'>
+          联系方式
+          <input class='your-name' placeholder='请输入您的称呼' maxlength='10' name='yourName'></input>
+          <input class='your-phone' placeholder='输入手机号码' maxlength='11' name='yourPhone'></input>
+        </view>
+        <view class='info'>* 我们严格遵守《互联网安全法》，保护您的个人隐私安全</view>
+        <button class='reserve' form-type='submit'>确认预约</button>
+      </form>
+    </view>
+  </view>
+</view>
+
+<!-- 定金 -->
+<view class="cu-modal {{modalName=='handsel'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="action" bindtap="hideModal">
+        <text class="iconfont icon-close-01"></text>
+      </view>
+    </view>
+    <view class="padding bg-white modal-box">
+      <view class='price'>￥{{ price }}</view>
+      <view class='reserve' bindtap='payOrder'>支付</view>
+      <view class='title'>支付{{ price }}元定金</view>
+    </view>
+  </view>
+</view>

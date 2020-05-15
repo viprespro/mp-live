@@ -1,0 +1,100 @@
+<cu-custom isCustom="{{true}}" bgColor="common-base-bg">
+  <!-- <view slot='icon' class="sort" bindtap="navSortPage" style="margin-left:24rpx">
+    <image src="/images/sort.png" class="sort-img"></image>
+    <text class="sort-txt">分类</text>
+  </view> -->
+  <view slot='custome' class="search" style="">
+    <nav-search size='26' fromIndex='1'></nav-search>
+  </view>
+</cu-custom>
+
+<!-- Swiper -->
+<view class="outer-wrap">
+  <swiper class='swiper' indicator-color='#fff' indicator-active-color='#F8B303' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{circular}}" bindchange='bindChange'>
+    <block wx:for="{{bannerList[0]}}" wx:key="goods_id">
+      <swiper-item class="swiper-item" bindtap="goDetail" data-id="{{item.goods_id}}">
+        <image src="{{item.flash}}" class="slide-image" data-url='{{item.link}}' mode='aspectFill' />
+      </swiper-item>
+    </block>
+  </swiper>
+
+  <view class="cus-indicator" wx:if="{{  bannerList[0].length > 1}}">
+    <block wx:for="{{ bannerList[0].length }}" wx:key='item'>
+      <view class="item {{ swiperCurIndex == index + 1 ? 'ac' : '' }}"></view>
+    </block>
+  </view>
+
+  <!-- <view class="swiper-index">
+    {{swiperCurIndex}} / {{bannerList[0].length}}
+  </view> -->
+</view>
+
+
+<!-- 秒杀专区 -->
+<view class='seckill-wrapper' wx:if='{{ seckillList.length }}'>
+  <!-- 头部可以共用 -->
+  <view class='same-style-header-wrap flex-between'>
+    <view class='same-left'>秒杀专区</view>
+    <view class='same-right' bindtap='seckillMore'>
+      查看更多
+      <text class='iconfont icon-forward'></text>
+    </view>
+    <view class='bundle'></view>
+  </view>
+
+  <view class="content-wrap flex-between f-26">
+
+    <block wx:for="{{seckillList}}" wx:key="goods_id">
+      <view class="item flex">
+        <view class="img-box seckill-img-box">
+          <image src='{{item.img}}'></image>
+        </view>
+        <view class="text" style='color:#666;'>秒杀价 ￥{{item.price}}</view>
+        <navigator hover-class='none' url='/pages/product-detail/index?id={{item.goods_id}}'>
+          <view class="status center {{item.available ? 'available' : '' }}">{{item.available ? '马上抢' : '已抢光'}}</view>
+        </navigator>
+      </view>
+    </block>
+  </view>
+
+</view>
+<!-- 秒杀专区ends-->
+
+<!-- 新品上架 -->
+<view class='new-wrapper' wx:if="{{ newList.length }}">
+  <view class='same-style-header-wrap flex-between'>
+    <view class='same-left'>新品上架</view>
+    <view class='same-right' bindtap='newMore'>
+      查看更多
+      <text class='iconfont icon-forward'></text>
+    </view>
+    <view class='bundle'></view>
+  </view>
+
+  <view class="content-wrap_new flex f-26">
+    <block wx:for="{{newList}}" wx:key="goods_id">
+      <view class="item_new" bindtap='goDetail' style='position:relatvie;' data-id='{{item.goods_id}}'>
+        <view class="img-box_new">
+          <image src='{{item.img}}' mode="aspectFit"></image>
+        </view>
+        <view class="desc-wrap">
+          <view style='font-size:28rpx;' class="overflow-text1 title">{{item.title}}</view>
+          <view class="pri-orange new-c">￥{{item.price}}</view>
+        </view>
+
+        <!-- 新品标签 -->
+        <view class='new-sign-wrap' wx:if="{{item.tag_id}}">
+          <image src='{{item.tag_id}}'></image>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>
+<!-- 新品上架ends -->
+
+
+<view style="height: 160rpx;"></view>
+
+
+<!-- 购物车 -->
+<nav-cart cartNum='{{ cart_num }}'></nav-cart>

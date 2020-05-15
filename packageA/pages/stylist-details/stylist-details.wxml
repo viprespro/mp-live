@@ -1,0 +1,123 @@
+<!--packageA/pages/stylist-details/stylist-details.wxml-->
+<view class='header'>
+  <view class='person-picture-box'>
+    <view class='avatar-border'>
+      <image class='avatar' src='{{designer_info.design_info.pic}}'></image>
+    </view>
+    <view class='works'>
+      <text class='num'>{{designer_info.design_num}}</text>
+      <text class='label'>作品</text>
+    </view>
+    <view class='fans'>
+      <text class='num'>{{designer_info.fans_num}}</text>
+      <text class='label'>粉丝</text>
+    </view>
+    <view class='attention'>
+      <text class='num'>{{designer_info.follow_num}}</text>
+      <text class='label'>关注</text>
+    </view>
+    <view class='collect'>
+      <text class='num'>{{designer_info.article_num}}</text>
+      <text class='label'>收藏</text>
+    </view>
+  </view>
+  <view class='title'>
+    <text class='caption'>{{designer_info.design_info.realname}}</text>
+    <view class='label'>
+      <view class='icon-box'>
+        <text class='iconfont icon-v'></text>
+      </view>
+      <text class='text'>设计师</text>
+    </view>
+  </view>
+  <view class="desc">
+    {{designer_info.design_info.sign}}
+  </view>
+  <!-- <view class='desc'>
+    <block wx:for="{{designer_info.design_info.style}}">
+      <text>{{item.style_name}}、</text>
+    </block>
+  </view> -->
+</view>
+
+<view class='intro'>
+  <view class='caption'>个人简介</view>
+  <view class='font-box'>{{designer_info.design_info.introduction}}</view>
+</view>
+
+<view class='case'>
+  <view class='caption'>
+    <text>经典案例</text>
+    <view class='style-wrap'>
+      <scroll-view style="width:450rpx;white-space:nowrap" scroll-x>
+        <block wx:for="{{designer_info.design_info.style}}" wx:key="{{item.id}}">
+          <view style='display:inline-block;padding:0 10rpx;font-size:24rpx;color:#999;' data-id="{{item.id}}" bindtap="selectCurrentStyle" class="{{item.id == current_style_id ? 'if-selected' : ''}}">{{item.name}}</view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+  <view class='picture-box'>
+    <view class='inner-box'>
+      <scroll-view scroll-x style='width:100%;white-space:nowrap;' bindscrolltolower='loadMoreWork'>
+        <block wx:for="{{workList}}" wx:key="{{item.id}}">
+          <image src='{{item.thumb}}' class='item' style='display:inline-block' bindtap="goUrl" data-url="{{item.design_pano_url}}"></image>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+
+<view class='footer'>
+  <view class='consult' bindtap='consult'>咨询</view>
+  <view class='reserve' bindtap='showModal' data-target="reserve">预约设计</view>
+</view>
+
+<!-- 预约 -->
+<view class="cu-modal {{modalName=='reserve'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">预约详情</view>
+      <view class="action" bindtap="hideModal">
+        <text class="iconfont icon-close-01"></text>
+      </view>
+    </view>
+    <view class="padding">
+      <form bindsubmit='postInfo' data-target="handsel">
+        <view class='item'>
+          您的户型
+          <input class='room' name='room'></input>室
+          <input class='hall' name='hall'></input>厅
+          <input class='toilet' name='toilet'></input>卫
+        </view>
+        <view class='item'>
+          小区面积
+          <input class='home-name' placeholder='请输入小区名称' name='homeName'></input>
+          <input class='home-area' placeholder='输入您的房屋面积' name='homeArea'></input>
+        </view>
+        <view class='item'>
+          联系方式
+          <input class='your-name' placeholder='请输入您的称呼' maxlength='10' name='yourName'></input>
+          <input class='your-phone' placeholder='输入手机号码' maxlength='11' name='yourPhone'></input>
+        </view>
+        <view class='info'>* 我们严格遵守《互联网安全法》，保护您的个人隐私安全</view>
+        <button class='reserve' form-type='submit'>确认预约</button>
+      </form>
+    </view>
+  </view>
+</view>
+
+<!-- 定金 -->
+<view class="cu-modal {{modalName=='handsel'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="action" bindtap="hideModal">
+        <text class="iconfont icon-close-01"></text>
+      </view>
+    </view>
+    <view class="padding bg-white modal-box">
+      <view class='price'>￥{{ price }}</view>
+      <view class='reserve' bindtap='payOrder'>支付</view>
+      <view class='title'>支付{{ price }}元定金</view>
+    </view>
+  </view>
+</view>

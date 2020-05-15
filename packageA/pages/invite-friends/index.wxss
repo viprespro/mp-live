@@ -1,0 +1,79 @@
+page {
+  background: #fff;
+  overflow: hidden;
+}
+
+.qr-wrapper {
+  width: 440rpx;
+  height: 440rpx;
+  margin: 20% auto 0;
+  background: #eee;
+  border-radius: 50%;
+}
+
+.qr-wrapper .save {
+  text-align: center;
+  font-size: 28rpx;
+  color: #999;
+  padding: 10rpx 0;
+}
+
+.bot-wrap {
+  margin: 255rpx 100rpx;
+}
+
+.text-wrap {
+  text-align: center;
+  position: relative;
+  font-size: 33rpx;
+  color: #999;
+}
+
+.line {
+  position: absolute;
+  width: 173rpx;
+  height: 1px;
+  background: #999;
+  left: 0rpx;
+  top: 50%;
+}
+
+.line2 {
+  position: absolute;
+  width: 173rpx;
+  height: 1px;
+  background: #999;
+  right: 0rpx;
+  top: 50%;
+}
+
+.channel-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 36rpx;
+}
+
+.channel-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.img-box {
+  width: 70rpx;
+  height: 60rpx;
+  margin-bottom: 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.channel-txt {
+  color: #999;
+  font-size: 26rpx;
+}
+
+.share-btn {
+  background: #fff;
+}

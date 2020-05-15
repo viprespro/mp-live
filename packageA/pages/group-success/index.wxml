@@ -1,0 +1,21 @@
+<!-- 备注:拼团成功和失败共用一个页面 修改状态即可 -->
+<view class="wrapper">
+    <view class='col-1 {{status ? "success-color" : "fail-color"}}'>
+      <text class='iconfont icon-search'></text>
+      拼团成功
+    </view>
+
+    <view class='col-2'>
+      <text wx:if="{{status}}">商家正在努力发货，请耐心等待！</text>
+      <text wx:else>人数不足，不要灰心，再接再厉哦！</text>
+    </view>
+
+    <view class='col-3 {{status ? "sucess-q" : "fail-q"}}'>抢好货</view>
+
+    <view class='col-4'>
+      <view class='item'></view>
+      <view class='item'></view>
+      <view class='item'></view>
+      <view class='item'></view>
+    </view>
+</view>

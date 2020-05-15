@@ -1,0 +1,17 @@
+<view class="list-wrapper">
+  <view class='list-item-wrap'>
+      <view class='title-wrap overflow-text1'>隐藏在阁楼里的阳光房-厨房和客厅简约</view>
+      <view class='img-wrap'>
+        <view class='img-item'></view>
+        <view class='img-item'></view>
+        <view class='img-item'></view>
+      </view>
+      <view class='bot-wrap flex-between'>
+        <view class='bot-left'>
+          <text class='bot-left-item'>1</text>
+          <text class='bot-left-item'>2</text>
+        </view>
+        <view class='bot-right'>2019.12.18 13:28</view>
+      </view>
+  </view>
+</view>

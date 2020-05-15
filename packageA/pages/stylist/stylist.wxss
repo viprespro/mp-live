@@ -1,0 +1,290 @@
+/* packageA/pages/stylist/stylist.wxss */
+
+page {
+  background: #fff;
+}
+
+.taptab {
+  width: 100%;
+  height: 100rpx;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 26rpx;
+}
+
+.taptab > .item {
+  width: 25%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.taptab > .item > .iconfont {
+  position: relative;
+  top: 2rpx;
+  margin-left: 6rpx;
+  font-size: 36rpx;
+  color: #ccc;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  min-height: 1100rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.container .card {
+  width: 100%;
+  height: 180rpx;
+  padding: 30rpx 50rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container .card .person {
+  width: 450rpx;
+  height: 120rpx;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.container .card .person image {
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.container .card .person .desc {
+  width: 310rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.container .card .person .desc .title {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 10rpx;
+  font-size: 32rpx;
+  color: #333;
+  font-weight: 600;
+}
+
+.container .card .person .desc .info {
+  font-size: 24rpx;
+  color: #B5B4B4;
+  margin-bottom: 5rpx;
+}
+
+.container .card .person .desc .address {
+  width:100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color:#909090;
+  margin-left: 3rpx;
+}
+
+.container .card .person .desc .address .localtion{
+  width:200rpx;
+}
+
+.container .card .attention {
+  width: 140rpx;
+  height: 65rpx;
+  box-sizing: border-box;
+  border-radius: 12rpx;
+  text-align: center;
+  line-height: 65rpx;
+  font-size: 28rpx;
+  background: #454648;
+  color: #fff;
+  letter-spacing: 3rpx;
+}
+
+.container .card .attention.ac {
+  background: #fff;
+  border: 1px solid #999;
+  color: #999;
+}
+
+.shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  box-sizing: border-box;
+  background: #F9F9F9;
+}
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  background: #B2B2B2;
+  opacity: .3;
+}
+
+.shade .first-class {
+  width: 100%;
+  height: 100%;
+}
+
+.shade .first-class .title-wrap {
+  padding: 15rpx 24rpx;
+  font-size: 24rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee;
+}
+
+.area-wrapper {
+  padding: 15rpx 24rpx;
+}
+
+.scroll-view-H {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.scroll-view-H .area-item {
+  display: inline-block;
+  text-align: center;
+  font-size: 24rpx;
+  color: 999;
+  padding: 0 15rpx;
+}
+
+
+.another {
+  color: #999;
+}
+
+.shade .first-class .title-wrap .city-choose {
+  padding: 10rpx;
+  font-size: 24rpx;
+  color: #333;
+}
+
+.city-container {
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+
+.active {
+  color: #E2631C!important;
+}
+
+.city-container .city-item {
+  width: calc(100%/5);
+  font-size: 24rpx;
+  padding: 10rpx;
+  color: #999;
+}
+
+.shade .first-class .item.ac {
+  background: #efefef;
+}
+
+.shade .first-class .scroll-view_H {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.shade .second-class {
+  width: 65%;
+  height: 100%;
+}
+
+.shade .second-class .item {
+  width: 100%;
+  height: 120rpx;
+  box-sizing: border-box;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.shade .second-class .scroll-view_H {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.shade .second-class .item.ac .info {
+  background: #dedede;
+}
+
+.shade .second-class .item .info {
+  display: block;
+  width: 70%;
+  height: 60rpx;
+  background: #efefef;
+  border-radius: 26rpx;
+  line-height: 60rpx;
+}
+
+.style-down-wrapper {
+  height: 60rpx;
+  line-height: 60rpx;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  background: #fff;
+}
+
+.scroll-view-H-style {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.scroll-view-H-style .style-item {
+  width: 25%;
+  height: 100%;
+  text-align: center;
+  display: inline-block;
+  font-size: 26rpx;
+}
+
+.sex-down-wrapper > .sex-item{
+  display: inline-block;
+  width: 33%;
+  height: 100%;
+  text-align: center;
+  font-size: 26rpx;
+}
+
+.default-down-wrapper > .default-item {
+  display: inline-block;
+  width: 33%;
+  height: 100%;
+  text-align: center;
+  font-size: 26rpx;
+}
+
+.hasMore {
+  text-align: center;
+  padding: 30rpx;
+  color: #ccc;
+  font-size: 28rpx;
+}
+
+

@@ -1,0 +1,17 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">修改后台密码</view>
+</cu-custom>
+
+<view class="edit-wrap">
+  <!-- <view class="row-item flex">
+    <view>后台用户名：</view>
+    <input placeholder="请输入用户名"></input>
+  </view> -->
+
+  <view class="row-item flex">
+    <view>后台密码：</view>
+    <input type="password" placeholder="请输入密码" bindinput="bindPwd"></input>
+  </view>
+</view>
+
+<button class="btn" bindtap="okTap">确认修改</button>

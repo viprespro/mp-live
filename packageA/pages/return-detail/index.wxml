@@ -1,0 +1,75 @@
+<view class='return-detail-wrapper'>
+  <view class="top">
+    <view class="top-status">
+      <text class="status-txt" wx:if="{{info.status == 0}}">申请中</text>
+      <text class="status-txt" wx:if="{{info.status == 1}}">待用户填写物流信息</text>
+      <text class="status-txt" wx:if="{{info.status == 2}}">退款中</text>
+      <text class="status-txt" wx:if="{{info.status == 3}}">退款成功 </text>
+      <text class="status-txt" wx:if="{{info.status == 4}}">已驳回</text>
+      <view class="date">{{info.create_time}}</view>
+    </view>
+    <view class="top-money flex-between">
+      <text class="total">退款总金额</text>
+      <text class="num">￥{{info.price}}</text>
+    </view>
+  </view>
+  <view class="slicer"></view>
+  <view class="mid">
+    <view class="mid-title">退款详情</view>
+    <view class='content-item'>
+      <view class='img-wrap'>
+        <image src='{{info.goods_img}}' class='img'></image>
+      </view>
+      <view class='detail'>
+        <view class='strong name'>{{info.goods_name}}</view>
+        <text class='desc'>{{info.spec_name}}</text>
+        <text class='red-like'>￥{{info.goods_price}}</text>
+      </view>
+    </view>
+  </view>
+  <view class="slicer"></view>
+  <view class="bot">
+    <view class="bot-row-item">
+      <text>退款编号：</text>
+      <text>{{info.refund_sn}}</text>
+    </view>
+    <view class="bot-row-item">
+      <text>商品总价：</text>
+      <text>{{info.price}}</text>
+    </view>
+    <view class="bot-row-item">
+      <text decode="{{true}}" space="{{true}}">邮&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;费：</text>
+      <text>0.00</text>
+    </view>
+    <view class="bot-row-item">
+      <text>退款金额：</text>
+      <text>{{info.price}}</text>
+    </view>
+    <view class="bot-row-item">
+      <text decode="{{true}}" space="{{true}}">原&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因：</text>
+      <text>{{info.refund_reason}}</text>
+    </view>
+    <view class="bot-row-item">
+      <text decode="{{true}}" space="{{true}}">类&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;型：</text>
+      <text>{{info.type ? '退款退货' : '仅退款'}}</text>
+    </view>
+    <view class="bot-row-item">
+      <text>货物状态：</text>
+      <text wx:if='{{info.type == 0}}'>未发货</text>
+      <text wx:if='{{info.type == 1 && info.status == 3}}'>已寄回</text>
+      <text wx:if='{{info.type == 1 && info.status != 3}}'>已发货</text>
+    </view>
+    <view class="bot-row-item special-item" wx:if="{{info.refund_explain}}">
+      <text decode="{{true}}" space="{{true}}">说&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;明：</text>
+      <text class="description">{{info.refund_explain}}</text>
+    </view>
+     <view class="bot-row-item" wx:if="{{info.remarks}}">
+      <text decode="{{true}}" space="{{true}}">驳回原因：</text>
+      <text class="description">{{info.remarks}}</text>
+    </view>
+  </view>
+</view>
+
+<navigator hover-class="none" url="/packageA/pages/fill-in-express-info/index?refund_id={{refund_id}}">
+  <view class="common-btn-wrapper express-btn" wx:if="{{info.type == 1 && info.status == 1}}">填写物流信息</view>
+</navigator>

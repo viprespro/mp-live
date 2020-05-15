@@ -1,0 +1,25 @@
+<scroll-view scroll-x class="bg-white nav">
+  <view class="flex text-center">
+    <view class="cu-item flex-sub {{index==TabCur?'text-orange cur':''}}" wx:for="{{tabsList}}" wx:key bindtap="tabSelect" data-id="{{index}}">
+      {{item}}
+    </view>
+  </view>
+</scroll-view>
+
+
+<!-- 预约列表 -->
+<view class='reserve-list-wrapper'>
+  <block wx:for="{{reserveList}}" wx:key="{{item.id}}">
+    <view class='list-item-wrap'>
+      <view class='title'>预约时间:{{item.create_time}}</view>
+      <view class='detail'>
+        <view class='name strong'>{{item.region_name}}</view>
+        <view class='ting'>{{item.room}}室{{item.hall}}厅{{item.toilet}}卫</view>
+        <view class='area'>{{item.area}}平</view>
+        <view class='check-wrap' data-id='{{item.id}}' bindtap='checkDetail'>查看详情</view>
+      </view>
+    </view>
+  </block>
+</view>
+
+<view class='hasMore'>{{reserveList.length > 0 ? '我是有底线的~' : '暂无数据~'}}</view>

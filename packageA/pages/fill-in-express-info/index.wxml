@@ -1,0 +1,46 @@
+<view class='express-wrapper'>
+  <view class="express-title">商品</view>
+  <view class='content-item'>
+    <view class='img-wrap'>
+      <image src='{{info.goods_img}}' class='img'></image>
+    </view>
+    <view class='detail'>
+      <view class='strong name'>{{info.goods_name}}</view>
+      <text class='desc'>{{info.spec_name}}</text>
+    </view>
+  </view>
+  <view class="bot">
+    <view class="reason-item" bindtap="showModal" data-target="express-modal">
+      <text class="item-left-txt">物流公司</text>
+      <text>请选择物流公司</text>
+      <text class="iconfont icon-drop-up item-right-icon"></text>
+    </view>
+    <view class="reason-item" bindtap="showModal" data-target="reason-modal">
+      <text class="item-left-txt">物流单号</text>
+      <input class="input" bindinput="bindInput" type="number" maxlength="20" placeholder="请填写物流单号"></input>
+    </view>
+  </view>
+</view>
+
+<view class="common-btn-wrapper express-btn" bindtap="submitApply">提交申请</view>
+
+<!-- 退款原因-modal -->
+<view class="cu-modal {{modalName=='express-modal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="content">请选择物流公司</view>
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close iconfont icon-close-01"></text>
+      </view>
+    </view>
+    <view class="padding-xl">
+      <scroll-view scroll-y style="height:600rpx;">
+        <block wx:for='{{expressList}}' wx:key='{{item.name}}'>
+          <view class="modal-reason-item {{current_express_key == index ? 'express-selected' : ''}}" bindtap="selectCur" data-index="{{index}}" data-name="{{item}}">
+            <text>{{item}}</text>
+          </view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>

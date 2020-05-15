@@ -1,0 +1,52 @@
+page {
+  background: #F2F2F2;
+}
+
+.wrapper {
+  background: #fff;
+  margin: 300rpx 24rpx 0;
+  border-radius: 12rpx;
+}
+
+.withdraw-wrap {
+  padding: 34rpx 28rpx 24rpx;
+  font-size: 30rpx;
+  color: #999;
+}
+
+.num-wrap {
+  padding: 0 28rpx 10rpx;
+}
+
+.num-wrap .symbol  {
+  font-size: 48rpx;
+}
+
+.num-wrap > input {
+  position: relative;
+  top: 15rpx;
+}
+
+.row-bundle {
+  height: 1px;
+  background: #E3E3E3;
+}
+
+.balance-wrap {
+  padding: 24rpx 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26rpx;
+}
+
+.balance-wrap .balance {
+  margin-right: 15rpx;
+}
+
+.realname-wrap {
+  padding: 15rpx 24rpx;
+  border-bottom: 1px solid #eee;
+  font-size: 30rpx;
+}
+

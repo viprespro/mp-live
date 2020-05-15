@@ -1,0 +1,260 @@
+@import "../../../wxParse/wxParse.wxss";
+
+.container {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10rpx 35rpx;
+  background: #fff;
+}
+
+.container .top {
+  width: 100%;
+  box-sizing: border-box;
+  font-size: 36rpx;
+  color: #333;
+}
+
+.container .title {
+  width: 100%;
+  height: 126rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 15rpx 0;
+}
+
+.container .title .person-info {
+  width: 85%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+}
+
+.container .title .person-info .avatar {
+  width: 82rpx;
+  height: 82rpx;
+  box-sizing: border-box;
+  border-radius: 50%;
+}
+
+.container .title .person-info .desc {
+  margin-left: 16rpx;
+}
+
+.container .title .person-info .desc .caption {
+  font-size: 28rpx;
+  color: #1e1e1e;
+}
+
+.container .title .person-info .desc .date {
+  font-size: 22rpx;
+  color: #bbbaba;
+  margin-top: 10rpx;
+}
+
+.container .title .attention {
+  width: 127rpx;
+  height: 45rpx;
+  box-sizing: border-box;
+  border-radius: 25rpx;
+  background: #fbb537;
+  color: #333;
+  text-align: center;
+  line-height: 45rpx;
+  font-size: 24rpx;
+  letter-spacing: 2rpx;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 750rpx;
+  height: 100rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 15rpx 20rpx;
+  background: #fff;
+}
+
+.footer .input {
+  width: 360rpx;
+  height: 68rpx;
+  box-sizing: border-box;
+  border-radius: 35rpx;
+  background: #ececec;
+  font-size: 22rpx;
+  color: #b5b3b3;
+  text-align: center;
+  line-height: 68rpx;
+}
+
+.footer .iconfont {
+  position: relative;
+  font-size: 40rpx;
+}
+
+.footer .iconfont.icon-guanzhu {
+  font-size: 36rpx;
+}
+
+.comment:after {
+  position: absolute;
+  top: 0;
+  left: 60%;
+  background: #f8b303;
+  color: #fff;
+  font-size: 16rpx;
+  text-align: center;
+  line-height: 18rpx;
+  padding: 1rpx 3rpx;
+  border-radius: 10rpx;
+  content: '658';
+}
+
+.praise:after {
+  position: absolute;
+  top: 0;
+  left: 60%;
+  background: #f8b303;
+  color: #fff;
+  font-size: 16rpx;
+  text-align: center;
+  line-height: 18rpx;
+  padding: 1rpx 3rpx;
+  border-radius: 10rpx;
+  content: '1105';
+}
+
+/* 评论弹框 */
+
+.cmt-wrapper {
+  /* position: fixed; */
+  position: absolute;
+  bottom: 100rpx;
+  left: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+  border-top: 1px solid #ccc;
+  padding: 10rpx 24rpx;
+  background: #fff;
+}
+
+.input-wrap {
+  flex: 1;
+  background: #f4f5f7;
+  box-sizing: border-box;
+  border: 1px solid #f4f5f7;
+  position: relative;
+  border-radius: 15.6rpx;
+}
+
+.rep-holder {
+  position: absolute;
+  font-size: 26rpx;
+  color: #999;
+  left: 15rpx;
+  top: 10rpx;
+}
+
+.my-cmt-textarea {
+  width: 100%;
+  font-size: 26rpx;
+  padding: 0 15rpx;
+  line-height: 1.5;
+  max-height: 200rpx !important;
+}
+
+.action {
+  height: 100%;
+  width: 100rpx;
+  text-align: center;
+  line-height: 60rpx;
+  font-size: 26rpx;
+  color: #999;
+}
+
+.cu-cmt-item-wrap {
+  display: flex;
+  justify-content: flex-start;
+  margin: 45rpx 0;
+}
+
+.cu-cmt-item-wrap .avatar-box {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  background: #f2f3f7;
+  margin-right: 16rpx;
+}
+
+.cu-cmt-item-wrap .avatar-box > image {
+  border-radius: 50%;
+}
+
+.cu-content {
+  display: flex;
+  flex-direction: column;
+  font-size: 26rpx;
+  flex: 1;
+}
+
+.cu-content > .text {
+  text-align: left;
+}
+
+.action02 {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.action02  > .icon-close-01 {
+  font-size: 50rpx;
+}
+
+.create-time {
+  width: 210rpx;
+}
+
+.content {
+  flex: 1;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.cmt-icon-wrap {
+  position: relative;
+  padding: 20rpx;
+}
+
+.cmt-item-num {
+  position: absolute;
+  font-size: 20rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  padding: 0 8rpx;
+  background: #f8b303;
+  border-radius: 15rpx;
+  color: #fff;
+  top: 7rpx;
+}
+
+.collect-active {
+  color: #f8b303 !important;
+}
+
+.follow-ac {
+  color: #fff !important;
+}

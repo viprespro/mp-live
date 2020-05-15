@@ -1,0 +1,15 @@
+page {
+  background: #fff;
+}
+
+.img-wrap {
+  width: 222rpx;
+  height: 238rpx;
+  margin: 80rpx auto 30rpx;
+}
+
+.message {
+  text-align: center;
+  font-size: 24rpx;
+  color: #888;
+}

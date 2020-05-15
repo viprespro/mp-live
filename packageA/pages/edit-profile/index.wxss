@@ -1,0 +1,110 @@
+page {
+  background-color: #ffff;
+  font-size: 28rpx;
+}
+
+.col-item-wrapper {
+  padding: 20rpx 24rpx;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+}
+
+.col-item-wrapper > input {
+  text-align: right;
+}
+
+.col-item-wrapper  image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.not-first {
+  border-top: 0;
+  padding: 40rpx 24rpx;
+}
+
+.id-wrapper {
+  padding: 24rpx;
+  border-bottom: 1px solid #ddd;
+}
+
+.img-container {
+  display: flex;
+  padding: 16rpx 4rpx;
+}
+
+.img-container > .item {
+  width: 140rpx;
+  height: 105rpx;
+  margin-right: 20rpx;
+  border-radius: 8rpx;
+  position: relative;
+  margin-top: 10rpx;
+}
+
+.img-container > .item > image {
+  border-radius: 8rpx;
+}
+
+.submit-btn-wrapper {
+  width: 580rpx;
+  height: 90rpx;
+  line-height: 90rpx;
+  text-align: center;
+  background: #f9b303;
+  border-radius: 45rpx;
+  color: #fff;
+  margin: 40rpx auto;
+  font-size: 34rpx;
+}
+
+.upload {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  color: #fff;
+  font-size: 24rpx;
+  background: #dcdcdc;
+}
+
+.upload-text, .icon-upload {
+  text-align: center;
+}
+
+.icon-close-01 {
+  position: absolute;
+  right: 8rpx;
+  top: -9rpx;
+  color: #ffe;
+}
+
+/* 风格 */
+
+.style-item {
+  display: inline-block;
+  padding: 20rpx;
+  background: #eee;
+  margin-bottom: 15rpx;
+  margin-right: 15rpx;
+}
+
+.style-active {
+  color: #e2631c !important;
+}
+
+.scroll-view-H-style {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.scroll-view-V-city {
+
+}
+
+.scroll-view-V-city .city-item {
+  padding: 20rpx 0;
+}

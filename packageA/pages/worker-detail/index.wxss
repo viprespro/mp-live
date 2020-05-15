@@ -1,0 +1,176 @@
+page {
+  background: #f3f3f3;
+}
+
+.header-wrapper {
+  background: #fff;
+  padding: 20rpx 24rpx 23rpx;
+}
+
+.avatar-wrap {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background: #f2f3f7;
+}
+
+.avatar-wrap > image {
+  border-radius: 50%;
+}
+
+.right-part-wrap {
+  flex: 1;
+  margin-left: 16rpx;
+  padding: 14rpx 0 0;
+  font-size: 26rpx;
+}
+
+.right-part-wrap .name {
+  font-size: 30rpx;
+  margin-bottom: 8rpx;
+}
+
+.right-part-wrap .type {
+  padding: 4rpx 15rpx;
+  height: 30rpx;
+  border-radius: 19rpx;
+  text-align: center;
+  box-sizing: border-box;
+  border: 1px solid #f8b303;
+  font-size: 22rpx;
+  color: #F8B303;
+  margin-left: 15rpx;
+}
+
+.right-part-wrap .addr {
+  margin-bottom: 10rpx;
+}
+
+.icon-location {
+  color: #F9B303;
+}
+
+.service-wrapper {
+  margin-top: 10rpx;
+  background: #fff;
+}
+
+.service-wrapper .title-wrap {
+  background: #FFFEF6;
+  padding: 30rpx 24rpx;
+  font-size: 30rpx;
+}
+
+.service-wrapper .detail-wrap {
+  font-size: 24rpx;
+  color: #666;
+  padding: 40rpx 24rpx;
+}
+
+.spec {
+  background: #F6FBFB!important;
+  display: flex;
+}
+
+.spec .item {
+  flex: 1;
+  text-align: center;
+  font-size: 30rpx;
+}
+
+.detail-spec {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 24rpx;
+  color: #666;
+  padding: 0!important;
+  height: 110rpx;
+  position: relative;
+}
+
+.bundle {
+  position: absolute;
+  left: 50%;
+  width: 1px;
+  height: 100%;
+  background: #eee;
+}
+
+.cu-modal .item {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 24rpx;
+  margin-bottom: 32rpx;
+}
+
+.cu-modal .item input {
+  text-align: left;
+  padding-left: 15rpx;
+  line-height: 40rpx;
+}
+
+.cu-modal .item .room, .cu-modal .item .hall, .cu-modal .item .toilet {
+  width: 130rpx;
+  height: 40rpx;
+  border-radius: 10rpx;
+  border: 1px solid #ddd;
+  margin: 0 10rpx;
+}
+
+.cu-modal .item .home-name, .cu-modal .item .home-area,
+.cu-modal .item .your-name, .cu-modal .item .your-phone {
+  position: relative;
+  width: 250rpx;
+  height: 40rpx;
+  border-radius: 8rpx;
+  border: 1px solid #ddd;
+  margin-left: 10rpx;
+}
+
+.cu-modal .item .your-name:after, .cu-modal .item .your-phone:after {
+  content: '*';
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateX(-120%) translateY(-40%);
+  color: #ffc84b;
+}
+
+.cu-modal .info {
+  font-size: 20rpx;
+  color: #999;
+  text-align: left;
+}
+
+.cu-modal .reserve {
+  width: 170rpx;
+  height: 60rpx;
+  font-size: 24rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 29rpx;
+  background: #fbb637;
+  margin: 25rpx auto 35rpx;
+}
+
+.modal-box {
+  padding-top: 0;
+}
+
+/* 模态框样式color-ui 定金 */
+
+.cu-modal .title {
+  font-size: 24rpx;
+  color: #333;
+  margin-bottom: 60rpx;
+}
+
+.cu-modal .price {
+  font-size: 46rpx;
+  color: #e2631c;
+}

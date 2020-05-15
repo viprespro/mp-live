@@ -1,0 +1,194 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">订单填写</view>
+</cu-custom>
+<view class="container">
+  <view class='address-info' bindtap="showModal" data-target="bottomModal">
+    <view wx:if="{{addressInfo.length < 1}}" class='flex' style='padding:20rpx;'>
+      <view class='localtion-icon'></view>
+      添加收货地址
+    </view>
+    <view wx:else class='address-content'>
+      <view class='localtion-icon'></view>
+      <view class='address-detail'>
+        <view class='user-msg'>
+          <view class='user els'>收货人:
+            <text>{{addressInfo.realname}}</text>
+          </view>
+          <view class='phone'>{{addressInfo.mobile}}</view>
+        </view>
+        <view class='address'>
+          <text class='overflow-text1'>{{addressInfo.address}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- payWay  积分支付也就是type==3的时候不显示-->
+  <view class='pay'>
+    <view class='title'>选择支付方式</view>
+    <view class='payway-list'>
+      <view class='payway-item'>
+        <view class='payway-icon' wx:if="{{type ==3}}" style='display:flex;justify-content:center;align-items:center'>
+          <text class='iconfont icon-integral-pay' style='color:#41B035;font-size:70rpx;'></text>
+        </view>
+        <view class='payway-name' wx:if="{{type ==3}}">
+          <view class='name'>积分支付</view>
+        </view>
+        <view class='payway-name' wx:if="{{type!=3}}">
+          <view class='name'>微信支付</view>
+          <view class='payway-desc'>亿万用户的选择，更快更安全</view>
+        </view>
+
+        <view class='select'>
+          <image src='{{select_flag == 1 ? "/images/selected-icon.png" : "/images/select-icon.png"}}' bindtap='chooseWay'></image>
+        </view>
+      </view>
+    </view>
+  </view>
+  <!-- order -->
+  <view class='order'>
+    <view class='title'>订单信息</view>
+
+    <view class='order-list' wx:for="{{goodsInfo}}" wx:key="img">
+      <view class='order-item'>
+        <view class='order-icon'>
+          <image src='{{item.img}}'></image>
+        </view>
+        <view class='order-content'>
+          <view class='order-title flex-between'>
+            <text class='goods_name overflow-text1'>{{item.goods_name}}</text>
+            <text>×{{item.num}}</text>
+          </view>
+          <view class='style'>{{item.spec_str}}</view>
+          <view class='price'>
+            <text wx:if="{{type != 3}}">￥</text>{{item.total_price}}</view>
+        </view>
+      </view>
+      <!-- 优惠券 -->
+      <!-- <view class='available-coupon-wrapper flex-between' wx:if="{{type != 3 && type !=5 }}">
+        <text>优惠券</text>
+        <view bindtap='chooseAvailableCoupon' data-target="couponModal" data-id='{{item.goods_id}}'>
+          <text wx:if="{{item.coupon_info}}" class='base-color'>{{item.coupon_info}}</text>
+          <text wx:else>选择</text>
+          <text class='iconfont icon-forward'></text>
+        </view>
+      </view> -->
+    </view>
+
+
+    <view class='liuyan' style='margin-top:20rpx;' wx:if="{{has}}">
+      <view style='font-size:28rpx;margin-bottom:8rpx;'>买家留言</view>
+      <textarea class='liuyan-input' style='border:1px solid #eee;padding:10rpx;font-size:26rpx;line-height:1.75;' lower-threshold="100" placeholder='请输入您的留言(可选)' value='{{textarea_val ? textarea_val : ""}}' bindinput='bindLeaveMessage'></textarea>
+    </view>
+
+  </view>
+  <view class='total'>
+    <view>总计:
+      <text>￥{{total_price}}</text>
+    </view>
+  </view>
+  <!-- suborder -->
+  <view class='sub-order'>
+    <view class='pay-price'>
+      <view class='txt'>
+        实付金额:
+        <text class="base-text-color">￥{{total_price}}</text>
+      </view>
+    </view>
+    <view class='sub-btn' bindtap='submitOrder' data-target="handsel">提交订单</view>
+  </view>
+  <view style="height:80rpx"></view>
+</view>
+
+<!-- 底部模态框 -->
+<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="action" bindtap="hideModal">取消</view>
+      <view class="action text-black">选择收货地址</view>
+      <view class="action"></view>
+    </view>
+    <view class='border'></view>
+    <view class="bg-white action-list">
+      <block wx:for="{{ addressArray }}">
+        <view class='item' bindtap='selectCurrent' data-id='{{item.address_id}}'>
+          <view class='left'>
+            <text class='iconfont icon-location'></text>
+            <view class='desc'>
+              <view class='caption'>{{item.address}}</view>
+              <view class='info'>
+                <text class='nickname'>{{item.realname}}</text>
+                <text class='phone'>{{item.mobile}}</text>
+              </view>
+            </view>
+          </view>
+          <text class='iconfont icon-bianji' catchtap='editAddress' data-id='{{item.address_id}}'></text>
+        </view>
+        <view class='border'></view>
+      </block>
+      <view class='add-address' bindtap='addAddress'>
+        <text class='iconfont icon-add-new' style='color:#FBD470;'></text>
+        <text class='info'>新增收货地址</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 定金 -->
+<view class="cu-modal {{modalName=='handsel'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class="action" bindtap="hideModal">
+        <text class="cuIcon-close text-black"></text>
+      </view>
+    </view>
+    <view class="padding bg-white modal-box">
+      <view class='price'>￥300</view>
+      <view class='reserve'>支付</view>
+      <view class='title'>支付300元定金</view>
+    </view>
+  </view>
+</view>
+
+<!-- 优惠券的模态框 -->
+<view class="cu-modal bottom-modal {{modalName=='couponModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="action text-green"></view>
+      <view class="action text-blue" catchtap="hideModal">取消</view>
+    </view>
+    <view class='coupon-list-wrap'>
+      <block wx:for="{{couponList}}" wx:key="user_coupon_id">
+        <view class='outer' bindtap='chooseCurrentCoupon' data-usercouponid='{{item.user_coupon_id}}' data-name='{{item.coupon_name}}' data-value='{{item.value}}'>
+          <view class='coupon-item'>
+            <view class='left'>
+              <view class='num'>
+                <text class='symbol'>￥</text>
+                <text class='big'>{{parse.jsonParse(item.value).price}}</text>
+              </view>
+              <view class='good'>{{item.coupon_name}}</view>
+            </view>
+            <view class='right'>
+              <view class='name strong'>{{item.shop_name}}</view>
+              <view class='discount'>
+                <text class='inner-discount overflow-text1'>满{{parse.jsonParse(item.value).max_price}}减{{parse.jsonParse(item.value).price}}</text>
+              </view>
+              <view class='valid'>有效期：{{item.start_time}} — {{item.end_time}}</view>
+            </view>
+          </view>
+          <view class='half-circle'></view>
+          <view class='half-bot'></view>
+        </view>
+      </block>
+      <view class='empty-wrap overflow-text2' style='padding:20rpx;font-size:26rpx;color:#666;' wx:if="{{couponList.length == 0}}">暂无可用优惠券~</view>
+    </view>
+  </view>
+</view>
+
+<wxs module="parse">
+  var jsonParse = function(value) {
+    return JSON.parse(value)
+  }
+  module.exports = {
+    jsonParse: jsonParse
+  }
+</wxs>

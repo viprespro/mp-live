@@ -1,0 +1,108 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">购物车</view>
+</cu-custom>
+
+<form>
+  <view class='head flex' style="top:{{ CustomBar }}px" >
+    <view class='txt'>购物数量({{cartNum}})</view>
+    <view class='btn' bindtap='btntap' wx:if='{{!foothidden}}'>管理</view>
+    <view class='btn' bindtap='btntap' wx:if='{{foothidden}}'>取消</view>
+  </view>
+
+  <!-- 购物车列表 -->
+  <view class='car-list'>
+    <block wx:for="{{cartList}}" wx:key="id">
+      <view class='list-item flex {{item.is_lose ? "none" : ""}}'>
+
+        <view class='select-btn flex' data-index='{{index}}' bindtap='switchSelect'>
+          <image src='{{item.checked ? "/images/cart-selected.png" : "/images/cart-select.png"}}' style='width:42rpx;height:42rpx;'></image>
+        </view>
+
+        <view class='picture' bindtap="goDetail" data-id="{{item.goods_data.id}}">
+          <image src='{{item.cover}}'></image>
+        </view>
+        <view class='pro-info flex'>
+          <view class='pro-title'>{{item.goods_name}}</view>
+          <view class='pro-des overflow-text1'>{{item.spec_values}}</view>
+          <view class="base-text-color">￥{{item.price}}</view>
+        </view>
+
+        <view class='count-wrapper flex'>
+          <text data-index="{{index}}" bindtap="numDescClick" class='{{  item.goods_num > 1 ? "noraml" : "disabled" }}'>-</text>
+          <input class='num' data-item='{{index}}' type="number" value='{{item.goods_num}}' bindblur='setNumber' />
+          <text class='add' data-index="{{index}}" bindtap="numAddClick">+</text>
+        </view>
+
+      </view>
+    </block>
+  </view>
+
+
+
+
+  <!-- 失效页面 -->
+  <view class='fail-list' wx:if="{{invalidList.length > 0}}">
+    <view class='title-bar flex'>
+      <text class='line'></text>
+      <text class='txt'>失效商品</text>
+      <text class='line'></text>
+    </view>
+    <view class='list-item flex fail-item' wx:for='{{invalidList}}' wx:key="id">
+
+      <view class='select-btn flex invalid-txt-wrap'>
+        <text class="txt">失效</text>
+      </view>
+
+      <view class='picture'  data-id="{{item.goods_id}}">
+        <image src='{{item.cover}}'></image>
+      </view>
+      <view class='pro-info flex'>
+        <view class='pro-title' style="color:#777;">{{item.goods_name}}</view>
+        <view class='pro-des overflow-text1'>{{item.spec_values}}</view>
+        <view style='color:#E36825;' class="flex-between">
+          <text>￥{{item.price}}</text>
+          <text class="iconfont icon-delete" bindtap="delCurrent" data-id="{{item.id}}"></text>
+        </view>
+      </view>
+
+    </view>
+  </view>
+
+
+  <view style='height:120rpx;'></view>
+  <view class='foot'>
+    <view class='pay-wrapper flex' hidden='{{foothidden}}'>
+      <view class='left-wrapper flex'>
+        <view class='all-select flex-center' bindtap="allChecked">
+          <!-- <label class="checkbox">
+            <checkbox value="Boolean" checked="{{isAllSelect}}" />
+          </label> -->
+          <image src='{{isAllSelect ? "/images/cart-selected.png" : "/images/cart-select.png"}}' style='width:42rpx;height:42rpx;'></image>
+        </view>
+        <view class='txt'>全选</view>
+        <view class='count-num'>
+          <text style="color:#333">合计:</text>
+          <text class="f-size base-text-color" ><text style='font-size:24rpx;' class="base-text-color">￥</text>{{countmoney}}</text>
+        </view>
+      </view>
+      <view class='flex' catchtap='confirmOrder'>
+        <view class='pay-btn' style='background:#FF706A;color:#fff;'>去结算</view>
+      </view>
+    </view>
+    <view class='delete-wrapper flex'>
+      <view class='left-wrapper flex'>
+        <view class='all-select flex-center' bindtap="allChecked">
+          <!-- <label class="checkbox">
+            <checkbox value="Boolean" checked="{{isAllSelect}}" />
+          </label> -->
+          <image src='{{isAllSelect ? "/images/cart-selected.png" : "/images/cart-select.png"}}' style='width:42rpx;height:42rpx;'></image>
+        </view>
+        <view class='txt'>全选</view>
+      </view>
+      <view class='right-wrapper flex'>
+        <!-- <view class='collection-btn' bindtap='collectAll'>移入收藏</view> -->
+        <view class='delete-btn' bindtap='cartDelAll'>删除</view>
+      </view>
+    </view>
+  </view>
+</form>

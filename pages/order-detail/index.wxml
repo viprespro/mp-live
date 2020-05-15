@@ -1,0 +1,156 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">订单状态</view>
+</cu-custom>
+
+<!-- 显示状态图 -->
+<view class='status-wrapper flex'>
+  <view class='status-img-wrap'>
+    <!-- 待付款 -->
+    <image wx:if="{{orderInfo.pay_status == 0  }}" src='/images/order-detail/1.png'></image>
+    <!-- 待发货 -->
+    <image wx:if="{{orderInfo.pay_status == 1 && orderInfo.status == 0 }}" src='/images/order-detail/2.png'></image>
+    <!-- 待收货 -->
+    <image wx:if="{{orderInfo.pay_status == 1 && orderInfo.status == 1 }}" src='/images/order-detail/3.png'></image>
+    <!-- 待评价 -->
+    <image wx:if="{{orderInfo.pay_status == 1 && orderInfo.status == 2 || orderInfo.status == 3 && orderInfo.pay_status == 1 || orderInfo.pay_status == 1 && orderInfo.status == 6 }}" src='/images/order-detail/4.png'></image>
+    <!-- 已评价 已完成 -->
+    <image wx:if="{{orderInfo.pay_status == 1 && orderInfo.status == 4 }}" src='/images/order-detail/5.png'></image>
+
+  </view>
+  <!-- <view class='text-instr-wrap'>
+    <text class='item'>待付款</text>
+    <text class='item'>待发货</text>
+    <text class='item'>待收货</text>
+    <text class='item'>{{orderInfo.pay_status == 1 && orderInfo.status == 6 ? '退款中' : '待评价' }}</text>
+    <text class='item'>已完成</text>
+  </view> -->
+</view>
+
+<!-- 物流 -->
+<view class='logistics-wrapper' wx:if="{{paid_status}}">
+  <view class='logistics-content flex-between'>
+    <view class='overflow-text2 f-28 flex'>
+      <text style='color:#2996e0'>{{logisticsList.length > 0 ? logisticsList[0].context : '暂无物流信息'}}</text>
+    </view>
+    <view class='c-9 detail' bindtap='goDetail'>查看详情
+      <text class='iconfont icon-gt'></text>
+    </view>
+  </view>
+</view>
+
+<view class='address'>
+
+  <view class='icon-wrap'>
+    <!-- <text class='iconfont icon-location'></text> -->
+    <image src="/images/location.png"></image>
+  </view>
+
+  <view class='address-wrapper'>
+    <view class='name'>{{addressInfo.realname}}
+      <text style='color:#666'>{{addressInfo.mobile}}</text>
+    </view>
+    <view class='address-info flex overflow-text1' style='color:#666'>
+      {{addressInfo.address}}
+    </view>
+  </view>
+</view>
+
+<!-- 隔板 -->
+<view class='row-separate'></view>
+
+<view class='order-info-wrapper'>
+  <view class='title-wrap flex'>
+    <image src='/images/cart-icon.png'></image>
+    <text class='text'>订单信息</text>
+  </view>
+
+  <view class='goods-item-wrapper'>
+    <block wx:for="{{goodsList}}" wx:for-item="innerItem" wx:key="unique">
+      <view class='product-info-wrap'>
+        <view class='goods-info-wrap'>
+          <view class='content-item'>
+            <view class='img-wrap' style='width:170rpx;height:170rpx;'>
+              <image src='{{innerItem.goods_img}}' mode='aspectFix' class='img'></image>
+            </view>
+            <view class='detail'>
+              <view class='strong name' style='text-align:left;'>{{innerItem.goods_name}}</view>
+              <text class='desc' style='text-align:left;margin:15rpx 0;'>{{innerItem.spec_str}}</text>
+              <view class='flex-between'>
+                <text class='base-text-color' style='text-align:left;'>￥{{innerItem.goods_price}}</text>
+                <text class='base-text-color' style='text-align:left;'>x{{innerItem.goods_num}}</text>
+              </view>
+            </view>
+            <view></view>
+          </view>
+          <view class="ops-wrap">
+            <!-- <view class="if-return-wrap" data-id="{{innerItem.order_goods_id}}" bindtap="returnOpt" wx:if='{{!innerItem.is_refund}}'>
+              <text>退换</text>
+            </view> -->
+            <view class="if-return-wrap" data-img="{{innerItem.goods_img}}" data-specid="{{innerItem.goods_spec_id}}" data-id="{{innerItem.goods_id}}" bindtap="commentOpt" wx:if='{{!innerItem.is_comment}}'>
+              <text>评价</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+</view>
+
+<!-- 隔板 -->
+<view class='row-separate'></view>
+
+<!-- 订单详情 -->
+<view class='order-info-wrapper' wx:if="{{pay_status}}">
+  <view class='title-wrap flex'>
+    <image src='/images/edit-icon.png' style='width:24rpx;height:27rpx;'></image>
+    <text class='text'>订单详情</text>
+  </view>
+
+  <view class='flex-between detail-info'>
+    <text class='c-6'>订单编号：</text>
+    <text>{{orderInfo.order_sn}}</text>
+  </view>
+
+  <view class='flex-between detail-info'>
+    <text class='c-6'>订单总价：</text>
+    <text class='base-color'>{{orderInfo.total_price}}</text>
+  </view>
+
+</view>
+
+
+<!-- 下单时间 -->
+<view class='order-info-wrapper' wx:if="{{orderInfo.pay_status == 1}}">
+  <view class='flex-between detail-info'>
+    <text class='c-6'>下单时间：</text>
+    <text>{{orderInfo.create_time}}</text>
+  </view>
+
+  <view class='flex-between detail-info'>
+    <text class='c-6'>支付方式：</text>
+    <text wx:if="{{orderInfo.pay_method == 1}}">微信支付</text>
+    <text wx:if="{{orderInfo.pay_method == 0}}">支付宝支付</text>
+    <text wx:if="{{orderInfo.pay_method == 3}}">积分支付</text>
+  </view>
+
+  <view class='flex-between detail-info'>
+    <text class='c-6'>支付状态：</text>
+    <text wx:if="{{orderInfo.pay_status == 0}}" class='base-color'>未支付</text>
+    <text wx:if="{{orderInfo.pay_status == 1}}" class='base-color'>已支付</text>
+  </view>
+</view>
+
+
+<!-- 未支付按钮 -->
+<view class='unpaid-btn-wrapper'>
+  <view class='btn-item' bindtap='nowPay' wx:if="{{orderInfo.pay_status == 0 && orderInfo.status == 0}}">立即支付</view>
+  <view style='width:20rpx;'></view>
+  <view class='btn-item cancel' data-status='{{orderInfo.status}}' bindtap='cancleOrder' wx:if="{{orderInfo.pay_status == 0 && orderInfo.status == 0 ||orderInfo.status == 5 }}">{{ orderInfo.status == 5 ? '订单已取消' : '取消订单'}}</view>
+</view>
+
+
+<!-- 可前往拼团详情 -->
+<navigator hover-class='none' url='/packageA/pages/group-self/index?id={{orderId}}' wx:if="{{orderInfo.order_type == 3 && orderInfo.pay_status == 1 }}">
+  <view class='group-link-wrap'>前往拼团详情</view>
+</navigator>

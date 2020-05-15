@@ -1,0 +1,255 @@
+/* packageA/pages/case-details/case-details.wxss */
+
+page {
+  background: #f4f4f4;
+}
+
+.picture-box {
+  position: relative;
+  width: 100%;
+  height: 560rpx;
+  box-sizing: border-box;
+  margin: 10rpx 0;
+}
+
+.picture-box .info {
+  position: absolute;
+  left: 50%;
+  bottom: 20rpx;
+  transform: translateX(-50%);
+  width: 240rpx;
+  height: 35rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  line-height: 35rpx;
+}
+
+.picture-box .info .text {
+  font-size: 32rpx;
+  color: #fff;
+}
+
+.picture-box .info .tab {
+  width: 62rpx;
+  height: 35rpx;
+  background: #fff;
+  border-radius: 18rpx;
+  font-size: 22rpx;
+  text-align: center;
+  line-height: 35rpx;
+  display: flex;
+  justify-content: center;
+}
+
+.picture-box .info .tab .iconfont {
+  display: block;
+  font-size: 16rpx;
+  transform: rotate(-90deg);
+}
+
+.picture-box .picture-inner-box {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.picture-box .dot {
+  position: absolute;
+  bottom: 20rpx;
+  right: 25rpx;
+  width: 60rpx;
+  height: 35rpx;
+  text-align: center;
+  line-height: 35rpx;
+  font-size: 24rpx;
+  background: #fff;
+  border-radius: 17rpx;
+  letter-spacing: 2rpx;
+}
+
+.dot .color {
+  color: #f9b303;
+}
+
+.caption {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20rpx;
+  margin-top: 15rpx;
+  background: #fff;
+}
+
+.goods-list {
+  width: 100%;
+  padding: 0 20rpx 25rpx;
+  display: flex;
+  flex-wrap: wrap;
+  background: #fff;
+}
+
+.goods-list .good-card {
+  width: 224rpx;
+  /* height: 227rpx; */
+  box-sizing: border-box;
+  font-size: 28rpx;
+  color: #333;
+  text-align: center;
+  margin-left: 19rpx;
+  margin-bottom: 15rpx;
+}
+
+.goods-list .good-card:nth-of-type(3n+1) {
+  margin-left: 0rpx;
+}
+
+.goods-list .good-card .good-picture {
+  position: relative;
+  width: 100%;
+  height: 167rpx;
+  box-sizing: border-box;
+}
+
+.goods-list .good-card .good-picture .picture {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+}
+
+.goods-list .good-card .good-caption {
+  line-height: 60rpx;
+}
+
+.goods-list .good-card.ac .good-picture {
+  position: relative;
+}
+
+.goods-list .good-card.ac .filter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.goods-list .good-card .filter .icon-gouxuan {
+  display: none;
+}
+
+.goods-list .good-card.ac .filter .icon-gouxuan {
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  width: 35rpx;
+  height: 35rpx;
+  color: #f8b303;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 88rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  background: #fff;
+}
+
+.footer .goods-num {
+  width: 136rpx;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 0 24rpx;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.footer .goods-num .num {
+  margin: 0 3rpx;
+  color: #e2631c;
+}
+
+.footer .price-box {
+  /* width:460rpx; */
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer .price-box .final-price {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 30rpx;
+  color: #333;
+  margin-right: 10rpx;
+}
+
+.footer .price-box .final-price .icon {
+  font-size: 25rpx;
+  color: #e2631c;
+}
+
+.footer .price-box .final-price .num {
+  font-size: 42rpx;
+  color: #e2631c;
+}
+
+.footer .price-box .pay {
+  width: 230rpx;
+  height: 100%;
+  background: #454648;
+  text-align: center;
+  line-height: 88rpx;
+  color: #fff;
+  font-size: 32rpx;
+}
+
+.package-info {
+  position: absolute;
+  bottom: 20rpx;
+  left: 50%;
+  width: 400rpx;
+  transform: translateX(-50%);
+  color: #fff;
+  text-align: center;
+}
+
+.three {
+  position: absolute;
+  right: 98rpx;
+  bottom: 10rpx;
+  width: 120rpx;
+  height: 60rpx;
+  background-image: -webkit-gradient(linear, 79% 0%, 0% 100%, from(#ffc103), to(#ffd163));
+  border-radius: 30rpx;
+}
+
+.three > image {
+  width: 30rpx;
+  margin-right: 6rpx;
+}
+
+.check-detail {
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 40rpx;
+  background: #454648;
+  color: #fff;
+  font-size: 24rpx;
+  margin-top: 20rpx;
+  padding: 10rpx 30rpx;
+}

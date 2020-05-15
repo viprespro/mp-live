@@ -1,0 +1,40 @@
+page {
+  background: #f3f3f3;
+}
+
+.edit-wrap {
+  margin-top: 30rpx;
+  width: 100%;
+  min-height: 100rpx;
+  padding: 0 24rpx;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.edit-wrap .row-item {
+  padding: 40rpx 0 28rpx 0;
+  align-items: center;
+  border-bottom: 1rpx solid #ddd;
+}
+
+.edit-wrap .row-item  .title {
+  margin-right: 15rpx;
+  font-weight: 600;
+}
+
+.edit-wrap .row-item:nth-child(2) {
+  border: 0;
+}
+
+.btn {
+  margin-top: 120rpx;
+  width: 580rpx;
+  text-align: center;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-radius: 30rpx;
+  letter-spacing: 8rpx;
+  color: #fff;
+  font-size: 28rpx;
+  background: #f8b303;
+}

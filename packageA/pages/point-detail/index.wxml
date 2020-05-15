@@ -1,0 +1,22 @@
+<view class="header-wrapper">
+  <view class='total'>总积分</view>
+  <view class='num'>{{integral}}</view>
+</view>
+
+<view class='col-item-wrapper'>
+  <block wx:for="{{integralList}}" wx:key="unique">
+    <view class='col-item flex-between'>
+      <view style='width:300rpx;' class='overflow-text1'>
+        <text class='iconfont icon-scores'></text> {{item.intro}}
+      </view>
+      <view>
+        {{item.integral}}积分
+      </view>
+      <view class='date'>
+        {{item.create_time}}
+      </view>
+    </view>
+  </block>
+</view>
+
+<view class='hasMore'>{{integralList.length > 0 ? '没有更多了...' : '暂无数据~'}}</view>

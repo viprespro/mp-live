@@ -1,0 +1,28 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">审核状态</view>
+</cu-custom>
+
+<view class="top">
+  <image src="/packageB/imgs/top.png" mode="widthFix"></image>
+
+  <view class="img-box">
+    <image src="{{ status == 1 ? '/packageB/imgs/ing.png' : '/packageB/imgs/failure.png' }}" mode="scaleToFill"></image>
+    <text class="txt">{{ status == 1 ? '审核中...' : '申请失败' }}</text>
+  </view>
+</view>
+
+<!-- 失败 -->
+<view class="desc" wx:if="{{ status == 2 }}">
+  <view class="title">申请被驳回</view>
+  <view class="reason">
+    {{ reason}}
+  </view>
+  <view class="btn" bindtap="tapBack">重新申请</view>
+</view>
+
+<view class="desc" wx:if="{{ status == 1 }}">
+  <view class="title">你已成功提交主播申请，请等待后台审核！</view>
+  <view class="reason">
+    预计1-3个工作日审核完毕。
+  </view>
+</view>

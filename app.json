@@ -1,0 +1,127 @@
+{
+  "pages": [
+    "pages/live/live",
+    "pages/home/home",
+    "pages/before-login/before-login",
+    "pages/login/login",
+    "pages/load/load",
+    "pages/sort/sort",
+    "pages/entrance/entrance",
+    "pages/register/register",
+    "pages/cart/cart",
+    "pages/user/user",
+    "pages/sort-column/index",
+    "pages/my-profile/index",
+    "pages/pay-order/index",
+    "pages/address/address",
+    "pages/addaddress/addaddress",
+    "pages/check-orders/index",
+    "pages/order-detail/index",
+    "pages/logistics/logistics",
+    "pages/back-home/home",
+    "pages/live-detail/live-detail",
+    "pages/moments/moments",
+    "pages/agreement/agreement",
+    "pages/user-agreement/index",
+    "pages/search-live/index",
+    "pages/search-live-list/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#F5F5F5",
+    "navigationStyle": "custom",
+    "backgroundTextStyle": "dark"
+  },
+  "subPackages": [
+    {
+      "root": "packageA",
+      "pages": [
+        "pages/seckill-list/index",
+        "pages/seckill-detail/index",
+        "pages/group-list/index",
+        "pages/group-success/index",
+        "pages/group-process/index",
+        "pages/group-self/index",
+        "pages/design-community/design-community",
+        "pages/new-product-list/index",
+        "pages/my-point/index",
+        "pages/design-community-detail/design-community-detail",
+        "pages/point-detail/index",
+        "pages/identity-verification/index",
+        "pages/edit-profile/index",
+        "pages/withdraw-page/index",
+        "pages/post-comment/index",
+        "pages/my-coupon/index",
+        "pages/search/search",
+        "pages/pay-success/index",
+        "pages/settings/settings",
+        "pages/contact-service/index",
+        "pages/about-us/index",
+        "pages/my-prentice/index",
+        "pages/invite-friends/index",
+        "pages/get-coupon-center/index",
+        "pages/my-favorites/index",
+        "pages/my-reservation/index",
+        "pages/sign-contract/index",
+        "pages/worker-detail/index",
+        "pages/my-plan/index",
+        "pages/my-release/index",
+        "pages/reserve-designer/index",
+        "pages/reserve-designer-detail/index",
+        "pages/reserve-worker/index",
+        "pages/not-found/index",
+        "pages/product-comments/index",
+        "pages/return-apply/index",
+        "pages/return-list/index",
+        "pages/return-detail/index",
+        "pages/fill-in-express-info/index",
+        "pages/product-detail/index"
+      ]
+    },
+    {
+      "root": "packageB",
+      "pages": [
+        "pages/apply-live/apply-live",
+        "pages/anchor-entrance/anchor-entrance",
+        "pages/start-live/start-live",
+        "pages/edit-pwd/edit-pwd",
+        "pages/anchor-main/anchor-main",
+        "pages/before-apply/index",
+        "pages/create-poster/index",
+        "pages/apply-status/index"
+      ]
+    }
+  ],
+  "tabBar": {
+    "selectedColor": "#FF605A",
+    "list": [
+      {
+        "pagePath": "pages/live/live",
+        "text": "直播",
+        "iconPath": "images/tabbars/01.png",
+        "selectedIconPath": "images/tabbars/01-ac.png"
+      },
+      {
+        "pagePath": "pages/home/home",
+        "text": "商城",
+        "iconPath": "images/tabbars/02.png",
+        "selectedIconPath": "images/tabbars/02-ac.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "images/tabbars/03.png",
+        "selectedIconPath": "/images/tabbars/03-ac.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "cu-custom": "/colorui/components/cu-custom"
+  },
+  "sitemapLocation": "sitemap.json",
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  }
+}

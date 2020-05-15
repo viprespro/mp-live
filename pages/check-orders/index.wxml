@@ -1,0 +1,78 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">我的订单</view>
+</cu-custom>
+
+<view class='menu flex'>
+  <view class='item {{nowstatus == "0" ? "on" : ""}}' data-show="0" bindtap="statusClick">全部</view>
+  <view class='item {{nowstatus == "1" ? "on" : ""}}' data-show="1" bindtap="statusClick">待付款</view>
+  <view class='item {{nowstatus == "2" ? "on" : ""}}' data-show="2" bindtap="statusClick">待发货</view>
+  <view class='item {{nowstatus == "3" ? "on" : ""}}' data-show="3" bindtap="statusClick">待收货</view>
+  <view class='item {{nowstatus == "4" ? "on" : ""}}' data-show="4" bindtap="statusClick">待评价</view>
+</view>
+
+
+<view class='wrapper' wx:for="{{orderList}}" wx:key="id" wx:for-item="item1" bindtap='goOrderDetail' data-num='{{item1.id}}'>
+
+
+  <view class='order-sn flex-between'>
+    <text>订单编号:{{item1.order_sn}}</text>
+    <text class='iconfont icon-delete' catchtap='delOrder' data-id='{{item1.id}}' wx:if="{{item1.pay_status == 0}}"></text>
+  </view>
+
+  <view class='order-list-wrapper'>
+    <view class='order-item'>
+      <view class='goods-item-wrapper'>
+        <block wx:for="{{item1.goods_data}}" wx:for-item="item2" wx:key="unique">
+          <view class='product-info-wrap'>
+
+            <view class='goods-info-wrap'>
+              <view class='content-item'>
+                <view class='img-wrap'>
+                  <image src='{{item2.goods_img}}' class='img'></image>
+                </view>
+                <view class='detail'>
+                  <text class='group-order-type-wrap' wx:if="{{item1.order_type == 3}}">拼团</text>
+                  <view class='strong name'>{{item2.goods_name}}</view>
+                  <text class='desc'>{{item2.summary}}</text>
+                  <text class='red-like'>￥{{item2.goods_price}}</text>
+                </view>
+              </view>
+
+              <!-- 针对某个商品去评价 -->
+              <!-- <view class='again-wrap flex'>
+                <view class='btn again' style='font-size:24rpx;' wx:if="{{item1.pay_status == 1 && item1.status ==2 || item1.status == 3 && item1.pay_status == 1}}" catchtap='makeComment' data-iscomment='{{item2.is_comment}}' data-id='{{item2.goods_id}}' data-orderId='{{item1.id}}'
+                  data-specId='{{item2.goods_spec_id}}'>{{item2.is_comment ? '已评价' : '去评价'}}</view>
+              </view> -->
+
+            </view>
+
+          </view>
+        </block>
+      </view>
+
+      <view class='hj'>共{{item1.count}}件商品 合计：¥{{item1.pay_price}}</view>
+      <view class='btn-wrap'>
+        <text class='btn bg' wx:if="{{item1.pay_status == 1 && item1.status == 1}}" catchtap='confirmReceipt' data-id='{{item1.id}}'>确认收货</text>
+        <text class='btn bg' wx:if="{{item1.pay_status == 1 && item1.status == 4}}">已完成</text>
+        <text class='btn bg' wx:if="{{item1.pay_status == 1 && item1.status == 0}}">待发货</text>
+        <text class='btn bg' wx:if="{{item1.pay_status == 0 && item1.status != 5 }}" catchtap='goOrderDetail' data-num='{{item1.id}}'>去付款</text>
+        <text class='btn bg' style='background:#ccc;border:0;' wx:if="{{item1.pay_status == 0  && item1.status == 5 }}" catchtap='goOrderDetail' data-num='{{item1.id}}'>订单取消</text>
+        <text class='btn bg' wx:if="{{item1.pay_status == 1  && item1.status == 6 }}" catchtap='goOrderDetail' data-num='{{item1.id}}'>退款中</text>
+        <text class='btn bg' wx:if="{{item1.pay_status == 1  && item1.status == 7 }}" catchtap='goOrderDetail' data-num='{{item1.id}}'>退款成功</text>
+        <text class='btn bg' wx:if="{{item1.pay_status == 1  && item1.status == 2 || item1.pay_status == 1  && item1.status == 3 }}" catchtap='goOrderDetail' data-num='{{item1.id}}'>去评价</text>
+      </view>
+
+    </view>
+  </view>
+
+</view>
+
+
+<view class="loadmore loading" wx:if="{{ hasMore }}">正在加载...</view>
+<view class="loadmore" wx:if="{{ !hasMore && orderList.length }}">没有更多了...</view>
+
+<view class='empty-order-wrapper' wx:if="{{orderList.length == 0}}">
+  <view class='img-show-wrap'>
+  </view>
+  <view class='empty-text-wrap'>您还没有订单哦~</view>
+</view>

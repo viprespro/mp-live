@@ -1,0 +1,146 @@
+<!--pages/my-profile/index.wxml-->
+<view class='col-item-wrapper flex-between' bindtap='uploadImg' data-index='2'>
+  <view>头像</view>
+  <view class='avatar-box'>
+    <image src='{{avatarList[0]}}' style='border-radius:50%;' data-src='{{avatarList[0]}}' catchtap="previewImage" data-index='2'></image>
+  </view>
+</view>
+
+<view class='col-item-wrapper flex-between not-first'>
+  <view>姓名</view>
+  <input placeholder='请输入您的真实姓名' bindinput='bindInput' data-index='0' maxlength='10'></input>
+</view>
+
+<view class='col-item-wrapper flex-between not-first'>
+  <view>手机号</view>
+  <input placeholder='请输入您的手机号' bindinput='bindInput' data-index='1' maxlength='11'></input>
+</view>
+
+<view class='col-item-wrapper flex-between not-first'>
+  <view>身份证号</view>
+  <input placeholder='请输入您的身份证号' bindinput='bindInput' data-index='2' maxlength='18'></input>
+</view>
+
+<view class='col-item-wrapper flex-between not-first' bindtap='cityChoose' data-name='city'>
+  <view>所在区域</view>
+  <input placeholder='选择您所在的地区' value='{{dist_name}}' bindinput='bindInput' data-index='3' maxlength='20'></input>
+</view>
+
+<view class='col-item-wrapper flex-between not-first'>
+  <view>详细地址</view>
+  <input placeholder='请输入您的详细地址' bindinput='bindInput' data-index='4' maxlength='15'></input>
+</view>
+
+
+<view class='col-item-wrapper flex-between not-first' wx:if="{{flag == 0}}" bindtap='chooseStyle' data-name='style'>
+  <view>擅长风格</view>
+  <input placeholder='请输入您擅长的风格' style='flex:1' bindinput='bindInput' value='{{style_names}}' data-index='5' maxlength='20'></input>
+</view>
+
+
+<view class='col-item-wrapper flex-between not-first'>
+  <view>工作年限</view>
+  <input placeholder='选择工作年限' bindinput='bindInput' data-index='6' maxlength='5'></input>
+</view>
+
+
+<view class='id-wrapper'>
+  <view>身份证正反面</view>
+  <view class='img-container'>
+    <block wx:for='{{idCardList}}' wx:key="{{item}}">
+      <view class='item'>
+        <image src='{{item}}' data-src='{{item}}' bindtap="previewImage" data-index='0'></image>
+        <text class='iconfont icon-close-01' catchtap='delImg' data-index='0' data-src='{{item}}'></text>
+      </view>
+    </block>
+    <view class='item upload' bindtap='uploadImg' data-index='0'>
+      <text class='iconfont icon-upload'></text>
+      <text class='upload-text'>上传图片</text>
+    </view>
+  </view>
+</view>
+
+<view class='id-wrapper'>
+  <view>毕业证书/毕业设计</view>
+  <view class='img-container'>
+    <block wx:for='{{photoUrls}}' wx:key="{{item}}">
+      <view class='item'>
+        <image src='{{item}}' data-src='{{item}}' bindtap="previewImage" data-index='1'></image>
+        <text class='iconfont icon-close-01' catchtap='delImg' data-index='1' data-src='{{item}}'></text>
+      </view>
+    </block>
+    <view class='item upload' bindtap='uploadImg' data-index='1'>
+      <text class='iconfont icon-upload'></text>
+      <text class='upload-text'>上传图片</text>
+    </view>
+  </view>
+</view>
+
+<view class='submit-btn-wrapper' bindtap='submit'>
+  提交
+</view>
+
+<view style='height:30rpx;'></view>
+
+
+<!-- 城市选择模态框 -->
+<view class="cu-modal bottom-modal {{modalName=='city'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class='action02' bindtap='hideModal'>
+        <text class='iconfont icon-close-01' style='color:#333;top:20rpx;right:15rpx;font-size:40rpx;' bindtap='hideModel'></text>
+      </view>
+    </view>
+
+    <view class="padding-xl" style='padding:24rpx;height:600rpx;'>
+      <scroll-view scroll-y style='height:600rpx;' lower-threshold="10" bindscrolltolower="bindscrolltolower" class='scroll-view-V-city'>
+        <block wx:for="{{cityList}}" wx:key="{{item.id}}">
+          <view class='city-item' bindtap='chooseCurrent' data-id='{{item.id}}' data-name='{{item.short_name}}'>{{item.short_name}}</view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 地区选择模态框 -->
+<view class="cu-modal bottom-modal {{modalName=='dist'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class='action02' bindtap='hideModal'>
+        <text class='iconfont icon-close-01' style='color:#333;top:20rpx;right:15rpx;font-size:40rpx;' bindtap='hideModel'></text>
+      </view>
+    </view>
+
+    <view class="padding-xl" style='padding:24rpx;height:600rpx;'>
+      <scroll-view scroll-y style='height:600rpx;' lower-threshold="10" bindscrolltolower="bindscrolltolower" class='scroll-view-V-city'>
+        <block wx:for="{{distList}}" wx:key="{{item.region_id}}">
+          <view class='city-item' bindtap='chooseCurrentDist' data-id='{{item.region_id}}' data-name='{{item.parents_name}}'>{{item.name}}</view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>
+
+<!-- 风格选择模态框 -->
+<view class="cu-modal bottom-modal {{modalName=='style'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class='action' bindtap='confirmChoosing'>
+        <text>确定</text>
+      </view>
+
+      <view class='action02' bindtap='hideModal'>
+        <text class='iconfont icon-close-01' style='color:#333;top:20rpx;right:15rpx;font-size:40rpx;' bindtap='hideModel'></text>
+      </view>
+    </view>
+
+    <view class="padding-xl" style='padding:24rpx;height:600rpx;'>
+      <scroll-view scroll-y style='height:600rpx;' lower-threshold="10" bindscrolltolower="bindscrolltolower" class='scroll-view-H-style'>
+        <block wx:for="{{styleList}}" wx:key="{{item.style_id}}">
+          <view class='style-item {{ item.selected ? "style-active" : ""}}' bindtap='chooseCurrentStyle' data-id='{{item.style_id}}' data-name='{{item.style_name}}'>{{item.style_name}}</view>
+        </block>
+      </scroll-view>
+    </view>
+  </view>
+</view>

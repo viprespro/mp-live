@@ -1,0 +1,57 @@
+<cu-custom bgColor="common-white-bg" isBack="{{true}}">
+  <view slot="content">积分换好礼</view>
+</cu-custom>
+
+<view class="page-head-wrapper">
+  <view class='img-wrap'>
+    <image class='img' src=''></image>
+  </view>
+  <view class='bottom flex-around'>
+    <view class='bottom-item'>
+      <text class='iconfont icon-scores'></text> 当前积分：{{integral}}
+    </view>
+    <view class='botton-item' bindtap='goDetail'>
+      <text class='iconfont icon-order'></text> 积分明细
+    </view>
+  </view>
+</view>
+
+
+<view class='title-wrapper strong'>积分兑换</view>
+
+<view class='nav flex'>
+  <view data-act='1' class='nav-li {{active==1?"nav-active":""}}' bindtap='navactive'>人气
+    <text class='iconfont icon-triangle-up sort-s {{"asc" === sort_order_sanjiao_flag ? "nav-active" : ""}}'></text>
+    <text class='iconfont icon-triangle-down sort-x {{"desc" === sort_order_sanjiao_flag ? "nav-active" : ""}}'></text>
+  </view>
+  <view class='bundle'></view>
+  <view data-act='2' class='nav-li {{active==2?"nav-active":""}}' bindtap='navactive1'>积分
+    <text class='iconfont icon-triangle-up sort-s {{sort_sale_sanjiao_flag === "asc" ? "nav-active" : ""}}'></text>
+    <text class='iconfont icon-triangle-down sort-x {{sort_sale_sanjiao_flag === "desc" ? "nav-active" : ""}}'></text>
+  </view>
+</view>
+
+
+<view class='integral-product-wrapper'>
+  <block wx:for="{{goodsList}}" wx:key="{{item.goods_id}}">
+    <view class='product-wrapper'>
+      <view class='pro-left item'>
+        <image src='{{item.cover}}'></image>
+      </view>
+      <view class='pro-right item'>
+        <view class='strong overflow-text1 desc'>{{item.goods_name}}</view>
+        <text class='limit' wx:if="{{item.total_stock}}">限量{{item.total_stock}}份</text>
+        <text class='limit' wx:else>不限量</text>
+        <view class='got'>{{item.sales}}已领了</view>
+        <view class='points'>
+          <text>{{item.price}}</text>
+          <text class='point-s'>积分</text>
+        </view>
+
+        <view class='score-btn' bindtap='exchange' data-id='{{item.goods_id}}'>立即兑换</view>
+      </view>
+    </view>
+  </block>
+</view>
+
+<view class='hasMore'>{{goodsList.length > 0 ? '我是有底线的~' : '暂无数据~'}}</view>

@@ -1,0 +1,182 @@
+<!--pages/product-detail/index.wxml-->
+<view class='swiper_banner'>
+  <swiper class="swiper-box" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" indicator-active-color="{{indicatorActivecolor}}">
+    <block wx:for="{{productInfo.flash}}" wx:key="unique">
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<!-- 涂邦秒杀 -->
+<view class='tp-seckill-wrapper'>
+
+  <view class='seckill-logo-wrap'>
+    <image src=''></image>
+  </view>
+
+  <view class='price-wrap'>
+    <view class='seckill-price'>￥129</view>
+    <text class='del-text'>￥457</text>
+  </view>
+
+  <view class='timer-wrap'>
+    <view class='text'>距离结束剩余</view>
+    <view class='count'>
+      <view class='timer-count-box'>23</view>
+      <text class='c-3'>:</text>
+      <view class='timer-count-box'>19</view>
+      <text class='c-3'>:</text>
+      <view class='timer-count-box'>60</view>
+    </view>
+  </view>
+</view>
+<!-- 涂邦秒杀ends -->
+
+
+<view class='pro-wrapper'>
+  <view class='pro-infos'>
+    <view class='title overflow-text2'>
+      {{productInfo.goods_name}}第三方技术的开发京东方开始
+    </view>
+
+    <view class='material overflow-text1 f-26 c-9 spec-between'>
+      {{productInfo.goods_name.summary}}商品规格
+      <text>232人已秒</text>
+    </view>
+
+    <view class='service-list'>
+      <view class='item-wrap'>
+        <text class='iconfont icon-search'></text>
+        <text space="ensp"> 7天退换</text>
+      </view>
+
+      <view class='item-wrap'>
+        <text class='iconfont icon-search'></text>
+        <text space="ensp"> 贴心服务</text>
+      </view>
+
+      <view class='item-wrap'>
+        <text class='iconfont icon-search'></text>
+        <text space="ensp"> 包邮</text>
+      </view>
+
+      <view class='item-wrap'>
+        <text class='iconfont icon-search'></text>
+        <text space="ensp"> 运费险</text>
+      </view>
+    </view>
+
+  </view>
+
+  <view class='attr-wrapper'>
+    <view class='block-bar selected' bindtap='showModal' data-target="DrawerModalR">
+      <text class='title c-9'>商品参数</text>
+      <text>商品编号 上市年份 颜色 规格...</text>
+    </view>
+    <view class='block-bar selected flex' bindtap='getAttrInfo'>
+      <text class='title c-9' style='flex:0 0 120rpx;'>选择规格</text>
+      <view wx:if="{{sku_choose}}" style='color:#ff7676;font-size:26rpx;overflow:hidden;flex-grow:1;overflow-text1'>已选择{{sku_choose}}</view>
+      <text wx:else>选择颜色、规格等</text>
+    </view>
+  </view>
+
+  <view class='brand-wrapper'>
+    <view class='brand-img-wrap'>
+      <image src='/images/home/find-01.png'></image>
+    </view>
+
+    <view class='brand-desc'>
+      <text>雅典娜家具</text>
+      <text class='sub-desc'>国际著名家具品牌</text>
+    </view>
+  </view>
+
+</view>
+
+<view class='evaluate-wrapper' wx:if="{{replyCount}}">
+  <view class='common-title flex'>
+    <view class='line'></view>
+    <view class='iconfont icon-pinglun'></view>
+    <view class='text'>评价</view>
+    <view class='line'></view>
+  </view>
+  <view class='evaluate-hot'>
+    <view class='hot-title'>宝贝评价({{replyCount}})</view>
+    <view class='infos-wrapper'>
+      <view class='user-info flex'>
+        <image class='avatar' src='{{reply.avatar}}'></image>
+        <text class='name'>{{reply.nickname}}</text>
+        <view class='start star{{reply.star}}'></view>
+      </view>
+      <view class='txt-msg'>{{reply.comment}}</view>
+      <view class='time-bar'>评论时间:{{reply.add_time}}</view>
+    </view>
+    <view wx:if="{{reply.merchant_reply_content}}">
+      <view class='txt-msg'>
+        回复：{{reply.merchant_reply_content}}
+      </view>
+      <view class='time-bar'>回复时间:{{reply.merchant_reply_time}}</view>
+    </view>
+    <navigator wx:if="{{replyCount > 0}}" hover-class="none" url="/pages/comment/comment?productId={{storeInfo.id}}">查看全部评价</navigator>
+  </view>
+</view>
+
+<view class='content-wrapper'>
+  <view class='common-title flex'>
+    <view class='line'></view>
+    <view class='iconfont icon-tupian'></view>
+    <view class='text'>详情</view>
+    <view class='line'></view>
+  </view>
+  <!-- <template is="wxParse" data="{{wxParseData:productInfo.details}}" /> -->
+  <rich-text nodes="{{productInfo.details}}"></rich-text>
+</view>
+
+<view style='height:130rpx;'></view>
+
+<view class='foot flex'>
+
+  <view class='btns-wrapper flex'>
+    <!-- <view class='fn-btns flex'>
+      <view class='item flex' bindtap='goPhone'>
+        <view class='iconfont icon-xingxing1'></view>
+        <text>关注店铺</text>
+      </view>
+      <view class='item flex' bindtap='setCollect'>
+        <view class='iconfont icon-xingxing1'></view>
+        <text>咨询客服</text>
+      </view>
+    </view> -->
+    <view class='buy-btn' style='flex:1' bindtap='addToCart'>加入购物车</view>
+    <view class='payment-btn' style='flex:1' bindtap='goOrder'>立即购买</view>
+  </view>
+</view>
+
+
+
+<!-- 右侧抽屉 -->
+<view class="cu-modal drawer-modal justify-end {{modalName=='DrawerModalR'?'show':''}}" bindtap="hideModal">
+  <view class="cu-dialog basis-lg" catchtap style="top:{{CustomBar}}px;height:calc(100vh - {{CustomBar}}px)">
+    <view class="cu-list menu text-left">·
+      <view class='param-title'>商品参数</view>
+      <view class='param-content'>
+        <block wx:for="{{paramsList}}" wx:key="unique">
+          <view class='param-content-item flex-between'>
+            <view class='left'>{{item.attribute_name}}</view>
+            <view class='overflow-text1' style='width:300rpx;text-align:right;'>{{item.value}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<view class='mask' wx:if="{{posterImageStatus}}"></view>
+
+<include src="/pages/foo-tan/foo-tan.wxml" />
+<import src="/wxParse/wxParse.wxml" />
+
+<include src="/pages/back-home/home" />

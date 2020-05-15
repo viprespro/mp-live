@@ -1,0 +1,32 @@
+page {
+  background: #fff;
+}
+
+.row-item-wrap {
+  padding: 40rpx 24rpx;
+  font-size: 30rpx;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+}
+
+.row-item-wrap:nth-child(2) {
+  border-top: 0;
+  border-bottom: 0;
+}
+
+.check {
+  margin-right: 10rpx;
+  color: #f8b303;
+}
+
+.btn-wrap {
+  width: 580rpx;
+  height: 90rpx;
+  background: #F9B303;
+  text-align: center;
+  line-height: 90rpx;
+  border-radius: 45rpx;
+  margin: 60rpx auto;
+  color: #fff;
+  font-size: 32rpx;
+}

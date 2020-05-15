@@ -1,0 +1,120 @@
+page {
+  background: #F4F4F4;
+}
+
+.moments-list .item {
+  padding: 30rpx;
+  background: #fff;
+  margin-bottom: 20rpx;
+}
+
+.moments-list .item .head .left > image {
+  width: 82rpx;
+  height: 82rpx;
+  border-radius: 10rpx;
+  margin-right: 10rpx;
+}
+
+.moments-list .item .head .left .name {
+  flex-direction: column;
+  justify-content: center;
+}
+
+.moments-list .item .head .left .name .info {
+  color: #000;
+  font-size: 30rpx;
+}
+
+.moments-list .item .head .left .name .date {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.moments-list .item .head .right {
+  width: 36rpx;
+  height: 36rpx;
+}
+
+.moments-list .item .content {
+  margin-top: 20rpx;
+}
+
+.moments-list .item .content .title {
+  color: #000;
+  font-weight: 600;
+  font-size: 32rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  margin-bottom: 30rpx;
+}
+
+.moments-list .item .content .summary {
+  color: #888;
+  font-size: 28rpx;
+}
+
+.moments-list .item .content .imgs-box {
+  margin-top: 15rpx;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 380rpx;
+  min-height: 180rpx;
+  margin-bottom: 24rpx;
+  overflow: hidden;
+  max-height: 600rpx;
+  background: white;
+}
+
+.moments-list .item .content .imgs-box > image {
+  width: 180rpx;
+  height: 180rpx;
+  margin-bottom: 30rpx;
+}
+
+.moments-list .item .goods-info {
+  box-sizing: border-box;
+  width: 100%;
+  height: 140rpx;
+  padding: 20rpx;
+  border-radius: 10rpx;
+  background: #F8F8F8;
+}
+
+.moments-list .item .goods-info >image {
+  width: 100rpx;
+  height: 100%;
+}
+
+.moments-list .item .goods-info .name {
+  flex-direction: column;
+}
+
+.moments-list .item .goods-info .name .title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  font-size: 30rpx;
+  font-weight: 600;
+  flex: 1;
+  margin-left: 15rpx;
+  width: 500rpx;
+  white-space: nowrap;
+}
+
+.moments-list .item .goods-info .name .price .sign {
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.moments-list .item .goods-info .name .price .num {
+  font-size: 40rpx;
+  font-weight: bold;
+  position: relative;
+  top: -6rpx;
+}
+

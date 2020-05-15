@@ -1,0 +1,79 @@
+page {
+  background: #f3f3f3;
+}
+
+.wrapper {
+  margin: 30rpx 40rpx 30rpx 25rpx;
+}
+
+.wrapper > form {
+  width: 100%;
+}
+
+.search-text {
+  height: 54rpx;
+  border-radius: 27rpx;
+  width: 113rpx;
+  text-align: center;
+  line-height: 54rpx;
+  font-size: 30rpx;
+  color: #fff;
+  background:linear-gradient(90deg,rgba(250,186,152,1),rgba(255,106,93,1));
+}
+
+.search-box {
+  flex: 1;
+  height: 80rpx;
+  background: #fff;
+  border-radius: 40rpx;
+  align-items: center;
+  padding: 0 20rpx;
+  width: 470rpx;
+}
+
+.search-box > input {
+  height: 80rpx;
+  outline: 0;
+  border: 0;
+  font-size: 28rpx;
+  color: #333;
+  flex: 1;
+}
+
+.placeholder {
+  color: #ccc;
+}
+
+.icon-search {
+  margin-right: 15rpx;
+  color: #ccc;
+}
+
+.hot-search-wrap {
+  margin-top: 44rpx;
+}
+
+.hot-search-wrap .hot {
+  margin-bottom: 30rpx;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.hot-search-wrap .hot-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.hot-search-wrap .hot-wrap .item {
+  display: inline-block;
+  padding: 0 30rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  text-align: center;
+  background: #E4E4E4;
+  border-radius: 25rpx; 
+  font-size: 24rpx;
+  margin-bottom: 20rpx;
+  margin-right: 20rpx;
+} 

@@ -1,0 +1,177 @@
+page {
+  background-color: #efeff4;
+  height: 100%;
+}
+
+.header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  height: 246rpx;
+  background: linear-gradient(90deg, rgba(255, 103, 96, 1), rgba(255, 147, 118, 1));
+}
+
+.wrap {
+  position: absolute;
+  left: 24rpx;
+  right: 24rpx;
+  border-radius: 15rpx;
+  top: 112rpx;
+  background: #fff;
+  padding-bottom: 20rpx;
+}
+
+.wrap .top {
+  height: 134rpx;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrap .top .count {
+  margin-left: 22rpx;
+  align-items: center;
+}
+
+.wrap .top .count .circle {
+  width: 52rpx;
+  height: 52rpx;
+  background: linear-gradient(0deg, rgba(255, 102, 92, 1), rgba(255, 163, 113, 1));
+  border-radius: 50%;
+  line-height: 52rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 24rpx;
+}
+
+.wrap .top .count .dot {
+  margin: 0 10rpx 0 10rpx;
+}
+
+.wrap .list .scroll-view-V {
+  height: 900rpx;
+  white-space: nowrap;
+}
+
+.wrap .list .scroll-view-V .scroll-item {
+  padding: 18rpx 20rpx 15rpx 25rpx;
+  border-bottom: 1px solid #f5f5f5;
+}
+
+.wrap .list .scroll-view-V .scroll-item > image {
+  width: 205rpx;
+  height: 205rpx;
+  margin-right: 40rpx;
+}
+
+.wrap .list .scroll-view-V .scroll-item .right {
+  padding: 10rpx 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  min-width: 0;
+}
+
+.elilpsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.wrap .list .scroll-view-V .scroll-item .right .process {
+  width: 219rpx;
+  height: 34rpx;
+  background: rgba(244, 218, 181, 1);
+  border-radius: 17rpx;
+  padding: 0 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.wrap .list .scroll-view-V .scroll-item .right .process .float {
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 50rpx;
+  background: #f8b303;
+  border-radius: 17rpx 0 0 17rpx;
+}
+
+.wrap .list .scroll-view-V .scroll-item .right .process .sold {
+  color: #fff;
+  font-size: 20rpx;
+  z-index: 99;
+}
+
+.wrap .list .scroll-view-V .scroll-item .right .process .percent {
+  color: #ff605a;
+  font-size: 20rpx;
+}
+
+.wrap .list .scroll-view-V .scroll-item .right .title {
+  font-size: 26rpx;
+}
+
+.wrap .list .scroll-view-V .scroll-item .right .summary {
+  color: #969696;
+  font-size: 20rpx;
+}
+
+.wrap .list .scroll-view-V .scroll-item .right .btn {
+  position: absolute;
+  width: 122rpx;
+  height: 52rpx;
+  background: rgba(170, 170, 170, 1);
+  border-radius: 26rpx;
+  text-align: center;
+  line-height: 52rpx;
+  color: #fff;
+  right: 0;
+  bottom: 4rpx;
+  font-size: 22rpx;
+  background: #ff605a;
+}
+
+.icon-forward {
+  font-size: 20rpx;
+}
+
+.hasMore {
+  text-align: center;
+  padding: 10rpx;
+  color: #ccc;
+  font-size: 28rpx;
+  line-height: 88rpx;
+}
+
+.scroll-view-H {
+  width: 100%;
+  white-space: nowrap;
+}
+
+.scroll-view-H .scroll-view-item {
+  display: inline-block;
+  width: calc(100%/3);
+  color: #fff;
+  padding: 15rpx 0;
+}
+
+.scroll-view-H .scroll-view-item .main {
+  width: 195rpx;
+  height: 62rpx;
+  border-radius: 31rpx;
+  color: #fff;
+  line-height: 62rpx;
+  text-align: center;
+  margin: 0 auto;
+  background: transparent;
+  font-size: 32rpx;
+}
+
+.scroll-view-H .scroll-view-item .main.active {
+  background: linear-gradient(90deg, rgba(228, 85, 115, 1), rgba(250, 113, 65, 1));
+  font-size: 36rpx;
+}

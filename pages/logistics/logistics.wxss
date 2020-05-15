@@ -1,0 +1,33 @@
+/* pages/logistics/logistics.wxss */
+page {
+  background-color: #fff;
+}
+
+.status-wrapper {
+  background-color: #eee;
+}
+
+.status-wrapper .content {
+  padding: 45rpx 30rpx; 
+}
+
+
+.info-wrapper {
+  padding: 30rpx;
+}
+
+.info-item {
+  margin-bottom: 24rpx;
+  font-size: 26rpx;
+}
+
+.alert-c {
+  color: #2996e0;
+}
+
+.empty {
+  padding: 20rpx;
+  text-align: center;
+  font-size: 26rpx;
+}
+

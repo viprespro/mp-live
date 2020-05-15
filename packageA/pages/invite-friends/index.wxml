@@ -1,0 +1,26 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}} ">
+  <view slot="content " class="common-title-color ">邀请好友</view>
+</cu-custom>
+
+<view class="qr-wrapper ">
+  <image src="{{qrcode}} " bindtouchstart='timestart' bindtouchend='timeend' bindtap='saveImg'></image>
+  <view class="save ">(长按放开保存)</view>
+</view>
+
+<view class='bot-wrap'>
+  <view class='text-wrap'>
+    二维码分享到
+    <view class='line'></view>
+    <view class='line2'></view>
+  </view>
+  <view class='channel-wrap'>
+    <button class='share-btn' bindtap='onShareAppMessage' open-type="share ">
+      <view class='channel-item'>
+        <view class='img-box'>
+          <text class='iconfont icon-wx-pay' style='font-size:60rpx;color:#81D741;'></text>
+        </view>
+        <text class='channel-txt'>微信</text>
+      </view>
+    </button>
+  </view>
+</view>

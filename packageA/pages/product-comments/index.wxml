@@ -1,0 +1,27 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">所有评论</view>
+</cu-custom>
+
+<view class='comments-list-wrap'>
+  <block wx:for="{{commentsList}}" wx:key="{{item.create_time}}">
+    <view class='comments-item-wrap'>
+      <view class='top'>
+        <view class='avatar-box'>
+          <image src='{{item.avatar}}'></image>
+        </view>
+        <view class='username-d-wrap'>
+          <text>{{item.nickname}}</text>
+          <text class='date'>{{item.create_time}}</text>
+        </view>
+        <view class='stars-wrap'>
+          <i-rate value="{{item.goods_score}}">
+          </i-rate>
+        </view>
+      </view>
+      <view class='bot'>
+        {{item.comment}}
+      </view>
+    </view>
+  </block>
+</view>
+<view class='hasMore'>{{commentsList.length > 0 ? '没有更多了...' : '暂无评论~'}}</view>

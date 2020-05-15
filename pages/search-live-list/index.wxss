@@ -1,0 +1,148 @@
+
+.live-list {
+  padding: 20rpx 24rpx;
+  flex-wrap: wrap;
+}
+
+.item-wrap {
+  width: 342rpx;
+  border-radius: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+.item-wrap .live-title {
+  background: white;
+  border-radius: 0 0 20rpx 20rpx;
+  padding: 20rpx;
+}
+
+.item-wrap .live-title .real-content {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 26rpx;
+  height: 70rpx;
+}
+
+.live-list .live-item {
+  position: relative;
+  width: 100%;
+  height: 456rpx;
+}
+
+.live-list .live-item .cover {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  border-radius: 20rpx 20rpx 0 0;
+}
+
+.live-list .live-item .people {
+  display: flex;
+  font-size: 20rpx;
+  align-items: center;
+  height: 40rpx;
+  border-radius: 0 20rpx 0 20rpx;
+  position: absolute;
+  right: 0;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  padding-right: 10rpx;
+  max-width: 400rpx;
+  overflow: hidden;
+}
+
+.live-list .live-item .people > image {
+  width: 20rpx;
+  height: 20rpx;
+  margin-left: 14rpx;
+  margin-right: 6rpx;
+}
+
+.live-list .live-item .foot {
+  position: absolute;
+  bottom: 20rpx;
+  left: 10rpx;
+  right: 10rpx;
+}
+
+.live-list .live-item .foot .left {
+  display: flex;
+  align-items: center;
+}
+
+.live-list .live-item .foot .left > image {
+  border-radius: 30rpx;
+}
+
+.live-list .live-item .foot .left .txt {
+  font-size: 20rpx;
+  color: #fff;
+  margin-left: 8rpx;
+  max-width: 184rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.live-list .live-item .foot .right {
+  display: flex;
+  align-items: center;
+}
+
+.live-list .live-item .foot .right .txt {
+  color: #fff;
+  font-size: 20rpx;
+}
+
+.live-list .live-item .foot .right > image {
+  width: 24rpx;
+  height: 24rpx;
+  margin-right: 8rpx;
+}
+
+.live-list .live-item .foot .left > image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.live-list .live-item .status {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 140rpx;
+  height: 40rpx;
+  border-radius: 20rpx 0 20rpx 0;
+}
+
+.live {
+  background: linear-gradient(90deg, rgba(255, 212, 73, 1), rgba(248, 179, 3, 1));
+}
+
+.not-live {
+  background: linear-gradient(90deg, rgba(231, 230, 230, 1), rgba(189, 190, 190, 1));
+}
+
+.live-list .live-item .status > image {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.live-list .live-item .status .txt {
+  font-size: 24rpx;
+  margin-left: 6rpx;
+}
+
+.empty {
+  line-height: 100rpx;
+  color: #888;
+  font-size: 28rpx;
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+}

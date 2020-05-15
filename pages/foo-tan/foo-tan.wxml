@@ -1,0 +1,52 @@
+<view class="model-bg {{show == true ? 'show':''}} {{ prostatus == true ? 'show':''}}" bindtap='modelbg'>
+</view>
+
+<view class="model-proinfo {{ prostatus == true ? 'show':''}}">
+
+  <view class='choose-wrap flex-center'>
+    <text> 选择颜色、规格</text>
+    <!-- <text class='iconfont icon-close-01' bindtap='close' style='font-size:40rpx;float:right;position:relative;left:240rpx;'></text> -->
+    <image bindtap='close' src="/images/close-i.png" style="width:36rpx;height:36rpx;border-radius:50%;"></image>
+  </view>
+
+  <view style="height:100rpx;"></view>
+
+  <view class='hd-wrapper flex'>
+    <image src='{{specProductInfo.imgs[0]}}' bindtap="previewImg" data-url="{{specProductInfo.imgs[0]}}"></image>
+    <view class='txt-info flex'>
+      <view class='title overflow-text1'>{{specProductInfo.name}}</view>
+      <view class='num'>
+        <view class='price'>￥{{specProductInfo.price}}</view>
+        <view class='stock'>库存：{{specProductInfo.stock}}</view>
+      </view>
+    </view>
+  </view>
+
+  <view class="scroll-area">
+    <view class="outer">
+      <view class='md-wrapper' wx:for="{{skuidsList}}" wx:key="unique" wx:for-item="item1" wx:for-index="index1">
+        <text>{{item1.tag_name}}</text>
+        <view class='color-attr-wrap flex'>
+          <text class='spec-color {{ item2.status ? "active" : ""}}' wx:for-index="index2" data-top='{{index1}}' data-bot='{{index2}}' bindtap='alertSku' wx:for="{{item1.tags}}" wx:key="unique" wx:for-item="item2">{{item2.value}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class='count-box flex'>
+      购买数量
+      <view class='count-wrappers flex'>
+        <text data-index="{{index}}" bindtap="bindMinus" class='{{minusStatus}}'>-</text>
+        <input class='num' type="number" value='{{num}}' bindblur='setNumber' />
+        <!-- <text class='num'>{{num}}</text> -->
+        <text class='add' data-index="{{index}}" bindtap="bindPlus">+</text>
+      </view>
+    </view>
+  </view>
+
+  <view>
+    <button class='foot-wrapper' bindtap='confirm'>确定</button>
+  </view>
+
+  <view style='height:20rpx;'></view>
+
+</view>

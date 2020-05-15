@@ -1,0 +1,34 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">我的资料</view>
+</cu-custom>
+
+<view class='col-item-wrapper flex-between' bindtap='editAvatar'>
+  <view>头像</view>
+  <view class=''>
+    <image src='{{userInfo.avatar}}' style='border-radius:50%;'></image>
+  </view>
+</view>
+
+<view class='col-item-wrapper flex-between not-first'>
+  <view>昵称</view>
+  <view class=''>
+    <input value='{{userInfo.nickname}}' style='text-align:right' maxlength='6' bindinput='bindInput'></input>
+  </view>
+</view>
+
+<!-- <view class='col-item-wrapper flex-between not-first'>
+  <view>手机号</view>
+  <view class=''>
+    {{userInfo.mobile}}
+  </view>
+</view> -->
+
+<view class='col-item-wrapper flex-between not-first' bindtap='goAddr'>
+  <view>我的收货地址</view>
+  <view class=''>
+    <text class='f-24 c-9'>编辑地址</text>
+    <text class='iconfont icon-forward' style='font-size:30rpx;color:#999;'></text>
+  </view>
+</view>
+
+<view class='btn-wrapper' bindtap='saveProfile'>保存</view>

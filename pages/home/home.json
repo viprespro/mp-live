@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "nav-search": "/components/nav-search/index",
+    "nav-cart": "/components/nav-cart/nav-cart"
+  },
+  "enablePullDownRefresh": true
+}
