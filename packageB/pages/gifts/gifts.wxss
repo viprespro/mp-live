@@ -1,0 +1,53 @@
+page {
+  background: #fff;
+  height: 100%;
+}
+
+.list {
+  margin: 0 35rpx;
+}
+
+.list .item:nth-child(1) {
+  padding-top: 26rpx;
+}
+
+.list .item {
+  padding: 36rpx 0 13rpx 0;
+  border-bottom: 2rpx solid #f1f1f1;
+  align-items: center;
+}
+
+.list .item .left {
+  align-items: center;
+}
+
+.list .item .left > image {
+  width: 104rpx;
+  height: 104rpx;
+  margin-right: 30rpx;
+}
+
+.list .item .left .txt {
+  font-size: 30rpx;
+  color: #101010;
+  max-width: 400rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.list .item .right {
+  width: 130rpx;
+  height: 52rpx;
+  line-height: 52rpx;
+  background: rgba(255, 96, 90, 1);
+  border-radius: 26rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 28rpx;
+}
+
+.list .item .right.got {
+  background: #EDEDED;
+  color: #757575;
+}

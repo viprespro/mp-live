@@ -20,6 +20,17 @@ Page({
   onLoad: function(options) {
   },
 
+  // 我的上级
+  tapToSuper() {
+    let url = `/packageB/pages/super/super`
+    wx.navigateTo({ url })
+  },
+
+  // 我的主播
+  tapToAnchor() {
+
+  },
+
   onPageScroll(e) {
     let scroll = e.scrollTop / 64
     scroll = scroll > 1 ? 1 : scroll
@@ -118,7 +129,7 @@ Page({
         token: that.data.token
       },
       success: function(res) {
-        // console.log(res)
+        console.log(res)
         var msg = res.data
         app.globalData.invite_code = msg.invite_code;
         // console.log(app.globalData.userInfo)

@@ -1,0 +1,19 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">我的礼包</view>
+</cu-custom>
+
+<view class="list">
+  <block wx:for="{{ list }}" wx:key="id">
+    <view class="item flex-between">
+      <view class="left flex">
+        <image src="{{ item.cover }}"></image>
+        <text class="txt">{{ item.title}}</text>
+      </view>
+      <view class="right {{ item.status ? 'got' : ''}}" bindtap="tapItem">{{ item.status ? '已领取': '领取' }}</view>
+    </view>
+  </block>
+
+  <view class="loadmore loading" wx:if="{{ hasMore }}">正在加载...</view>
+  <view class="loadmore" wx:if="{{ !hasMore && list.length }}">没有更多了~</view>
+  <view class="loadmore" wx:if="{{ showDefault }}">暂无数据！</view>
+</view>

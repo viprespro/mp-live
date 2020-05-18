@@ -5,18 +5,21 @@
 <view class="slicer"></view>
 
 <view class="part-item">
-  <view class="title">订单统计</view>
+  <view class="title flex">
+    <view class="bundle"></view>
+    <text>订单统计</text>
+  </view>
   <view class="content-wrap flex">
     <view class="item">
-      <view>今日订单数量：
+      <view>今日佣金总额：
         <text class="base-color">{{ info.today_order_count || 0}}</text>
       </view>
-      <view>本月订单数量：
+      <view>今日订单总额：
         <text class="cu-color">{{ info.thismonth_order_count || 0}}</text>
       </view>
     </view>
     <view class="item">
-      <view>本日订单总额：
+      <view>本月佣金总额：
         <text class="base-color">{{ info.today_order_price || 0}}</text>
       </view>
       <view>本月订单总额：
@@ -26,42 +29,23 @@
   </view>
 </view>
 
-<!-- 返利统计 -->
-<view class="part-item">
-  <view class="title">返利统计</view>
-  <view class="content-wrap flex">
-    <view class="item row">
-      <view style="flex:1">待返利佣金：
-        <text class="base-color">{{ info.uncommisson_price || 0}}</text>
-      </view>
-      <view style="flex:1">已返利佣金：
-        <text class="cu-color">{{ info.commisson_price || 0}}</text>
-      </view>
-    </view>
-  </view>
-</view>
-
-
 <view class="slicer slicer2"></view>
 
 <view class="part-item">
-  <view class="title">主播设置</view>
+  <view class="title flex">
+    <view class="bundle"></view>
+    <text>主播设置</text>
+  </view>
   <view class="ops-wrap flex">
     <navigator url="/packageB/pages/start-live/start-live" hover-class="none">
       <view class="ops-item">
-        <image src="/packageB/imgs/start.png" style="width:102rpx;height:77rpx;" class="start"></image>
+        <image src="/packageB/imgs/start.png" style="width:114rpx;height:114rpx;" class="start"></image>
         <view class="txt">开启直播</view>
       </view>
     </navigator>
-    <!-- <navigator url="/packageB/pages/edit-pwd/edit-pwd" hover-class="none">
-      <view class="ops-item">
-        <image src="/packageB/imgs/edit.png"></image>
-        <view class="txt">修改后台密码</view>
-      </view>
-    </navigator> -->
     <navigator url="/packageB/pages/create-poster/index?number={{ info.number }}" hover-class="none">
       <view class="ops-item">
-        <image src="/packageB/imgs/poster.png" style="width:86rpx;height:79rpx;"></image>
+        <image src="/packageB/imgs/poster.png" style="width:114rpx;height:114rpx;"></image>
         <view class="txt">生成海报</view>
       </view>
     </navigator>

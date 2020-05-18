@@ -23,10 +23,6 @@
       <view class="item {{ swiperCurIndex == index + 1 ? 'ac' : '' }}"></view>
     </block>
   </view>
-
-  <!-- <view class="swiper-index">
-    {{swiperCurIndex}} / {{bannerList[0].length}}
-  </view> -->
 </view>
 
 

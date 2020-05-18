@@ -181,7 +181,6 @@ page {
   position: relative;
 }
 
-
 .modal-wrap .main .filter .filter-item {
   position: relative;
   flex: 1;
@@ -215,7 +214,7 @@ page {
   height: 44px;
   z-index: 9999;
   background-image: -webkit-gradient(linear, 79% 0%, 0% 100%, from(#f2cd41), to(#f8a032));
-  border-radius: 10rpx 10rpx 0 0 ;
+  border-radius: 10rpx 10rpx 0 0;
 }
 
 .modal-wrap .main .header > image {
@@ -341,7 +340,7 @@ page {
 
 .modal-wrap .main .bot .item-01.visiable {
   visibility: visible;
-} 
+}
 
 .modal-wrap .main .bot .item-01 .all {
   margin-right: 44rpx;
@@ -367,16 +366,16 @@ page {
 }
 
 .start-live-btn {
-  width: 184rpx;
-  height: 62rpx;
-  border-radius: 31rpx;
+  width: 238rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
   text-align: center;
-  line-height: 62rpx;
-  font-size: 26rpx;
+  line-height: 80rpx;
+  font-size: 32rpx;
   color: #fff;
-  background: #f9d283;
   position: absolute;
   top: 80%;
   left: 50%;
   transform: translateX(-50%);
+  background: linear-gradient(90deg, rgba(255, 172, 105, 0.99), rgba(255, 181, 141, 0.99));
 }

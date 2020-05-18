@@ -14,7 +14,7 @@
 
   <cover-view class="anchor-info">
     <cover-view class="left">
-      <cover-image src='{{ other_info.live_user.avatar}}' class="avatar"></cover-image>
+      <cover-image wx:if="{{ other_info.live_user.avatar }}" src='{{ other_info.live_user.avatar}}' class="avatar"></cover-image>
       <cover-view class="mid">
         <cover-view class="nickname">{{ other_info.live_user.nickname}}</cover-view>
         <cover-view>{{ other_info.region_name }}</cover-view>
@@ -25,13 +25,13 @@
       </cover-view>
     </cover-view>
     <cover-view class="right">
-      <cover-view class="txt">id:{{ number }}</cover-view>
+      <cover-view class="txt" wx:if="{{ number }}">id:{{ number }}</cover-view>
     </cover-view>
   </cover-view>
 
   <!-- 主推商品链接 -->
   <cover-view class="main-goods" catchtap="toDetail" data-id="{{ main_goods.id }}">
-    <cover-image src="{{ main_goods.cover }}" style="width:168rpx;height:168rpx;border-radius:15rpx;"></cover-image>
+    <cover-image wx:if="{{ main_goods.cover }}" src="{{ main_goods.cover }}" style="width:168rpx;height:168rpx;border-radius:15rpx;"></cover-image>
   </cover-view>
 
   <!-- Barrage -->
@@ -52,7 +52,7 @@
   <cover-view class="footer">
     <cover-view class="item0" catchtap="showGoods">
       <cover-image src="/images/goods.png" class="goods"></cover-image>
-      <cover-view class="txt">宝贝</cover-view>
+      <!-- <cover-view class="txt">宝贝</cover-view> -->
     </cover-view>
 
     <cover-view class="item1" catchtap="interactionTap">
@@ -64,14 +64,14 @@
       <button class="icon-wrap" open-type="share">
         <cover-image src="/images/forward.png" class="icons"></cover-image>
       </button>
-      <cover-view class="txt">分享</cover-view>
+      <!-- <cover-view class="txt">分享</cover-view> -->
     </cover-view>
 
     <cover-view class="item2 item3" catchtap="handleLikeClick">
-      <cover-view class="icon-wrap">
+      <cover-view class="icon-wrap" style="background: #B17068">
         <cover-image src="/images/fabulous.png" class="icons"></cover-image>
       </cover-view>
-      <cover-view class="txt">点赞</cover-view>
+      <!-- <cover-view class="txt">点赞</cover-view> -->
     </cover-view>
   </cover-view>
 

@@ -1,60 +1,25 @@
 <cu-custom bgColor="common-base-bg" isBack="{{true}}">
-  <view slot="content" class="common-title-color">申请主播</view>
+  <view slot="content" class="common-title-color">{{ title || '申请入驻' }}</view>
 </cu-custom>
 
-<!-- <view class="form">
-  <view class="item">
-    <input type="text" placeholder="后台用户名（可输入手机号）" bindinput="bindUsername"></input>
-  </view>
-  <view class="item">
-    <input type="password" value="{{ password }}" placeholder="后台密码" bindinput="bindPwd"></input>
-  </view>
-</view> -->
 
-<view class="input-wrap">
-  <view class="item flex">
-    <label style="font-size:28rpx;color:#181818;">手机号：</label>
-    <view class="outer" style="flex: 1">
-      <input type="tel" bindblur="bindPhoneBlur" maxlength="11" bindinput="bindPhone" placeholder="请输入手机号" class="place-holder" placeholder-class="holder"></input>
+<view class="form-wrap">
+  <view class="inner">
+    <view class="input-item">
+      <input class="cell-input" bindblur="bindPhoneBlur" bindinput="bindPhone" type="tel" maxlength="11" placeholder="手机号" placeholder-class="holder-class"></input>
+    </view>
+    <view class="input-item">
+      <input class="code-input" bindinput="bindCode" maxlength="6" type="number" placeholder-class="holder-class" placeholder="验证码"></input>
+      <button class="get-code {{ btnDisabled ? 'disabled' : ''}}" disabled="{{ btnDisabled }}" bindtap="tapGetCode">{{ btnValue }}</button>
     </view>
   </view>
-
-  <view class="item flex code">
-    <view class="outer" style="flex: 1">
-      <input type="number" bindinput="bindCode" maxlength="6" placeholder="请输入验证码" class="place-holder" placeholder-class="holder"></input>
-    </view>
-    <button disabled="{{ btnDisabled }}" class="code-btn" bindtap="tapGetCode">{{ btnValue }}</button>
-  </view>
-</view>
-
-
-<view class="agency flex" hidden="{{ currentType != 1}}">
-  <label style="color:#181818;font-size:28rpx;width:184rpx;">请选择机构：</label>
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-    <view class="picker" style="font-size: 28rpx;">
-      {{ array[index] || '点击选择'}}
-    </view>
-  </picker>
-</view>
-
-<!-- hobbie -->
-<view class="hobbies flex" style="margin-top: {{ currentType == 0 ? '-30' : '0' }}px">
-  <label style="color:#181818;font-size:28rpx;width:154rpx;">兴趣爱好：</label>
-  <view class="wrap">
-    <block wx:for='{{ hobbiesList }}' wx:key="item.id">
-      <view class="hobbie-item {{ item.selected ? 'active' : ''}}" bindtap="itemSelected" data-index="{{ index }}">
-        {{ item.name }}
-      </view>
-    </block>
-  </view>
-</view>
-
-<view class="requirement">
-  <view class="price">
+  <view class="cost">
     <text class="txt">入驻费用：</text>
-    <text class="num base-color">￥{{ pay || '0.00' }}</text>
+    <text class="price">{{ fee || '0.00' }}元/年</text>
   </view>
-  <view class="warning">提交入驻申请需缴纳入驻费用 审核日期为1-3个工作日</view>
+  <text class="note">
+     {{ notes || '暂无说明！' }}
+  </text>
 </view>
 
 <view class="btn" bindtap="handleSubmit">付费提交申请</view>

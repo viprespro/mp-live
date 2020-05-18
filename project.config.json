@@ -59,15 +59,30 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "pages/user/user",
-					"pathName": "pages/user/user",
+					"name": "poster",
+					"pathName": "packageB/pages/create-poster/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "packageA/pages/seckill-list/index",
-					"pathName": "packageA/pages/seckill-list/index",
+					"name": "packageB/pages/gifts/gifts",
+					"pathName": "packageB/pages/gifts/gifts",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packageB/pages/super/super",
+					"pathName": "packageB/pages/super/super",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packageB/pages/anchor-entrance/anchor-entrance",
+					"pathName": "packageB/pages/anchor-entrance/anchor-entrance",
+					"query": "",
 					"scene": null
 				}
 			]

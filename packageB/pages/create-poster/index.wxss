@@ -1,17 +1,22 @@
 @import '../start-live/start-live.wxss';
 
+
+@import '../apply-live/apply-live.wxss';
+
 .time-wrap {
-  background:#fff;
+  /* background:#fff; */
   flex: 1;
 }
 
 .time-wrap picker {
   padding: 18rpx;
   font-size: 24rpx;
-  background: #F5F5F7;
+  background: #FCAA9F;
   margin-bottom: 20rpx;
-  color: #989898;
+  color: #fff;
   border-radius: 6rpx;
+  margin-right: 10rpx;
+  border: 2rpx solid #fff;
 }
 
 .time-wrap .start,.time-wrap .end{
@@ -19,5 +24,15 @@
 }
 
 .icon-triangle-down {
-  color: #989898;
+  color: #fff;
+}
+
+.title {
+  color: #fff;
+  font-size: 30rpx;
+  margin-right: 10rpx;
+}
+
+.row-item {
+  white-space: nowrap;
 }

@@ -71,8 +71,9 @@ Page({
    * 首页导航
    */
   tapItem(e) {
-    console.log(e)
-    let { index } = e.currentTarget.dataset
+    let { type } = e.currentTarget.dataset
+    let url = `/packageB/pages/apply-live/apply-live?type=${type}`
+    wx.navigateTo({ url })
   },
 
   // 点击幻灯片去直播间

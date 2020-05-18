@@ -172,11 +172,11 @@ live-player {
 .outer .footer .item2 .icon-wrap {
   width: 70rpx;
   height: 70rpx;
-  background: rgba(0, 0, 0, 0.3);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background:rgba(0,0,0,0.3);
 }
 
 .outer .footer .item2 .icon-wrap .icons {
@@ -248,7 +248,7 @@ live-player {
   font-size: 32rpx;
   width: 20%;
   text-align: center;
-  background: #f8b303;
+  background: #B25F4A;
   color: #fff;
 }
 
@@ -363,7 +363,7 @@ live-player {
   border-radius: 20rpx;
   bottom: 118rpx;
   font-size: 20rpx;
-  background: #f8b303;
+  background: #F34861;
   color: #fff
 }
 
