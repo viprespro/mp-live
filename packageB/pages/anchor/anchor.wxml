@@ -1,0 +1,26 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">我的主播</view>
+</cu-custom>
+
+<view class="list">
+  <block wx:for="{{ list }}" wx:key='index'>
+    <view class="item flex">
+      <view class="img-wrap">
+        <image src=""></image>
+        <view class="icon">
+          <image src="/packageB/imgs/sex.png"></image>
+        </view>
+      </view>
+      <view class="info flex">
+        <view class="nickname">昵称</view>
+        <view class="flex cell-wrap">
+          <image src="/packageB/imgs/sex.png"></image>
+          <text class="cell">18253137880</text>
+        </view>
+      </view>
+    </view>
+  </block>
+
+  <view class="loadmore loading" wx:if="{{ hasMore  }}">正在加载...</view>
+  <view class="loadmore" wx:if="{{ !hasMore }}">没有更多了~</view>
+</view>

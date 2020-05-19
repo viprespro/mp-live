@@ -137,7 +137,7 @@
   <view hover-class='none' wx:if="{{ userMsg.type == 1 }}" bindtap="tapToSuper">
     <view class='appoint-wrapper flex-between bottom'>
       <view class='left-item flex'>
-        <image src="/images/user/07.png" style="width:42rpx;height:36rpx;margin-right:25rpx;"></image>
+        <image src="/images/user/07.png" style="width:42rpx;height:42rpx;margin-right:25rpx;"></image>
         我的上級
       </view>
       <text class='iconfont icon-forward'></text>

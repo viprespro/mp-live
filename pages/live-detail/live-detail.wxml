@@ -19,8 +19,10 @@
         <cover-view class="nickname">{{ other_info.live_user.nickname}}</cover-view>
         <cover-view>{{ other_info.region_name }}</cover-view>
       </cover-view>
-      <cover-view class="follow" catchtap="followTap" wx:if="{{ !follow }}">
-        <cover-image src="/images/add.png" class="add"></cover-image>
+      <cover-view class="follow" catchtap="followTap">
+        <cover-view class="follow-icon-wrap">
+          <cover-image src="/images/add.png" class="add"></cover-image>
+        </cover-view>
         <cover-view class="txt">关注</cover-view>
       </cover-view>
     </cover-view>

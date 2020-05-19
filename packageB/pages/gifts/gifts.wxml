@@ -9,11 +9,49 @@
         <image src="{{ item.cover }}"></image>
         <text class="txt">{{ item.title}}</text>
       </view>
-      <view class="right {{ item.status ? 'got' : ''}}" bindtap="tapItem">{{ item.status ? '已领取': '领取' }}</view>
+      <view class="right {{ item.status ? 'got' : ''}}" data-id="{{ item.id }}" bindtap="showModal" data-target="bottomModal">
+        <text wx:if="{{ item.status == 0 }}">领取</text>
+        <text wx:if="{{ item.status == 1 }}">派发中</text>
+        <text wx:if="{{ item.stauts == 2 }}">已领取</text>
+      </view>
     </view>
   </block>
-
   <view class="loadmore loading" wx:if="{{ hasMore }}">正在加载...</view>
   <view class="loadmore" wx:if="{{ !hasMore && list.length }}">没有更多了~</view>
   <view class="loadmore" wx:if="{{ showDefault }}">暂无数据！</view>
+</view>
+
+
+<!-- 选择地址模态框 -->
+<view class="cu-modal bottom-modal {{modalName=='bottomModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white">
+      <view class="action" bindtap="hideModal">取消</view>
+      <view class="action text-black">选择收货地址</view>
+      <view class="action"></view>
+    </view>
+    <view class='border'></view>
+    <view class="bg-white action-list">
+      <block wx:for="{{ addressArray }}">
+        <view class='item' bindtap='selectCurrent' data-id='{{item.address_id}}'>
+          <view class='left'>
+            <text class='iconfont icon-location'></text>
+            <view class='desc'>
+              <view class='caption'>{{item.address}}</view>
+              <view class='info'>
+                <text class='nickname'>{{item.realname}}</text>
+                <text class='phone'>{{item.mobile}}</text>
+              </view>
+            </view>
+          </view>
+          <text class='iconfont icon-bianji' catchtap='editAddress' data-id='{{item.address_id}}'></text>
+        </view>
+        <view class='border'></view>
+      </block>
+      <view class='add-address' bindtap='addAddress'>
+        <text class='iconfont icon-add-new' style='color:#FFCEC7;'></text>
+        <text class='info'>新增收货地址</text>
+      </view>
+    </view>
+  </view>
 </view>

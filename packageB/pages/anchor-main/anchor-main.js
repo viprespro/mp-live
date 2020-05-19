@@ -1,11 +1,12 @@
 // pages/live-detail/index.js
 const app = getApp()
 const api = require('../../../utils/api-tp.js')
+const Config = require('../../../config.js')
 import TIM from 'tim-wx-sdk';
 let barrageList = []
 var that;
 let ops = {
-  SDKAppID: 1400305039 // 接入时需要将 0 替换为您的云通信应用的 SDKAppID
+  SDKAppID: 1400366158 // 接入时需要将 0 替换为您的云通信应用的 SDKAppID
 };
 let tim = TIM.create(ops); // SDK 实例通常用 tim 表示
 tim.setLogLevel(1); // 普通级别，日志量较多，接入时建议使用
@@ -134,6 +135,7 @@ Page({
     hasMore: true,
     showGoodsInfo: false,
     showEmpty: false, // 是否展示缺省提示
+    ids: '' // 已经选中的商品id
   },
 
   /**
@@ -149,13 +151,11 @@ Page({
     console.log(options)
     if (options.object) { // 开启直播传递古来直播间的名称和封面图
       let parse = JSON.parse(options.object)
-      let { name, cover, cateId, goods_ids, main_goods_id } = parse
+      let { name, cover, ids } = parse
       this.setData({
         live_name: name,
         cover,
-        cateId,
-        goods_ids,
-        main_goods_id
+        ids,
       })
       this.getPushInfo()
     }
@@ -251,7 +251,7 @@ Page({
   getPushInfo() {
     let data = this.data
     wx.uploadFile({
-      url: app.globalData.api_url + '/wxsmall/Live/push',
+      url: Config.HTTP_REQUEST_URL + '/wxsmall/Live/push',
       filePath: data.cover,
       name: 'cover', // 后端需要通过此字段来获取
       header: {
@@ -261,13 +261,11 @@ Page({
       formData: {
         token: wx.getStorageSync('token'),
         title: data.live_name,
-        live_category_id: data.cateId,
-        goods_ids: data.goods_ids,
-        main_goods_id: data.main_goods_id
+        goods_ids: data.ids
       },
       success: function(res) {
         res = JSON.parse(res.data)
-        if (res.code == 0) { // 推流信
+        if (res.code == 0) { // 推流信息
           that.setData({
             info: res.data,
             main_goods: res.data.main_goods
@@ -287,7 +285,7 @@ Page({
           });
 
         } else {
-          console.log('code不为0的情况')
+          app.msg(res.message)
         }
       },
       fail: function(res) {
@@ -338,16 +336,16 @@ Page({
       content: '返回即代表结束直播，确定退出吗？',
       success: res => {
         if (res.confirm) {
+          wx.navigateBack({
+            delta: 1
+          })
+
           let promise = tim.logout();
           promise.then(function (imResponse) {
             console.log(imResponse.data); // 登出成功
           }).catch(function (imError) {
             console.warn('logout error:', imError);
           });
-
-          wx.navigateBack({
-            delta: 1
-          })
         }
       }
     })

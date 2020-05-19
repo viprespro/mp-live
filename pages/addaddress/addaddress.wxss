@@ -47,7 +47,7 @@
   color: #fff;
   font-size: 32rpx;
   margin-top: 70rpx;
-  background: #F8B303;
+  background:linear-gradient(90deg,rgba(255,97,90,1),rgba(255,166,114,1));
 }
 
 .areas {

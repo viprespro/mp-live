@@ -1,3 +1,4 @@
+@import "/pages/pay-order/index.wxss";
 page {
   background: #fff;
   height: 100%;

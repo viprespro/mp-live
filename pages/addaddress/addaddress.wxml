@@ -37,7 +37,7 @@
     <image src='{{ _num == 1 ? "/images/selected-icon.png" : "/images/select-icon.png"}}' style='widht:32rpx;height:32rpx;'></image>
     设置为默认地址
   </view>
-  <button class='but' formType="submit">保存</button>
+  <button class='but common-base-bg' formType="submit">保存</button>
 </form>
 
 

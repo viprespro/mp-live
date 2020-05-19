@@ -133,56 +133,7 @@
   </view>
 </view>
 
-<!-- 定金 -->
-<view class="cu-modal {{modalName=='handsel'?'show':''}}">
-  <view class="cu-dialog">
-    <view class="cu-bar bg-white justify-end">
-      <view class="action" bindtap="hideModal">
-        <text class="cuIcon-close text-black"></text>
-      </view>
-    </view>
-    <view class="padding bg-white modal-box">
-      <view class='price'>￥300</view>
-      <view class='reserve'>支付</view>
-      <view class='title'>支付300元定金</view>
-    </view>
-  </view>
-</view>
 
-<!-- 优惠券的模态框 -->
-<view class="cu-modal bottom-modal {{modalName=='couponModal'?'show':''}}">
-  <view class="cu-dialog">
-    <view class="cu-bar bg-white">
-      <view class="action text-green"></view>
-      <view class="action text-blue" catchtap="hideModal">取消</view>
-    </view>
-    <view class='coupon-list-wrap'>
-      <block wx:for="{{couponList}}" wx:key="user_coupon_id">
-        <view class='outer' bindtap='chooseCurrentCoupon' data-usercouponid='{{item.user_coupon_id}}' data-name='{{item.coupon_name}}' data-value='{{item.value}}'>
-          <view class='coupon-item'>
-            <view class='left'>
-              <view class='num'>
-                <text class='symbol'>￥</text>
-                <text class='big'>{{parse.jsonParse(item.value).price}}</text>
-              </view>
-              <view class='good'>{{item.coupon_name}}</view>
-            </view>
-            <view class='right'>
-              <view class='name strong'>{{item.shop_name}}</view>
-              <view class='discount'>
-                <text class='inner-discount overflow-text1'>满{{parse.jsonParse(item.value).max_price}}减{{parse.jsonParse(item.value).price}}</text>
-              </view>
-              <view class='valid'>有效期：{{item.start_time}} — {{item.end_time}}</view>
-            </view>
-          </view>
-          <view class='half-circle'></view>
-          <view class='half-bot'></view>
-        </view>
-      </block>
-      <view class='empty-wrap overflow-text2' style='padding:20rpx;font-size:26rpx;color:#666;' wx:if="{{couponList.length == 0}}">暂无可用优惠券~</view>
-    </view>
-  </view>
-</view>
 
 <wxs module="parse">
   var jsonParse = function(value) {

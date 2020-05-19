@@ -385,6 +385,10 @@ Page({
                 },
                 success: (res) => {
                   console.log(res)
+                  if(res.code != 0) {
+                    app.msg(res.message)
+                    return;
+                  }
                   let ret = res.data
                   wx.requestPayment({
                     timeStamp: ret.data.timeStamp,

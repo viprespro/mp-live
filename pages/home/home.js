@@ -80,6 +80,7 @@ Page({
     api.post({
       url: '/wxsmall/index/getRecommendGoods',
       success: (res) => {
+        console.log(res)
         this.setData({
           newList: res.data || []
         })
@@ -209,11 +210,9 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function() {
-
     return {
-      title: '涂邦之家shop',
-      imgUrl: app.globalData.share_img,
-      path: '/pages/load/load',
+      title: '好物可播',
+      path: '/pages/live/live',
       success: (res) => {
         wx.showToast({
           title: '分享成功',

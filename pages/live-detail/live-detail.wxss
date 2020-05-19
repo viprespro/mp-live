@@ -72,22 +72,27 @@ live-player {
   overflow: hidden;
 }
 
-.outer .anchor-info .left .mid .nickname { max-width: 300rpx; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.outer .anchor-info .left .mid .nickname {
+  max-width: 300rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 .outer .anchor-info .left .follow {
   width: 128rpx;
   height: 50rpx;
-  background: #f8b303;
   border-radius: 25rpx;
   margin-right: 6rpx;
   display: flex;
   align-items: center;
   padding: 0 12rpx 0 2rpx;
+  background: linear-gradient(90deg, rgba(254, 104, 137, 1), rgba(255, 121, 108, 1));
 }
 
 .outer .anchor-info .left .follow  .add {
-  width: 40rpx;
-  height: 40rpx;
+  width: 22rpx;
+  height: 22rpx;
   margin-left: 6rpx;
   margin-right: 10rpx;
 }
@@ -95,6 +100,18 @@ live-player {
 .outer .anchor-info .left .follow .txt {
   font-size: 30rpx;
   color: #fff;
+}
+
+.follow-icon-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40rpx;
+  height: 40rpx;
+  background: #fff;
+  border-radius: 50%;
+  margin-right: 10rpx;
+  margin-left: 4rpx;
 }
 
 .outer .anchor-info .right {
@@ -176,7 +193,7 @@ live-player {
   display: flex;
   justify-content: center;
   align-items: center;
-  background:rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .outer .footer .item2 .icon-wrap .icons {
@@ -221,8 +238,23 @@ live-player {
   width: 30rpx;
   height: 30rpx;
 }
-.line-wrap { position: absolute; z-index: 9999; left: 11%; bottom: 2rpx; background: #fff; display: flex; justify-content: center; align-items: center; height: 50px; }
-.line-wrap .line-icon{ width: 1px; height: 50rpx; }
+
+.line-wrap {
+  position: absolute;
+  z-index: 9999;
+  left: 11%;
+  bottom: 2rpx;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+}
+
+.line-wrap .line-icon {
+  width: 1px;
+  height: 50rpx;
+}
 
 .send-barrage {
   z-index: 9999;
@@ -248,7 +280,7 @@ live-player {
   font-size: 32rpx;
   width: 20%;
   text-align: center;
-  background: #B25F4A;
+  background: #b25f4a;
   color: #fff;
 }
 
@@ -363,8 +395,8 @@ live-player {
   border-radius: 20rpx;
   bottom: 118rpx;
   font-size: 20rpx;
-  background: #F34861;
-  color: #fff
+  background: #f34861;
+  color: #fff;
 }
 
 .main-goods {

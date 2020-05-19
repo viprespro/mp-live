@@ -1,6 +1,5 @@
 @import '../start-live/start-live.wxss';
 
-
 @import '../apply-live/apply-live.wxss';
 
 .time-wrap {

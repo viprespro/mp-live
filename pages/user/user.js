@@ -175,4 +175,20 @@ Page({
       },
     })
   },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+    return {
+      title: '好物可播',
+      path: '/pages/live/live',
+      success: (res) => {
+        wx.showToast({
+          title: '分享成功',
+          icon: 'success',
+          duration: 2000
+        })
+      }
+    }
+  }
 })

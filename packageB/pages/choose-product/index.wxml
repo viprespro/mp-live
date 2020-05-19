@@ -1,0 +1,66 @@
+<view class="flex outer" style="height: {{ navHeight - statusH}}px;padding-top: {{ statusH }}px">
+
+  <view class="back">
+    <text class="iconfont icon-back" bindtap="toBack"></text>
+  </view>
+
+  <form bindsubmit="searchSubmit" report-submit='true'>
+    <view class="search flex" style="align-items:center;">
+      <input type="text" value='{{inputVal}}' bindinput='bindSearchInput' maxlength='20' placeholder="请输入搜索内容" class="place-holder" bindconfirm="searchSubmit" confirm-type='search' name="search"></input>
+    </view>
+  </form>
+</view>
+
+<view class="modal-wrap show" style="top:{{ navHeight }}px">
+  <view class="main">
+    <view class="flex cate">
+      <text class="txt">分类：</text>
+      <scroll-view scroll-x class="scroll-view-H">
+        <block wx:for="{{ cateList }}" wx:key="id">
+          <view class="item {{ item.id == category_id ? 'selected' : '' }}" bindtap="tapCateItem" data-id="{{ item.id }}" data-name="{{ item.name }}">{{ item.name }}</view>
+        </block>
+      </scroll-view>
+    </view>
+    <view class="flex cate" style="padding-top: 0;">
+      <text class="txt">类别：</text>
+      <view class="yes">{{ category_name || '未选择' }}</view>
+    </view>
+    <view class="goods-list">
+      <scroll-view style="height: 100%" scroll-y scroll-with-animation bindscrolltolower='bindScrollToBottom'>
+        <block wx:for="{{ goodsList }}" wx:key="id">
+          <view class="item">
+            <view class="left flex">
+              <image src="{{ item.cover }}"></image>
+              <view class="desc flex">
+                <view class="title">{{ item.name }}</view>
+                <text class="price">￥{{ item.price}}</text>
+                <view class="txt flex">
+                  <view class="return">返利</view>
+                  <view class="percent">{{ item.commission_price }}元</view>
+                </view>
+              </view>
+            </view>
+            <view class="right" catchtap="tapItem" data-index="{{ index}}">
+              <image src="{{item.checked ? '/images/selected-icon.png' : '/images/select-icon.png'}}"></image>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+
+      <!-- 状态显示 -->
+      <view class="loadmore" style="position: absolute; left:0;right: 0; top: 30%;" wx:if="{{ !goodsList.length }}">暂无数据~</view>
+
+    </view>
+
+    <view class="bot">
+      <view class="item-01 {{ opsIdx == 1 ? 'visiable' : ''}}">
+        <view class="all flex" catchtap="tapAllSelect">
+          <image src="{{ allSelected ? '/images/selected-icon.png' : '/images/select-icon.png' }}"></image>
+          <text>全选</text>
+        </view>
+        <text class="">共：{{ selectedLength || '0' }}个</text>
+      </view>
+      <view class="item-02" catchtap="confirmChoose">确认</view>
+    </view>
+  </view>
+</view>

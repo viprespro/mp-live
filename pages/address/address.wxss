@@ -90,7 +90,7 @@
   color: #fff;
   position: fixed;
   bottom: 60rpx;
-  background: #F8B303;
+  background: linear-gradient(90deg, rgba(255, 103, 96, 1), rgba(255, 147, 118, 1));
   left: 10%;
 }
 

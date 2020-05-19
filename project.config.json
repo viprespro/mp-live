@@ -84,6 +84,47 @@
 					"pathName": "packageB/pages/anchor-entrance/anchor-entrance",
 					"query": "",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packageB/pages/anchor/anchor",
+					"pathName": "packageB/pages/anchor/anchor",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packageB/pages/choose-product/index",
+					"pathName": "packageB/pages/choose-product/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packageB/pages/anchor-entrance/anchor-entrance",
+					"pathName": "packageB/pages/anchor-entrance/anchor-entrance",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packageB/pages/gifts/gifts",
+					"pathName": "packageB/pages/gifts/gifts",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/live-detail/live-detail",
+					"pathName": "pages/live-detail/live-detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packageB/pages/anchor-entrance/anchor-entrance",
+					"pathName": "packageB/pages/anchor-entrance/anchor-entrance",
+					"scene": null
 				}
 			]
 		}

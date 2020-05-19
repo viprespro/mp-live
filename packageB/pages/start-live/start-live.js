@@ -33,13 +33,14 @@ Page({
     main: '', // 主推选择 选择之后
     extra: '', // 附带选择
     selectedLength: 0, // 选择的个数
+    ids:null , // 子页携带所有选中的的商品ids
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getCate() // 直播分类
+    // this.getCate() // 直播分类
     this.getGoodsList() // 商品商品列表
   },
 
@@ -57,32 +58,6 @@ Page({
     return newArr;
   },
 
-  // 确认选择带货的商品 主推商品选择一个 附带选择可以多个
-  confirmChoose() {
-    let { opsIdx, goodsList } = this.data
-    if(opsIdx == 0) {
-      let checked = this.hasChosen()
-      if(checked.length > 1) {
-        return $api.msg('主推选择只能选择一个')
-      }
-       // 否则记录一下 当前选中的数据
-      this.setData({ main_goods_id: checked[0], main: '已选择',  selectedLength: 0 })
-    }
-    
-    if(opsIdx == 1) {
-      let checked = this.hasChosen()
-      this.setData({ goods_ids: checked.join(','), extra: '已选择', selectedLength: 0 })
-    }
-
-    let arr = [...goodsList]
-    arr.map((item) => {
-      item.checked = false
-    })
-
-    this.hideModal();
-
-    this.setData({ goodsList: arr })
-  },
 
   bindScrollToBottom() {
     // console.log(123)
@@ -208,8 +183,8 @@ Page({
    * 点击选择产品
    */
   tapOpts(e) {
-    let { index } = e.currentTarget.dataset
-    this.setData({ showModal: true, opsIdx: index }) // opsIdx 标识已经选择的项
+    const url = `/packageB/pages/choose-product/index`
+    wx.navigateTo({ url })
   },
 
   // 单选操作
@@ -315,13 +290,9 @@ Page({
     let that = this
     if (!data.live_name) {
       hints = '直播间标题不能为空'
-    } else if(!data.main_goods_id) {
-      hints = '选择主推产品'
-    }else if(!data.goods_ids) {
-      hints = '选择附带产品'
-    }else if (Boolean(data.selectedId) === false) {
-      hints = '请选择直播类型'
-    } else if (!data.cover) {
+    } else if(!data.ids) {
+      hints = '请选择产品'
+    }else if (!data.cover) {
       hints = '直播间封面不能为空'
     } else {
       flag = true
@@ -340,9 +311,7 @@ Page({
       let obj = {
         name: data.live_name,
         cover: data.cover,
-        cateId: data.selectedId,
-        goods_ids: data.goods_ids,
-        main_goods_id: data.main_goods_id
+        ids: data.ids
       }
       console.log(obj)
       wx.redirectTo({
@@ -373,18 +342,17 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1]; //当前页面
+    let json = currPage.data.ids;
+    if(json){
+      this.setData({ ids: json })
+    }
   },
 
   /**

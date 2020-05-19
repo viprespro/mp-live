@@ -90,7 +90,9 @@
         "pages/create-poster/index",
         "pages/apply-status/index",
         "pages/gifts/gifts",
-        "pages/super/super"
+        "pages/super/super",
+        "pages/anchor/anchor",
+        "pages/choose-product/index"
       ]
     }
   ],

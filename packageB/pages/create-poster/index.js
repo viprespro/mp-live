@@ -2,6 +2,7 @@ const util = require('../../../utils/util.js')
 import { $api } from '../../../common/utils.js'
 import Poster from '../../../miniprogram_dist/poster/poster';
 const api = require('../../../utils/api-tp.js')
+const Config = require('../../../config.js')
 const app = getApp()
 const posterConfig = {
   jdConfig: {
@@ -223,11 +224,11 @@ Page({
   getQrCode() {
     wx.showLoading({
       title: '上传中...',
-      mask: true
+      mask: false
     })
     let { cover, number } = this.data
     wx.uploadFile({
-      url: app.globalData.api_url + '/wxsmall/live/getWxCode',
+      url: Config.HTTP_REQUEST_URL + '/wxsmall/live/getWxCode',
       filePath: cover,
       name: 'image',
       header: {
@@ -341,48 +342,6 @@ Page({
   },
   onPosterFail(err) {
     console.error(err);
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
   },
 
   /**

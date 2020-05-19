@@ -5,7 +5,7 @@ import TIM from 'tim-wx-sdk';
 let barrageList = []
 var that;
 let ops = {
-  SDKAppID: 1400305039 // 接入时需要将 0 替换为您的云通信应用的 SDKAppID
+  SDKAppID: 1400366158 // 接入时需要将 0 替换为您的云通信应用的 SDKAppID
 };
 let tim = TIM.create(ops); // SDK 实例通常用 tim 表示
 tim.setLogLevel(1); // 普通级别，日志量较多，接入时建议使用
@@ -142,9 +142,7 @@ Page({
 
     if (options.number) {
       this.setData({
-        number: options.number,
-        playUrl: decodeURIComponent(options.url),
-        count: options.like
+        number: options.number
       })
       this.getLiveInfo()
     }
@@ -278,7 +276,7 @@ Page({
     let token = wx.getStorageSync('token')
     let data = this.data
     api.get({
-      url: '/wxsmall/live/viewLive',
+      url: '/wxsmall/Live/viewLive',
       data: {
         token,
         number: data.number
@@ -321,9 +319,10 @@ Page({
         this.setData({
           userId: res.userid,
           groupId: res.groupid,
+          playUrl: res.url,
           other_info: res,
           follow: res.is_follow,
-          main_goods: res.main_goods
+          main_goods: res.main_goods,
         })
       }
     })
