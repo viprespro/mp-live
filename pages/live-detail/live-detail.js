@@ -410,10 +410,13 @@ Page({
       url: '/wxsmall/Live/followLive',
       data: {
         token,
-        number: data.other_info.number
+        number: data.number
       },
       success: res => {
         console.log(res)
+        if(res.code != 0) {
+          app.msg(res.message)
+        }
       }
     })
 

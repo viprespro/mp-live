@@ -17,8 +17,7 @@
     </view>
   </block>
   <view class="loadmore loading" wx:if="{{ hasMore }}">正在加载...</view>
-  <view class="loadmore" wx:if="{{ !hasMore && list.length }}">没有更多了~</view>
-  <view class="loadmore" wx:if="{{ showDefault }}">暂无数据！</view>
+  <view class="loadmore" wx:if="{{ !hasMore }}">没有更多~</view>
 </view>
 
 
@@ -32,7 +31,7 @@
     </view>
     <view class='border'></view>
     <view class="bg-white action-list">
-      <block wx:for="{{ addressArray }}">
+      <block wx:for="{{ addressArray }}" wx:key='address_id'>
         <view class='item' bindtap='selectCurrent' data-id='{{item.address_id}}'>
           <view class='left'>
             <text class='iconfont icon-location'></text>

@@ -157,13 +157,18 @@ page {
 .profile-wrapper {
   position: absolute;
   right: 0;
-  bottom: 202rpx;
+  bottom: 182rpx;
   height: 74rpx;
   line-height: 74rpx;
   border-radius: 37rpx 0 0 37rpx;
   padding: 0 30rpx;
   z-index: 99;
   background: linear-gradient(90deg, #fc5866, #f95799);
+}
+
+.profile-wrapper.identify {
+  bottom: 274rpx;
+  background: #ffad9f;
 }
 
 .icon-search {

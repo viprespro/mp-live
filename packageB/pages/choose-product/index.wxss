@@ -163,33 +163,43 @@
   max-width: 300rpx;
 }
 
+.modal-wrap .main .goods-list .item .desc  .title .is-hot {
+  color: #fff;
+  background: #E84949;
+  border-radius: 6rpx;
+  padding: 6rpx 10rpx;
+  font-size: 20rpx;
+}
+
 .modal-wrap .main .goods-list .item .desc .price {
   color: #eb6831;
   font-size: 28rpx;
 }
 
 .modal-wrap .main .goods-list .item .desc .txt {
-  line-height: 33rpx;
-  height: 33rpx;
-  border-radius: 5rpx;
+  line-height: 40rpx;
+  height: 40rpx;
   border: 1rpx solid #eb6831;
-  max-width: 160rpx;
   font-size: 24rpx;
+  border-radius: 8rpx;
+  max-width: 192rpx;
   overflow: hidden;
   white-space: nowrap;
 }
 
 .modal-wrap .main .goods-list .item .desc .txt .return {
   color: #fff;
-  background: #ff8203;
-  padding: 2rpx 10rpx;
+  background: #FF6E5F;
+  padding: 0 10rpx;
 }
 
 .modal-wrap .main .goods-list .item .desc .txt .percent {
   flex: 1;
   text-align: center;
-  color: #ff8203;
-  padding: 2rpx;
+  color: #FF6E5F;
+  max-width: 120rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .modal-wrap .main .goods-list .item .left > image {
@@ -243,9 +253,9 @@
   float: right;
   width: 140rpx;
   text-align: center;
-  background-image: -webkit-gradient(linear, 79% 0%, 0% 100%, from(#f2cd41), to(#f8a032));
   border-radius: 34rpx;
   margin-right: 15rpx;
+  background:linear-gradient(-27deg,rgba(255,98,92,1),rgba(255,150,108,1));
 }
 
 

@@ -37,9 +37,7 @@ Page({
 
     // 新增地址
     if (opts.title) { 
-      wx.setNavigationBarTitle({
-        title: '添加地址',
-      })
+      this.setData({ title: opts.title })
     }
 
     // 编辑地址
@@ -180,29 +178,16 @@ Page({
       }
     })
   },
-
-  getCurrent: function(e) {
-    console.log(e)
-    var that = this;
-    // var itemWidth = e.detail.scrollWidth / that.data.proList.length;
-    // var scrollLeft = e.detail.scrollLeft;
-    // var curIndex = Math.round(scrollLeft / itemWidth) + 1;
-    // for (var i = 0, len = that.data.proList.length; i < len; ++i) {
-    //   that.data.proList[i].selected = false;
-    // }
-    // that.data.proList[curIndex].selected = true;
-    // that.setData({
-    //   proList: that.data.proList,
-    //   // giftNo: this.data.proList[curIndex].id
-    // });
-  },
   showModal(e) {
     this.setData({
       modalName: e.currentTarget.dataset.target
     })
   },
   hideModal(e) {
+    let { province, city, area } = this.data
+    let total = province + '—' + city + '—' +area
     this.setData({
+      total,
       modalName: null
     })
   },

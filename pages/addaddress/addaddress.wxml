@@ -1,5 +1,5 @@
 <cu-custom bgColor="common-base-bg" isBack="{{true}}">
-  <view slot="content" class="common-title-color">地址(添加/编辑)</view>
+  <view slot="content" class="common-title-color">{{ title }}</view>
 </cu-custom>
 
 <form bindsubmit="formSubmit">
@@ -16,8 +16,8 @@
     <view class='information-li flex'>
       <label class='area label-item'>所在省市</label>
       <view class='cur-area' bindtap="showModal" data-target="ChooseModal">
-          <text style='font-size:28rpx;'>{{province}}，{{city}}，{{area}}，</text>
-          <text class='iconfont icon-location' style='color:#f8b303;'></text>
+          <text style='font-size:28rpx;'>{{ total ? total : '点击选择' }}</text>
+          <text class='iconfont icon-location' style='color:#FF6E5F;'></text>
       </view>
     </view>
 
@@ -46,19 +46,19 @@
   <view class="cu-dialog" catchtap>
     <view class="cu-bar bg-white">
       <view class="action text-grey" bindtap="hideModal">取消</view>
-      <view class="action" style='color:#f8b303;' bindtap="hideModal">确定</view>
+      <view class="action base-text-color" bindtap="hideModal">确定</view>
     </view>
     <view class='chose-wrap flex-around'>
-      <text>省份(市):{{province}}</text>
-      <text>城市：{{city}}</text>
-      <text>区县：{{area}}</text>
+      <text>省份(市)：<text class="base-text-color">{{province}}</text></text>
+      <text>城市：<text class="base-text-color">{{city}}</text></text>
+      <text>区县：<text class="base-text-color">{{area}}</text></text>
     </view>
     <view class='addr-wrapper'>
       <view class='top-box flex-around'>
         <view>
           <view class='province-wrap'>
-            <scroll-view scroll-y="true" class='scroll-view-V' scroll-into-view style='height:386rpx;' bindscroll="getCurrent">
-              <block wx:for="{{provinceList}}" wx:key="{{item.region_id}}">
+            <scroll-view scroll-y="true" class='scroll-view-V' scroll-into-view style='height:386rpx;'>
+              <block wx:for="{{provinceList}}" wx:key="region_id">
                 <view class='scroll-view-item' bindtap='getSub' data-id='{{item.region_id}}' data-name='{{item.name}}'>{{item.name}}</view>
               </block>
             </scroll-view>
@@ -67,7 +67,7 @@
         <view>
           <view class='province-wrap'>
             <scroll-view scroll-y="true" class='scroll-view-V' scroll-into-view style='height:386rpx;' bindscroll="getCurrent">
-              <block wx:for="{{cityList}}" wx:key="{{item.region_id}}">
+              <block wx:for="{{cityList}}" wx:key="region_id">
                 <view class='scroll-view-item' bindtap='getThird' data-id='{{item.region_id}}' data-name='{{item.name}}'>{{item.name}}</view>
               </block>
             </scroll-view>
@@ -76,7 +76,7 @@
         <view>
           <view class='province-wrap'>
             <scroll-view scroll-y="true" class='scroll-view-V' scroll-into-view style='height:386rpx;' bindscroll="getCurrent">
-              <block wx:for="{{areaList}}" wx:key="{{item.region_id}}">
+              <block wx:for="{{areaList}}" wx:key="region_id">
                 <view class='scroll-view-item' bindtap='getFinal' data-id='{{item.region_id}}' data-name='{{item.name}}'>{{item.name}}</view>
               </block>
             </scroll-view>

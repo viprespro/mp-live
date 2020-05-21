@@ -79,16 +79,20 @@ Page({
   },
 
   getQRCode() {
-    api.post({
+    api.get({
       url: '/wxsmall/User/getUserInviteQrcode',
       data: {
-        token: this.data.token
+        token: wx.getStorageSync('token')
       },
       success: (res) => {
         console.log(res)
-        this.setData({
-          qrcode: res.data.qrcode
-        })
+        if(res.code != 0) {
+          app.msg(res.message)
+        }else {
+          this.setData({
+            qrcode: res.data.qrcode
+          })
+        }
       }
     })
   },

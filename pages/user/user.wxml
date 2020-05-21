@@ -40,10 +40,18 @@
   </view>
 
 
+  <view class='profile-wrapper flex-center identify' bindtap='toExplain'>
+    <image src="/images/user/question.png" style="width:32rpx;height: 30rpx; margin-right: 11rpx;"></image>
+    <text class='settled'>身份升级说明</text>
+  </view>
+
+
   <view class='profile-wrapper flex-center' bindtap='navLive' wx:if="{{ userMsg.is_live }}">
     <image src="/images/user/anchor-e.png" style="width:32rpx;height: 30rpx; margin-right: 11rpx;"></image>
     <text class='settled'>主播入口</text>
   </view>
+
+
 
   <!-- 我的订单 绝对定位 -->
   <view class='item-box orders'>
@@ -124,6 +132,16 @@
     </view>
   </navigator>
 
+  <navigator hover-class='none' url='/packageA/pages/invite-friends/index'>
+    <view class='appoint-wrapper flex-between spec bottom'>
+      <view class='left-item flex'>
+        <image src="/images/user/08.png" style="width:38rpx;height:38rpx;margin-right:25rpx;"></image>
+        我的二维码
+      </view>
+      <text class='iconfont icon-forward'></text>
+    </view>
+  </navigator>
+
   <navigator url='/packageA/pages/my-favorites/index' hover-class='none'>
     <view class='appoint-wrapper flex-between bottom'>
       <view class='left-item flex'>
@@ -155,7 +173,7 @@
   </view>
 
 
-  <navigator url='/packageB/pages/gifts/gifts' hover-class='none'>
+  <navigator url='/packageB/pages/gifts/gifts' hover-class='none' wx:if="{{ userMsg.type != 0 }}">
     <view class='appoint-wrapper flex-between bottom'>
       <view class='left-item flex'>
         <image src="/images/user/04.png" style="width:32rpx;height:36rpx;margin-right:25rpx;"></image>

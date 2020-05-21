@@ -92,7 +92,8 @@
         "pages/gifts/gifts",
         "pages/super/super",
         "pages/anchor/anchor",
-        "pages/choose-product/index"
+        "pages/choose-product/index",
+        "pages/explain/explain"
       ]
     }
   ],

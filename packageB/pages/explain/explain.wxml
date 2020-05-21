@@ -1,0 +1,9 @@
+ <import src="../../../wxParse/wxParse.wxml" /> 
+ 
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">身份升级说明</view>
+</cu-custom>
+
+<view>
+    <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+</view>

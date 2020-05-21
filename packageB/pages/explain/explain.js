@@ -1,3 +1,4 @@
+const WxParse = require('../../../wxParse/wxParse.js')
 const api = require('../../../utils/api-tp.js')
 Page({
 
@@ -5,26 +6,25 @@ Page({
    * 页面的初始数据
    */
   data: {
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.loadData()
+    this.load();
   },
 
-  loadData() {
-    let token = wx.getStorageSync('token')
+  load() {
+    const url = '/wxsmall/Index/getConfig'
+    const data = { field: 'upgrade_explain' }
     api.get({
-      url: '/wxsmall/User/myMaster',
-      method: 'GET',
-      data: {
-        token
-      },
+      url,
+      data,
       success: res => {
         console.log(res)
-        this.setData({ info: res.data })
+        WxParse.wxParse('content', 'html', res.data.upgrade_explain, this, 5); 
       }
     })
   },

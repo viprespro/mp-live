@@ -24,6 +24,7 @@ App({
     })
 
     this.getSysInfo();
+    this.getUserInfo()
 
     // 填写固定的token值
     // wx.setStorageSync('token', '')
@@ -49,6 +50,24 @@ App({
         this.globalData.windowH = res.windowHeight
       },
     })
+  },
+
+  // 获取用户信息
+  getUserInfo() {
+    let token = wx.getStorageSync('token')
+    if(token) {
+      api.get({
+        url: '/wxsmall/User/getUserInfo',
+        data: {
+          token,
+        },
+        success: res => {
+          console.log(res)
+          let { type } =  res.data
+          this.globalData.type = type
+        }
+      })
+    }
   },
 
 
@@ -82,6 +101,7 @@ App({
     openPages: '',
     locte_cate: {}, //用于定位分类栏
     logo: '',
-    share_img: ''
+    share_img: '',
+    type: null // 用户身份标识
   },
 })

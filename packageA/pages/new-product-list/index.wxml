@@ -26,4 +26,5 @@
   </block>
 </view>
 
-<view class='hasMore'>{{newList.length > 0 ? '我是有底线的~' : '暂无数据~'}}</view>
+<view class="loadmore loading" wx:if="{{ hasMore }}">加载中...</view>
+<view class="loadmore" wx:else>没有更多~</view>

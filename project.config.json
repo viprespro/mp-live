@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
@@ -59,36 +59,8 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "poster",
-					"pathName": "packageB/pages/create-poster/index",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "packageB/pages/gifts/gifts",
-					"pathName": "packageB/pages/gifts/gifts",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "packageB/pages/super/super",
-					"pathName": "packageB/pages/super/super",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
 					"name": "packageB/pages/anchor-entrance/anchor-entrance",
 					"pathName": "packageB/pages/anchor-entrance/anchor-entrance",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "packageB/pages/anchor/anchor",
-					"pathName": "packageB/pages/anchor/anchor",
 					"query": "",
 					"scene": null
 				},
@@ -101,15 +73,43 @@
 				},
 				{
 					"id": -1,
-					"name": "packageB/pages/anchor-entrance/anchor-entrance",
-					"pathName": "packageB/pages/anchor-entrance/anchor-entrance",
+					"name": "packageA/pages/return-list/index",
+					"pathName": "packageA/pages/return-list/index",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "packageB/pages/gifts/gifts",
-					"pathName": "packageB/pages/gifts/gifts",
+					"name": "packageB/pages/apply-status/index",
+					"pathName": "packageB/pages/apply-status/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packageA/pages/invite-friends/index",
+					"pathName": "packageA/pages/invite-friends/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/live/live",
+					"pathName": "pages/live/live",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/user/user",
+					"pathName": "pages/user/user",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packageB/pages/explain/explain",
+					"pathName": "packageB/pages/explain/explain",
 					"query": "",
 					"scene": null
 				},
@@ -122,8 +122,8 @@
 				},
 				{
 					"id": -1,
-					"name": "packageB/pages/anchor-entrance/anchor-entrance",
-					"pathName": "packageB/pages/anchor-entrance/anchor-entrance",
+					"name": "packageB/pages/choose-product/index",
+					"pathName": "packageB/pages/choose-product/index",
 					"scene": null
 				}
 			]

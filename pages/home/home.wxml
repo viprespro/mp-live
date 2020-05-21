@@ -71,7 +71,7 @@
     <block wx:for="{{newList}}" wx:key="goods_id">
       <view class="item_new" bindtap='goDetail' style='position:relatvie;' data-id='{{item.goods_id}}'>
         <view class="img-box_new">
-          <image src='{{item.img}}' mode="aspectFit"></image>
+          <image src='{{item.img}}' mode=""></image>
         </view>
         <view class="desc-wrap">
           <view style='font-size:28rpx;' class="overflow-text1 title">{{item.title}}</view>

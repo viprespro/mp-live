@@ -60,14 +60,12 @@ page {
   align-items: center;
 }
 
-.img-box {
-  width: 70rpx;
-  height: 60rpx;
+.channel-item > image  {
+  width: 81rpx;
+  height: 48rpx;
   margin-bottom: 10rpx;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
+
 
 .channel-txt {
   color: #999;
@@ -76,4 +74,6 @@ page {
 
 .share-btn {
   background: #fff;
+  display: flex;
+  justify-content: center;
 }

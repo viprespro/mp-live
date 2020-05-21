@@ -32,7 +32,10 @@
             <view class="left flex">
               <image src="{{ item.cover }}"></image>
               <view class="desc flex">
-                <view class="title">{{ item.name }}</view>
+                <view class="title">
+                  <text class="is-hot" wx:if="{{ item.is_mainpush == 1}}">热销</text>
+                  {{ item.name }}
+                </view>
                 <text class="price">￥{{ item.price}}</text>
                 <view class="txt flex">
                   <view class="return">返利</view>
@@ -48,7 +51,7 @@
       </scroll-view>
 
       <!-- 状态显示 -->
-      <view class="loadmore" style="position: absolute; left:0;right: 0; top: 30%;" wx:if="{{ !goodsList.length }}">暂无数据~</view>
+      <view class="loadmore" style="position: absolute; left:0;right: 0; top: 30%;" wx:if="{{ showDefault }}">暂无数据~</view>
 
     </view>
 

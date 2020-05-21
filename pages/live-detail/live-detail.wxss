@@ -88,6 +88,7 @@ live-player {
   align-items: center;
   padding: 0 12rpx 0 2rpx;
   background: linear-gradient(90deg, rgba(254, 104, 137, 1), rgba(255, 121, 108, 1));
+  background: rgba(254, 104, 137, 1);
 }
 
 .outer .anchor-info .left .follow  .add {
@@ -363,7 +364,7 @@ live-player {
 }
 
 .goods-list .item-list .item .info .price {
-  color: #e4c7a0;
+  color: #ff605a;
   font-size: 30rpx;
 }
 
@@ -380,10 +381,11 @@ live-player {
   bottom: 10rpx;
   width: 120rpx;
   height: 50rpx;
-  background: #eab67d;
-  font-size: 28rpx;
+  font-size: 26rpx;
   border-radius: 60rpx;
   line-height: 50rpx;
+  background: #ff605a;
+  color: #fff;
 }
 
 .like-box {

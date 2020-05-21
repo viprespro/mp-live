@@ -74,6 +74,9 @@
   </block>
 </view>
 
+<view class="loadmore loading" wx:if="{{ hasMore }}">加载中...</view>
+<view class="loadmore" wx:if="{{ !hasMore }}">没有更多~</view>
+
 
 <!-- 缺省数据 -->
-<view class='empty' wx:if='{{ showEmpty }}'>暂无数据~</view>
+<!-- <view class='empty' wx:if='{{ showEmpty }}'>暂无数据~</view> -->

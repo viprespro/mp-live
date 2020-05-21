@@ -27,7 +27,7 @@ Page({
   editAddress: function (e) {
     let id = e.currentTarget.dataset.id
     wx.navigateTo({ //跳转至指定页面并关闭其他打开的所有页面（这个最好用在返回至首页的的时候）
-      url: '/pages/addaddress/addaddress?id=' + id + '&title=' + '编辑收货地址'
+      url: '/pages/addaddress/addaddress?id=' + id + '&title=' + '编辑地址'
     })
   },
 
@@ -85,7 +85,7 @@ Page({
    */
   addAddress: function () {
     wx.navigateTo({ 
-      url: '/pages/addaddress/addaddress'
+      url: '/pages/addaddress/addaddress?title=添加地址' 
     })
   },
 
@@ -153,9 +153,7 @@ Page({
         if(!len && pageIndex == 1) {
           // 数据
           this.setData({ showDefault: true })
-          return;
         }
-        this.setData({ showDefault: false })
         if(len < pageSize) {
           moreFlag = false
         }

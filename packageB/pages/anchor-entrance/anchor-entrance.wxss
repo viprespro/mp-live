@@ -38,6 +38,9 @@ page {
 
 .part-item .content-wrap .item .sub {
   padding: 10rpx 0;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-right: 15rpx;
 }
 
 .part-item .content-wrap .item.row {
@@ -46,7 +49,8 @@ page {
 }
 
 .part-item .content-wrap .item:nth-child(1) {
-  padding-left: 96rpx;
+  padding-left: 67rpx;
+  margin-right: 16rpx;
 }
 
 .cu-color {

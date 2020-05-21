@@ -1,5 +1,5 @@
 <cu-custom bgColor="common-base-bg" isBack="{{true}}">
-  <view slot="content" class="common-title-color">退款/售后</view>
+  <view slot="content" class="common-title-color">售后服务</view>
 </cu-custom>
 <view class="return-wrapper">
   <view class="return-goods-list">
@@ -33,4 +33,5 @@
   </view>
 </view>
 
-<view class='hasMore'>{{list.length > 0 ? '我是有底线的~' : '暂无数据~'}}</view>
+<view class="loadmore loading" wx:if="{{ more }}">加载中...</view>
+<view class="loadmore" wx:if="{{ !more }}">没有更多~</view>

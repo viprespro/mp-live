@@ -8,19 +8,19 @@
       <view class="left flex">
         <image src="{{ info.avatar }}"></image>
         <view class="details">
-          <view class="flex" style="align-items: center">
+          <view class="flex" style="align-items: center" wx:if="{{ info.nickname }}">
             <image class="img" wx:if="{{ info.gender == 0}}" src="/packageB/imgs/unknow.png"></image>
             <image class="img" wx:if="{{ info.gender == 1}}" src="/packageB/imgs/man.png"></image>
             <image class="img" wx:if="{{ info.gender == 2}}" src="/packageB/imgs/sex.png"></image>
             <text style="color: #fff;">{{ info.nickname }}</text>
           </view>
-          <view class="flex" style="align-items: center">
+          <view class="flex" style="align-items: center" wx:if="{{ info.mobile }}">
             <image style="width:23rpx;height: 23rpx;margin-right: 10rpx;" src="/packageB/imgs/cell.png"></image>
-            <text style="color: #fff;">18253137881</text>
+            <text style="color: #fff;">{{ info.mobile }}</text>
           </view>
         </view>
       </view>
-      <view class="right">
+      <view class="right" wx:if="{{ info.type == 2 || info.type == 3 || info.type == 4 }}" >
         <view wx:if="{{ info.type == 2}}" class="item">
           <image src="/packageB/imgs/jjr.png"></image>
           <text>经纪人</text>

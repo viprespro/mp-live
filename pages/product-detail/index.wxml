@@ -1,15 +1,15 @@
 <!--pages/product-detail/index.wxml-->
- <import src="../../wxParse/wxParse.wxml" /> 
+<import src="../../wxParse/wxParse.wxml" />
 
 <cu-custom bgColor="common-base-bg" isBack="{{true}}">
   <view slot="content" class="common-title-color">商品详情</view>
 </cu-custom>
 
 <view class='swiper_banner'>
-  <swiper class="swiper-box" style="height:{{swiperH}}px;" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" circular='true'  indicator-active-color="{{indicatorActivecolor}}">
+  <swiper class="swiper-box" style="height:{{swiperH}}px;" indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" indicator-color="{{indicatorColor}}" circular='true' indicator-active-color="{{indicatorActivecolor}}">
     <block wx:for="{{productInfo.flash}}" wx:key="item">
       <swiper-item>
-        <image src="{{item}}" class="slide-image"  data-index="{{index}}" bindtap="previewSwiperImg"/>
+        <image src="{{item}}" class="slide-image" data-index="{{index}}" bindtap="previewSwiperImg" />
       </swiper-item>
     </block>
   </swiper>

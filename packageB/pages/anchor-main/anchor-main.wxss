@@ -306,7 +306,7 @@ live-player {
 }
 
 .goods-list .item-list .item .info .price {
-  color: #e4c7a0;
+  color: #ff605a;
   font-size: 30rpx;
 }
 
@@ -323,10 +323,11 @@ live-player {
   bottom: 10rpx;
   width: 120rpx;
   height: 50rpx;
-  background: #eab67d;
-  font-size: 28rpx;
+  font-size: 26rpx;
   border-radius: 60rpx;
   line-height: 50rpx;
+  background: #ff605a;
+  color: #fff;
 }
 
 .main-goods {

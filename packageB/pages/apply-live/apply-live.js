@@ -200,7 +200,6 @@ Page({
         mobile: cell,
         sms_code: code,
         type: type,
-        pay_price: fee
       },
       success: res => {
         console.log(res)
@@ -216,8 +215,9 @@ Page({
             success(res) {
               console.log(res)
               if (res.errMsg === 'requestPayment:ok') {
+                let title = '已提交，等待后台审核！'
                 wx.showToast({
-                  title: '申请已经提交，等待后台审核！',
+                  title,
                   icon: 'none',
                   duration: 1500,
                   mask: true

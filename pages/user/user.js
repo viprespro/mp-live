@@ -20,6 +20,11 @@ Page({
   onLoad: function(options) {
   },
 
+  toExplain() {
+    let url = `/packageB/pages/explain/explain`
+    wx.navigateTo({ url })
+  },
+
   // 我的上级
   tapToSuper() {
     let url = `/packageB/pages/super/super`
@@ -28,7 +33,8 @@ Page({
 
   // 我的主播
   tapToAnchor() {
-
+    let url = `/packageB/pages/anchor/anchor`
+    wx.navigateTo({ url })
   },
 
   onPageScroll(e) {

@@ -13,6 +13,7 @@ Page({
     cateList: [],
     goodsList: [],
     goods_ids:'' , // 所有已经选中的商品id集合
+    showDefault: false,
   },
 
   /**
@@ -148,6 +149,11 @@ Page({
       success: res => {
         console.log(res)
         res = res.data
+        if(!res.goods_list.length){
+          this.setData({ showDefault: true })
+        }else {
+          this.setData({ showDefault: false })
+        }
         if(!category_id) {
           this.setData({
             cateList: res.category_list,

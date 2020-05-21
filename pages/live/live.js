@@ -72,6 +72,10 @@ Page({
    */
   tapItem(e) {
     let { type } = e.currentTarget.dataset
+    console.log(type)
+
+    console.log(app.globalData.type)
+    // if(app.globalData.type >= ++type) return
     let url = `/packageB/pages/apply-live/apply-live?type=${type}`
     wx.navigateTo({ url })
   },
@@ -206,10 +210,6 @@ Page({
   getRandomNumber() {
     let number = Math.floor(Math.random() * 15000)
     return number
-  },
-  
-  onReady: function() {
-    wx.showShareMenu()
   },
 
   onReachBottom() {

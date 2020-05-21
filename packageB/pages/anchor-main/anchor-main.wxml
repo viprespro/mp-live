@@ -71,7 +71,7 @@
     </cover-view>
 
     <cover-view class="item2 item3">
-      <cover-view class="icon-wrap">
+      <cover-view class="icon-wrap" style="background: #B17068">
         <cover-image src="/images/fabulous.png" class="icons"></cover-image>
       </cover-view>
       <cover-view class="txt">点赞</cover-view>
