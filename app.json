@@ -121,7 +121,8 @@
     ]
   },
   "usingComponents": {
-    "cu-custom": "/colorui/components/cu-custom"
+    "cu-custom": "/colorui/components/cu-custom",
+    "p-loading": "/components/pLoading/pLoading"
   },
   "sitemapLocation": "sitemap.json",
   "permission": {

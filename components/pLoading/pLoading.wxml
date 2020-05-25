@@ -1,0 +1,6 @@
+<view class="load-modal" style="top:{{ navHeight }}px" wx:if="{{ loading }}">
+  <view class="content">
+    <view class="load-img"></view>
+    <text>加载中...</text>
+  </view>
+</view>

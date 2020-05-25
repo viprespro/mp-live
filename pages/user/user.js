@@ -11,7 +11,8 @@ Page({
     navHeight: app.globalData.CustomBar,
     type: '', // 身份
     reload: false, // 是否是下拉刷新的
-    opacity: 0
+    opacity: 0,
+    loading: true,
   },
 
   /**
@@ -137,6 +138,7 @@ Page({
       success: function(res) {
         console.log(res)
         var msg = res.data
+        that.setData({ loading: false })
         app.globalData.invite_code = msg.invite_code;
         // console.log(app.globalData.userInfo)
         if (msg.avatar == null) {

@@ -103,7 +103,7 @@
 <!-- 点击宝贝弹出的商品列表 -->
 <cover-view class="goods-list {{ showGoodsInfo ? 'open' : 'close' }}">
   <cover-view class="title flex-between">
-    <cover-view>全部商品 ({{total || 0}})</cover-view>
+    <cover-view>全部商品</cover-view>
     <cover-image src="/images/cart-icon.png" class="img" catchtap="navCart"></cover-image>
   </cover-view>
 

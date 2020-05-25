@@ -6,202 +6,207 @@
   <text class="txt">个人中心</text>
 </view>
 
-<view class='header flex' style="padding-top: {{ navHeight}}px">
-  <view class='system-notification iconfont icon-pinglun' bindtap='goNotification'>
-    <text class="system-notification-text" wx:if="{{userinfo.notice > 0}}">{{userinfo.notice}}</text>
-  </view>
+<view class="wrap" wx:if="{{ userMsg.avatar }}">
+  <view class='header flex' style="padding-top: {{ navHeight}}px">
+    <view class='system-notification iconfont icon-pinglun' bindtap='goNotification'>
+      <text class="system-notification-text" wx:if="{{userinfo.notice > 0}}">{{userinfo.notice}}</text>
+    </view>
 
-  <view class='user-wrapper '>
-    <view class="avatar-wrap">
-      <image src='{{userMsg.avatar}}' class='avatar' bindtap="toProfile"></image>
-      <view class="identify" wx:if="{{ userMsg.type == 1 }}">
-        <image src="/images/user/zb.png"></image>
-        <text class="txt">主播</text>
+    <view class='user-wrapper '>
+      <view class="avatar-wrap">
+        <image src='{{userMsg.avatar}}' class='avatar' bindtap="toProfile"></image>
+        <view class="identify" wx:if="{{ userMsg.type == 1 }}">
+          <image src="/images/user/zb.png"></image>
+          <text class="txt">主播</text>
+        </view>
+        <view class="identify" wx:if="{{ userMsg.type == 2 }}">
+          <image src="/images/user/jjr.png"></image>
+          <text class="txt">经纪人</text>
+        </view>
+        <view class="identify" wx:if="{{ userMsg.type == 3 }}">
+          <image src="/images/user/fws.png"></image>
+          <text class="txt">服务商</text>
+        </view>
+        <view class="identify" wx:if="{{ userMsg.type == 4 }}">
+          <image src="/images/user/hhr.png"></image>
+          <text class="txt">合伙人</text>
+        </view>
       </view>
-      <view class="identify" wx:if="{{ userMsg.type == 2 }}">
-        <image src="/images/user/jjr.png"></image>
-        <text class="txt">经纪人</text>
-      </view>
-      <view class="identify" wx:if="{{ userMsg.type == 3 }}">
-        <image src="/images/user/fws.png"></image>
-        <text class="txt">服务商</text>
-      </view>
-      <view class="identify" wx:if="{{ userMsg.type == 4 }}">
-        <image src="/images/user/hhr.png"></image>
-        <text class="txt">合伙人</text>
+      <view class='name'>
+        <view class='name-col'>
+          <text class='nick'>{{userMsg.nickname}}</text>
+        </view>
+        <view>{{userMsg.mobile}}</view>
       </view>
     </view>
-    <view class='name'>
-      <view class='name-col'>
-        <text class='nick'>{{userMsg.nickname}}</text>
-      </view>
-      <view>{{userMsg.mobile}}</view>
+
+
+    <view class='profile-wrapper flex-center identify' bindtap='toExplain'>
+      <image src="/images/user/question.png" style="width:32rpx;height: 30rpx; margin-right: 11rpx;"></image>
+      <text class='settled'>身份升级说明</text>
     </view>
-  </view>
 
 
-  <view class='profile-wrapper flex-center identify' bindtap='toExplain'>
-    <image src="/images/user/question.png" style="width:32rpx;height: 30rpx; margin-right: 11rpx;"></image>
-    <text class='settled'>身份升级说明</text>
-  </view>
-
-
-  <view class='profile-wrapper flex-center' bindtap='navLive' wx:if="{{ userMsg.is_live }}">
-    <image src="/images/user/anchor-e.png" style="width:32rpx;height: 30rpx; margin-right: 11rpx;"></image>
-    <text class='settled'>主播入口</text>
-  </view>
+    <view class='profile-wrapper flex-center' bindtap='navLive' wx:if="{{ userMsg.is_live }}">
+      <image src="/images/user/anchor-e.png" style="width:32rpx;height: 30rpx; margin-right: 11rpx;"></image>
+      <text class='settled'>主播入口</text>
+    </view>
 
 
 
-  <!-- 我的订单 绝对定位 -->
-  <view class='item-box orders'>
-    <view class='title-bar flex'>
-      <view class='left flex-center'>
-        <view class='bundle'></view>
-        <text class='strong' style='color:#333;font-size:30rpx;'>我的订单</text>
+    <!-- 我的订单 绝对定位 -->
+    <view class='item-box orders'>
+      <view class='title-bar flex'>
+        <view class='left flex-center'>
+          <view class='bundle'></view>
+          <text class='strong' style='color:#333;font-size:30rpx;'>我的订单</text>
+        </view>
+        <navigator hover-class="none" open-type='navigate' url='/pages/check-orders/index'>查看全部订单
+          <text class='iconfont icon-forward'></text>
+        </navigator>
       </view>
-      <navigator hover-class="none" open-type='navigate' url='/pages/check-orders/index'>查看全部订单
+      <view class='list-wrapper flex'>
+        <view class='item'>
+          <navigator hover-class="none" url='/pages/check-orders/index?nowstatus=1'>
+            <view class='item-span' wx:if="{{orderStatusNum.noBuy}}">{{orderStatusNum.noBuy}}</view>
+            <image src='/images/user/payment.png'></image>
+            <view class='text'>待付款</view>
+          </navigator>
+        </view>
+        <view class='item'>
+          <navigator hover-class="none" url='/pages/check-orders/index?nowstatus=2'>
+            <view class='item-span' wx:if="{{orderStatusNum.noTake}}">{{orderStatusNum.noTake}}</view>
+            <image src='/images/user/deliver.png'></image>
+            <view class='text'>待发货</view>
+          </navigator>
+        </view>
+        <view class='item'>
+          <navigator hover-class="none" url='/pages/check-orders/index?nowstatus=3'>
+            <view class='item-span' wx:if="{{orderStatusNum.noReply}}">{{orderStatusNum.noReply}}</view>
+            <image src='/images/user/receiving.png'></image>
+            <view class='text'>待收货</view>
+          </navigator>
+        </view>
+        <view class='item'>
+          <navigator hover-class="none" url='/pages/check-orders/index?nowstatus=4'>
+            <view class='item-span' wx:if="{{orderStatusNum.noRefund}}">{{orderStatusNum.noRefund}}</view>
+            <image src='/images/user/evaluate.png'></image>
+            <view class='text'>待评价</view>
+          </navigator>
+        </view>
+        <view class='item'>
+          <navigator hover-class="none" url='/packageA/pages/return-list/index'>
+            <view class='item-span' wx:if="{{orderStatusNum.noRefund}}">{{orderStatusNum.noRefund}}</view>
+            <image src='/images/user/service.png'></image>
+            <view class='text'>退换/售后</view>
+          </navigator>
+        </view>
+      </view>
+    </view>
+
+  </view>
+
+
+  <!-- 我的余额 -->
+  <view class="balance">
+    <view style="font-size: 28rpx;color:#000;">
+      <text>我的余额：</text>
+      <text>￥{{userMsg.balance || 0.00}}</text>
+    </view>
+    <view class="btn" bindtap='withdraw'>提现</view>
+  </view>
+
+  <!-- 我的余额ends -->
+
+  <view style="height:100rpx;"></view>
+
+
+  <!-- item -->
+  <view class="all-wrap">
+    <navigator url='/pages/my-profile/index' open-type='navigate' hover-class='none'>
+      <view class='appoint-wrapper flex-between spec bottom'>
+        <view class='left-item flex'>
+          <image src="/images/user/01.png" style="width:38rpx;height:38rpx;margin-right:25rpx;"></image>
+          我的资料
+        </view>
         <text class='iconfont icon-forward'></text>
-      </navigator>
-    </view>
-    <view class='list-wrapper flex'>
-      <view class='item'>
-        <navigator hover-class="none" url='/pages/check-orders/index?nowstatus=1'>
-          <view class='item-span' wx:if="{{orderStatusNum.noBuy}}">{{orderStatusNum.noBuy}}</view>
-          <image src='/images/user/payment.png'></image>
-          <view class='text'>待付款</view>
-        </navigator>
       </view>
-      <view class='item'>
-        <navigator hover-class="none" url='/pages/check-orders/index?nowstatus=2'>
-          <view class='item-span' wx:if="{{orderStatusNum.noTake}}">{{orderStatusNum.noTake}}</view>
-          <image src='/images/user/deliver.png'></image>
-          <view class='text'>待发货</view>
-        </navigator>
+    </navigator>
+
+    <navigator hover-class='none' url='/packageA/pages/invite-friends/index'>
+      <view class='appoint-wrapper flex-between spec bottom'>
+        <view class='left-item flex'>
+          <image src="/images/user/08.png" style="width:38rpx;height:38rpx;margin-right:25rpx;"></image>
+          我的二维码
+        </view>
+        <text class='iconfont icon-forward'></text>
       </view>
-      <view class='item'>
-        <navigator hover-class="none" url='/pages/check-orders/index?nowstatus=3'>
-          <view class='item-span' wx:if="{{orderStatusNum.noReply}}">{{orderStatusNum.noReply}}</view>
-          <image src='/images/user/receiving.png'></image>
-          <view class='text'>待收货</view>
-        </navigator>
+    </navigator>
+
+    <navigator url='/packageA/pages/my-favorites/index' hover-class='none'>
+      <view class='appoint-wrapper flex-between bottom'>
+        <view class='left-item flex'>
+          <image src="/images/user/02.png" style="width:36rpx;height:42rpx;margin-right:25rpx;"></image>
+          我的收藏
+        </view>
+        <text class='iconfont icon-forward'></text>
       </view>
-      <view class='item'>
-        <navigator hover-class="none" url='/pages/check-orders/index?nowstatus=4'>
-          <view class='item-span' wx:if="{{orderStatusNum.noRefund}}">{{orderStatusNum.noRefund}}</view>
-          <image src='/images/user/evaluate.png'></image>
-          <view class='text'>待评价</view>
-        </navigator>
-      </view>
-      <view class='item'>
-        <navigator hover-class="none" url='/packageA/pages/return-list/index'>
-          <view class='item-span' wx:if="{{orderStatusNum.noRefund}}">{{orderStatusNum.noRefund}}</view>
-          <image src='/images/user/service.png'></image>
-          <view class='text'>退换/售后</view>
-        </navigator>
+    </navigator>
+
+    <view hover-class='none' wx:if="{{ userMsg.type == 1 }}" bindtap="tapToSuper">
+      <view class='appoint-wrapper flex-between bottom'>
+        <view class='left-item flex'>
+          <image src="/images/user/07.png" style="width:42rpx;height:42rpx;margin-right:25rpx;"></image>
+          我的上級
+        </view>
+        <text class='iconfont icon-forward'></text>
       </view>
     </view>
+
+    <view hover-class='none' wx:if='{{ userMsg.type != 0 && !userMsg.is_live }}' bindtap="tapToAnchor">
+      <view class='appoint-wrapper flex-between bottom'>
+        <view class='left-item flex' wx:if="{{ !userMsg.is_live }}">
+          <image src="/images/user/03.png" style="width:42rpx;height:36rpx;margin-right:25rpx;"></image>
+          我的主播
+        </view>
+        <text class='iconfont icon-forward'></text>
+      </view>
+    </view>
+
+
+    <navigator url='/packageB/pages/gifts/gifts' hover-class='none' wx:if="{{ userMsg.type != 0 }}">
+      <view class='appoint-wrapper flex-between bottom'>
+        <view class='left-item flex'>
+          <image src="/images/user/04.png" style="width:32rpx;height:36rpx;margin-right:25rpx;"></image>
+          我的礼品
+        </view>
+        <text class='iconfont icon-forward'></text>
+      </view>
+    </navigator>
+
+    <navigator hover-class='none' url='/packageA/pages/about-us/index'>
+      <view class='appoint-wrapper flex-between bottom'>
+        <view class='left-item flex'>
+          <image src="/images/user/05.png" style="width:38rpx;height:38rpx;margin-right:25rpx;"></image>
+          关于我们
+        </view>
+        <text class='iconfont icon-forward'></text>
+      </view>
+    </navigator>
+
+    <view class='appoint-wrapper flex-between' bindtap="handleLoginout">
+      <view class='left-item flex'>
+        <image src="/images/user/06.png" style="width:37rpx;height:36rpx;margin-right:25rpx;"></image>
+        退出登录
+      </view>
+      <text class='iconfont icon-forward'></text>
+    </view>
+
   </view>
 
 </view>
 
-
-<!-- 我的余额 -->
-<view class="balance">
-  <view style="font-size: 28rpx;color:#000;">
-    <text>我的余额：</text>
-    <text>￥{{userMsg.balance || 0.00}}</text>
-  </view>
-  <view class="btn" bindtap='withdraw'>提现</view>
-</view>
-
-<!-- 我的余额ends -->
-
-<view style="height:100rpx;"></view>
-
-
-<!-- item -->
-<view class="all-wrap">
-  <navigator url='/pages/my-profile/index' open-type='navigate' hover-class='none'>
-    <view class='appoint-wrapper flex-between spec bottom'>
-      <view class='left-item flex'>
-        <image src="/images/user/01.png" style="width:38rpx;height:38rpx;margin-right:25rpx;"></image>
-        我的资料
-      </view>
-      <text class='iconfont icon-forward'></text>
-    </view>
-  </navigator>
-
-  <navigator hover-class='none' url='/packageA/pages/invite-friends/index'>
-    <view class='appoint-wrapper flex-between spec bottom'>
-      <view class='left-item flex'>
-        <image src="/images/user/08.png" style="width:38rpx;height:38rpx;margin-right:25rpx;"></image>
-        我的二维码
-      </view>
-      <text class='iconfont icon-forward'></text>
-    </view>
-  </navigator>
-
-  <navigator url='/packageA/pages/my-favorites/index' hover-class='none'>
-    <view class='appoint-wrapper flex-between bottom'>
-      <view class='left-item flex'>
-        <image src="/images/user/02.png" style="width:36rpx;height:42rpx;margin-right:25rpx;"></image>
-        我的收藏
-      </view>
-      <text class='iconfont icon-forward'></text>
-    </view>
-  </navigator>
-
-  <view hover-class='none' wx:if="{{ userMsg.type == 1 }}" bindtap="tapToSuper">
-    <view class='appoint-wrapper flex-between bottom'>
-      <view class='left-item flex'>
-        <image src="/images/user/07.png" style="width:42rpx;height:42rpx;margin-right:25rpx;"></image>
-        我的上級
-      </view>
-      <text class='iconfont icon-forward'></text>
-    </view>
-  </view>
-
-  <view hover-class='none' wx:if='{{ userMsg.type != 0 && !userMsg.is_live }}' bindtap="tapToAnchor">
-    <view class='appoint-wrapper flex-between bottom'>
-      <view class='left-item flex' wx:if="{{ !userMsg.is_live }}">
-        <image src="/images/user/03.png" style="width:42rpx;height:36rpx;margin-right:25rpx;"></image>
-        我的主播
-      </view>
-      <text class='iconfont icon-forward'></text>
-    </view>
-  </view>
-
-
-  <navigator url='/packageB/pages/gifts/gifts' hover-class='none' wx:if="{{ userMsg.type != 0 }}">
-    <view class='appoint-wrapper flex-between bottom'>
-      <view class='left-item flex'>
-        <image src="/images/user/04.png" style="width:32rpx;height:36rpx;margin-right:25rpx;"></image>
-        我的礼品
-      </view>
-      <text class='iconfont icon-forward'></text>
-    </view>
-  </navigator>
-
-  <navigator hover-class='none' url='/packageA/pages/about-us/index'>
-    <view class='appoint-wrapper flex-between bottom'>
-      <view class='left-item flex'>
-        <image src="/images/user/05.png" style="width:38rpx;height:38rpx;margin-right:25rpx;"></image>
-        关于我们
-      </view>
-      <text class='iconfont icon-forward'></text>
-    </view>
-  </navigator>
-
-  <view class='appoint-wrapper flex-between' bindtap="handleLoginout">
-    <view class='left-item flex'>
-      <image src="/images/user/06.png" style="width:37rpx;height:36rpx;margin-right:25rpx;"></image>
-      退出登录
-    </view>
-    <text class='iconfont icon-forward'></text>
-  </view>
-
-</view>
+<p-loading loading="{{ loading }}"></p-loading>
 
 <view style="height: 160rpx;"></view>
 
