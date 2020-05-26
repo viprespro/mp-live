@@ -1,5 +1,6 @@
 const api = require('../../../utils/api-tp.js')
 import { $verify, $api } from '../../../common/utils.js'
+const app = getApp()
 Page({
 
   /**
@@ -31,8 +32,8 @@ Page({
    */
   onLoad: function(options) {
     if(options.type){
-      let arr = ['申请入驻主播','申请入驻经纪人','申请入驻服务商','申请入驻合伙人']
-      this.setData({ title: arr[options.type], type: Number(options.type) + 1 })
+      let arr = ['','申请入驻主播','申请入驻经纪人','申请入驻服务商','申请入驻合伙人']
+      this.setData({ title: arr[options.type], type: Number(options.type)})
       this.getPageInfo()
     }   
   },
@@ -199,7 +200,7 @@ Page({
         token,
         mobile: cell,
         sms_code: code,
-        type: type,
+        type,
       },
       success: res => {
         console.log(res)
@@ -222,6 +223,10 @@ Page({
                   duration: 1500,
                   mask: true
                 })
+
+                if(type === 1) { // z手动改变
+                  app.globalData.live_status = 1
+                }
 
                 setTimeout(() => {
                   // 此时返回上页 如果再次申请 必然是申请不了的 后台自己判断就行了

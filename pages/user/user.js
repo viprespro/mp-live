@@ -140,6 +140,7 @@ Page({
         var msg = res.data
         that.setData({ loading: false })
         app.globalData.invite_code = msg.invite_code;
+        app.globalData.live_status = msg.live_status
         // console.log(app.globalData.userInfo)
         if (msg.avatar == null) {
           if (app.globalData.userInfo == null) {

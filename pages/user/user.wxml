@@ -47,7 +47,7 @@
     </view>
 
 
-    <view class='profile-wrapper flex-center' bindtap='navLive' wx:if="{{ userMsg.is_live }}">
+    <view class='profile-wrapper flex-center' bindtap='navLive' wx:if="{{ userMsg.type == 1 }}">
       <image src="/images/user/anchor-e.png" style="width:32rpx;height: 30rpx; margin-right: 11rpx;"></image>
       <text class='settled'>主播入口</text>
     </view>
@@ -163,9 +163,9 @@
       </view>
     </view>
 
-    <view hover-class='none' wx:if='{{ userMsg.type != 0 && !userMsg.is_live }}' bindtap="tapToAnchor">
+    <view hover-class='none' wx:if='{{ userMsg.type != 0 && userMsg.type != 1  }}' bindtap="tapToAnchor">
       <view class='appoint-wrapper flex-between bottom'>
-        <view class='left-item flex' wx:if="{{ !userMsg.is_live }}">
+        <view class='left-item flex' wx:if="{{ !userMsg.type != 1 }}">
           <image src="/images/user/03.png" style="width:42rpx;height:36rpx;margin-right:25rpx;"></image>
           我的主播
         </view>

@@ -23,9 +23,9 @@
       </view>
     </view>
 
-    <view class="index-nav">
-      <block wx:for="{{ navList }}" wx:key="id">
-        <view class="nav-item" bindtap="tapItem" data-type="{{ index }}">
+    <view class="index-nav" wx:if="{{ navList.length > 0 }}">
+      <block wx:for="{{ navList }}" wx:key="type">
+        <view class="nav-item" bindtap="tapItem" data-type="{{ item.type }}">
           <image src="{{ item.iconPath }}"></image>
           <text class="txt">{{ item.title }}</text>
         </view>

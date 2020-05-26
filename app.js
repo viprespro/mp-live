@@ -26,9 +26,6 @@ App({
     this.getSysInfo();
     this.getUserInfo()
 
-    // 填写固定的token值
-    // wx.setStorageSync('token', '')
-
     let ops = {
       SDKAppID: 1400310038 // 接入时需要将 0 替换为您的云通信应用的 SDKAppID
     };
@@ -63,8 +60,8 @@ App({
         },
         success: res => {
           console.log(res)
-          let { type } =  res.data
-          this.globalData.type = type
+          let { type,live_status } =  res.data
+          this.globalData.userType = type
         }
       })
     }
@@ -102,6 +99,8 @@ App({
     locte_cate: {}, //用于定位分类栏
     logo: '',
     share_img: '',
-    type: null // 用户身份标识
+    userType: null, // 用户身份标识
+    live_status: '', // live_status 0=可申请 1=审核中 3=直播封禁 4=重复申请
+    reason:'', // 审核被驳回的原因
   },
 })
