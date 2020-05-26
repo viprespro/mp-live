@@ -5,78 +5,80 @@
   </view>
 </cu-custom>
 
-<view class="back-bone">
-  <view class="swiper-wrap">
-    <swiper bindchange="bindChange" indicator-color='#fff' indicator-active-color='#F8B303' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" interval="{{interval}}" duration="{{duration}}">
-      <block wx:for="{{flashList}}" wx:key="goods_id">
-        <swiper-item bindtap="toLive" data-id="{{ item.goods_id }}">
-          <image src="{{ item.flash }}"></image>
-        </swiper-item>
-      </block>
-    </swiper>
+<view class="wrap" wx:if="{{ !loading }}">
+  <view class="back-bone">
+    <view class="swiper-wrap">
+      <swiper bindchange="bindChange" indicator-color='#fff' indicator-active-color='#F8B303' indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" circular="{{circular}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{flashList}}" wx:key="goods_id">
+          <swiper-item bindtap="toLive" data-id="{{ item.goods_id }}">
+            <image src="{{ item.flash }}"></image>
+          </swiper-item>
+        </block>
+      </swiper>
 
-    <view class="cus-indicator" wx:if="{{ flashList.length > 1 }}">
-      <block wx:for="{{ flashList.length }}" wx:key='item'>
-        <view class="item {{ swiperCurIndex == index + 1 ? 'ac' : '' }}"></view>
+      <view class="cus-indicator" wx:if="{{ flashList.length > 1 }}">
+        <block wx:for="{{ flashList.length }}" wx:key='item'>
+          <view class="item {{ swiperCurIndex == index + 1 ? 'ac' : '' }}"></view>
+        </block>
+      </view>
+    </view>
+
+    <view class="index-nav">
+      <block wx:for="{{ navList }}" wx:key="id">
+        <view class="nav-item" bindtap="tapItem" data-type="{{ index }}">
+          <image src="{{ item.iconPath }}"></image>
+          <text class="txt">{{ item.title }}</text>
+        </view>
       </block>
     </view>
+
   </view>
 
-  <view class="index-nav">
-    <block wx:for="{{ navList }}" wx:key="id">
-      <view class="nav-item" bindtap="tapItem" data-type="{{ index }}">
-        <image src="{{ item.iconPath }}"></image>
-        <text class="txt">{{ item.title }}</text>
+  <!-- nav -->
+  <view class="nav">
+    <scroll-view class="scroll-view-H" scroll-x scroll-with-animation='true' scroll-left="{{ scrollLeft }}">
+      <block wx:for='{{ cateList }}' wx:key='id'>
+        <view class="nav-item" bindtap="navTap" data-index='{{ index }}' data-id="{{ item.id }}">
+          <text class="{{ navIndex == index ? 'nav-actived': '' }}">{{ item.name }}</text>
+          <view class="row-bundle" wx:if='{{ navIndex == index }}'></view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <!-- live-list -->
+  <view class="live-list flex-between">
+    <block wx:for='{{ liveList }}' wx:key='number'>
+      <view class="item-wrap">
+        <view class="live-item" bindtap="navDetail" data-live='{{ item.is_live }}' data-number='{{ item.number }}' data-url='{{ item.url }}' data-like="{{ item.like }}">
+          <image src="{{ item.cover }}" class="cover"></image>
+          <view class="status flex-center align-center {{ item.is_live ? 'live' : 'not-live' }}">
+            <image src="{{ item.is_live ? '/images/live/living.png' : '/images/live/display.png' }}"></image>
+            <text class="txt">{{ item.is_live ? '直播中' : '未开播' }}</text>
+          </view>
+
+          <view class="foot flex-between">
+            <view class="left">
+              <image src="{{ item.avatar }}"></image>
+              <view class="ellipsis txt">{{ item.nickname }}</view>
+            </view>
+            <view class="right">
+              <image src="/images/live/like.png"></image>
+              <text class="txt">{{ item.like }}</text>
+            </view>
+          </view>
+        </view>
+        <view class="live-title">
+          <view class="real-content">{{ item.title }}</view>
+        </view>
       </view>
     </block>
   </view>
 
+  <view class="loadmore loading" wx:if="{{ hasMore }}">加载中...</view>
+  <view class="loadmore" wx:if="{{ !hasMore }}">没有更多~</view>
+
 </view>
 
-<!-- nav -->
-<view class="nav">
-  <scroll-view class="scroll-view-H" scroll-x scroll-with-animation='true' scroll-left="{{ scrollLeft }}">
-    <block wx:for='{{ cateList }}' wx:key='id'>
-      <view class="nav-item" bindtap="navTap" data-index='{{ index }}' data-id="{{ item.id }}">
-        <text class="{{ navIndex == index ? 'nav-actived': '' }}">{{ item.name }}</text>
-        <view class="row-bundle" wx:if='{{ navIndex == index }}'></view>
-      </view>
-    </block>
-  </scroll-view>
-</view>
 
-<!-- live-list -->
-<view class="live-list flex-between">
-  <block wx:for='{{ liveList }}' wx:key='number'>
-    <view class="item-wrap">
-      <view class="live-item" bindtap="navDetail" data-live='{{ item.is_live }}' data-number='{{ item.number }}' data-url='{{ item.url }}' data-like="{{ item.like }}">
-        <image src="{{ item.cover }}" class="cover"></image>
-        <view class="status flex-center align-center {{ item.is_live ? 'live' : 'not-live' }}">
-          <image src="{{ item.is_live ? '/images/live/living.png' : '/images/live/display.png' }}"></image>
-          <text class="txt">{{ item.is_live ? '直播中' : '未开播' }}</text>
-        </view>
-
-        <view class="foot flex-between">
-          <view class="left">
-            <image src="{{ item.avatar }}"></image>
-            <view class="ellipsis txt">{{ item.nickname }}</view>
-          </view>
-          <view class="right">
-            <image src="/images/live/like.png"></image>
-            <text class="txt">{{ item.like }}</text>
-          </view>
-        </view>
-      </view>
-      <view class="live-title">
-        <view class="real-content">{{ item.title }}</view>
-      </view>
-    </view>
-  </block>
-</view>
-
-<view class="loadmore loading" wx:if="{{ hasMore }}">加载中...</view>
-<view class="loadmore" wx:if="{{ !hasMore }}">没有更多~</view>
-
-
-<!-- 缺省数据 -->
-<!-- <view class='empty' wx:if='{{ showEmpty }}'>暂无数据~</view> -->
+<p-loading loading="{{ loading }}"></p-loading>

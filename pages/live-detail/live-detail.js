@@ -108,6 +108,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    windowW: app.globalData.windowW,
     fullScreenHeight: app.globalData.screenH,
     headerH: app.globalData.CustomBar,
     follow: true,
@@ -135,6 +136,11 @@ Page({
    */
   onLoad: function(options) {
     that = this;
+
+    wx.showLoading({
+      title: '加载中...',
+    })
+
     console.log(options)
 
     // 获取用户昵称
@@ -185,10 +191,12 @@ Page({
       success: res => {
         console.log(res)
         let {
-          nickname
+          nickname,
+          avatar
         } = res.data
         this.setData({
-          nickname
+          nickname,
+          avatar
         })
       }
     })
@@ -346,6 +354,7 @@ Page({
       curObj.nickname = data.nickname
       curObj.words = data.inputVal
       curObj.color = getRandomFontColor()
+      curObj.avatar = data.avatar
       arr.push(curObj)
       this.setData({
         barrageList: data.barrageList.concat(arr),

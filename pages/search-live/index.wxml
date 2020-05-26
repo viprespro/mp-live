@@ -8,7 +8,7 @@
       <view class='iconfont icon-search'></view>
       <input type='text' value="{{ inputValue }}" placeholder='搜索直播标题或房间号' bindinput='bindInput' placeholder-class='placeholder' bindconfirm="inputSearch" confirm-type='search' name="search"></input>
     </view>
-    <view class='search-text' bindtap='inputSearch' style="top:{{CustomBar + 14}}px">搜索</view>
+    <view class='search-text base-text-color' bindtap='inputSearch'>搜索</view>
   </form>
 
   <!-- <view class='hot-search-wrap'>

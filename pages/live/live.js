@@ -2,6 +2,7 @@ const app = getApp()
 const api = require('../../utils/api-tp.js')
 Page({
   data: {
+    loading: true,
     navIndex: 0,
     liveList: [],
     pageIndex: 1,
@@ -154,9 +155,9 @@ Page({
     let data = this.data
     if (!data.hasMore) return
     let token = wx.getStorageSync('token')
-    wx.showLoading({
-      title: '加载中...',
-    })
+    // wx.showLoading({
+    //   title: '加载中...',
+    // })
     api.get({
       url: '/wxsmall/Live/getList',
       data: {
@@ -169,6 +170,8 @@ Page({
       success: res => {
         console.log(res)
         
+        this.setData({ loading: false})
+
         if(data.pageIndex == 2) {
           // 幻灯片
           let flash = res.flash_list

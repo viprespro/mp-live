@@ -76,6 +76,7 @@ tim.on(TIM.EVENT.MESSAGE_RECEIVED, function(event) {
   // 设置弹幕数据 针对别人发弹幕
   let obj = {}
   obj.nickname = arr[0].nick
+  // bj.avatar = arr[0].avatar
   obj.words = arr[0].payload.text
   obj.color = getRandomFontColor()
   barrageList = [...that.data.barrageList,obj]
@@ -122,6 +123,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    windowW: app.globalData.windowW,
     fullScreenHeight: app.globalData.screenH,
     headerH: app.globalData.CustomBar,
     userId: '', // 用户id
@@ -342,7 +344,7 @@ Page({
 
           let promise = tim.logout();
           promise.then(function (imResponse) {
-            console.log(imResponse.data); // 登出成功
+            console.log(imResponse.data); // 退出
           }).catch(function (imError) {
             console.warn('logout error:', imError);
           });

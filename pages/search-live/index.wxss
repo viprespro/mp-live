@@ -4,6 +4,7 @@ page {
 
 .wrapper {
   margin: 30rpx 25rpx;
+  position: relative;
 }
 
 .wrapper > form {
@@ -12,14 +13,17 @@ page {
 
 .search-text {
   position: absolute;
-  right: 82rpx;
-  top: 30rpx;
-  height: 80rpx;
+  right: 40rpx;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 54rpx;
   width: 120rpx;
   text-align: center;
-  line-height: 80rpx;
+  line-height: 54rpx;
   font-size: 30rpx;
-  color: #f9b303;
+  color: #fff;
+  background: linear-gradient(90deg, rgba(250, 186, 152, 1), rgba(255, 106, 93, 1));
+  border-radius: 27rpx;
 }
 
 .search-box {
@@ -72,9 +76,9 @@ page {
   height: 50rpx;
   line-height: 50rpx;
   text-align: center;
-  background: #E4E4E4;
-  border-radius: 25rpx; 
+  background: #e4e4e4;
+  border-radius: 25rpx;
   font-size: 24rpx;
   margin-bottom: 20rpx;
   margin-right: 20rpx;
-} 
+}

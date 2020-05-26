@@ -222,6 +222,25 @@ live-player {
   border-radius: 10rpx;
 }
 
+.outer .barrage .barrage-item  .item-wrap {
+  border-radius:15rpx;display:inline-block;padding:10rpx;background:rgba(0,0,0,.3)
+}
+
+.outer .barrage .barrage-item  .item-wrap .avatar {
+  width: 46rpx;height:46rpx; vertical-align:top; display: inline-block;margin-right:4rpx;
+  border-radius: 50%;
+}
+
+.outer .barrage .barrage-item  .item-wrap .item-nickname {
+  max-width:90rpx;overflow:hidden;
+  line-height:46rpx;display:inline-block;
+}
+
+.outer .barrage .barrage-item  .item-wrap .item-words {
+  display:inline-block;line-height:46rpx;margin-left: 15rpx;word-break:break-all;white-space:nowrap;color:#fff;font-size:26rpx;overflow-x: scroll;
+}
+
+
 .left-input {
   width: 12%;
   z-index: 9999;

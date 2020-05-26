@@ -1,5 +1,5 @@
 <!-- mode: HD-> 使用高清模式 -->
-<live-pusher id="pusher" beauty='6' whiteness='6'  url="{{ info.url }}" mode="FHD" autopush bindstatechange="statechange" style='width:100%;height:{{ fullScreenHeight }}px' />
+<live-pusher id="pusher" beauty='9' whiteness='9'  url="{{ info.url }}" mode="FHD" autopush bindstatechange="statechange" style='width:100%;height:{{ fullScreenHeight }}px' />
 
 <!-- send barrage -->
 <input hidden="{{ !showInput }}" focus="{{ focus }}" placeholder-class="holder-class" placeholder='说点什么吧...' bindblur="bindBlur" value="{{ inputVal }}" class="send-barrage" bindinput="bindInput"></input>
@@ -43,9 +43,10 @@
     <cover-view class="item-outer">
       <block wx:for='{{ barrageList }}'>
       <cover-view class="barrage-item">
-        <cover-view style="border-radius:15rpx;display:inline-block;padding:10rpx;background:rgba(0,0,0,.3)">
-          <cover-view style="color:{{ item.color }}">{{ item.nickname }}</cover-view>
-          <cover-view style="line-height:1.75;word-break:break-all;white-space:pre-wrap;color:#fff;font-size:26rpx;">{{ item.words}}</cover-view>
+        <cover-view class="item-wrap">
+          <cover-image wx:if="{{ item.avatar }}" src="{{ item.avatar }}" class="avatar"></cover-image>
+          <cover-view class="item-nickname" style="color:{{ item.color }};">{{ item.nickname }}</cover-view>
+          <cover-view class="item-words" style="max-width: {{ windowW -150 }}px;">{{ item.words}}</cover-view>
         </cover-view>
       </cover-view>
     </block>
