@@ -49,7 +49,7 @@ page {
   height: 88rpx;
   line-height: 88rpx;
   color: #fff;
-  background: rgba(253, 211, 37, 1);
+  background: linear-gradient(90deg, rgba(255, 103, 96, 1), rgba(255, 147, 118, 1));
   border-radius: 44rpx;
   text-align: center;
   margin: 48rpx auto 0;

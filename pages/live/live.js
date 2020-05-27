@@ -76,13 +76,16 @@ Page({
     let url = ''
     let { type } = e.currentTarget.dataset
     let { userType, live_status, reason } = app.globalData
-    // console.log(type)
+    // console.log('用户当前身份类型' + userType)
+    // console.log('想要申请类型' + type)
+    // console.log('申请状态' + live_status)
+    // console.log('如果被驳回的原因是' + reason)
     // 申请入驻的条件为 入驻身份不能低于或等于当前身份
     if (userType >= type) {
       $api.msg('入驻身份不能低于当前身份')
       return;
     }
-    if(live_status == 1) { // 入驻主播正在申请中
+    if (live_status == 1 || (live_status == 0  && reason)) { // 入驻主播正在申请中
       url = `/packageB/pages/apply-status/index?status=${live_status}&reason=${reason}`  
     }else {
       url = `/packageB/pages/apply-live/apply-live?type=${type}`
@@ -131,6 +134,8 @@ Page({
     })
 
     this.getList()
+    // 调用getUserInfo接口
+    app.getUserInfo()
     setTimeout(() => {
       wx.stopPullDownRefresh()
     },200)

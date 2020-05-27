@@ -60,8 +60,12 @@ App({
         },
         success: res => {
           console.log(res)
-          let { type,live_status } =  res.data
+          let { type,live_status} =  res.data
           this.globalData.userType = type
+          this.globalData.live_status = live_status
+          if(res.data.hasOwnProperty('reason')) {
+            this.globalData.reason = res.data.reason
+          }
         }
       })
     }

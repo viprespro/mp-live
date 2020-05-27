@@ -12,12 +12,12 @@
 </view>
 
 <!-- 失败 -->
-<view class="desc" wx:if="{{ status == 2 }}">
+<view class="desc" wx:if="{{ status != 1 }}">
   <view class="title">申请被驳回</view>
   <view class="reason">
     {{ reason}}
   </view>
-  <view class="btn" bindtap="tapBack">重新申请</view>
+  <view class="btn" bindtap="tapApply">重新申请</view>
 </view>
 
 <view class="desc" wx:if="{{ status == 1 }}">

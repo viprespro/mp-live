@@ -193,6 +193,10 @@ Page({
       })
       return
     }
+    wx.showLoading({
+      title: '加载中...',
+      mask: true
+    })
     let token = wx.getStorageSync('token')
     api.post({
       url: '/wxsmall/Live/apply',
@@ -205,6 +209,7 @@ Page({
       success: res => {
         console.log(res)
         if(res.code == 0){
+          wx.hideLoading()
           res = res.data
           // 发起支付
           wx.requestPayment({
@@ -216,7 +221,12 @@ Page({
             success(res) {
               console.log(res)
               if (res.errMsg === 'requestPayment:ok') {
-                let title = '已提交，等待后台审核！'
+                let title = ''
+                if(type == 1) {
+                  title = '已提交，等待后台审核！'
+                }else {
+                  title = '已提交'
+                }
                 wx.showToast({
                   title,
                   icon: 'none',

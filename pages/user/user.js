@@ -139,8 +139,14 @@ Page({
         console.log(res)
         var msg = res.data
         that.setData({ loading: false })
+        // 全局设置状态
+        app.globalData.userType = msg.type
         app.globalData.invite_code = msg.invite_code;
         app.globalData.live_status = msg.live_status
+        
+        if(msg.hasOwnProperty('reason')) {
+          app.globalData.reason = msg.reason
+        }
         // console.log(app.globalData.userInfo)
         if (msg.avatar == null) {
           if (app.globalData.userInfo == null) {
