@@ -1,5 +1,5 @@
 <!-- mode: HD-> 使用高清模式 -->
-<live-pusher id="pusher" beauty='9' whiteness='9'  url="{{ info.url }}" mode="FHD" autopush bindstatechange="statechange" style='width:100%;height:{{ fullScreenHeight }}px' />
+<live-pusher id="pusher" beauty='9' whiteness='9' url="{{ info.url }}" mode="FHD" autopush bindstatechange="statechange" style='width:100%;height:{{ fullScreenHeight }}px' />
 
 <!-- send barrage -->
 <input hidden="{{ !showInput }}" focus="{{ focus }}" placeholder-class="holder-class" placeholder='说点什么吧...' bindblur="bindBlur" value="{{ inputVal }}" class="send-barrage" bindinput="bindInput"></input>
@@ -15,6 +15,7 @@
     </cover-view>
   </cover-view>
 
+  <!-- 直播信息 -->
   <cover-view class="anchor-info">
     <cover-view class="left">
       <cover-image src='{{ info.live_user.avatar }}' class="avatar"></cover-image>
@@ -33,23 +34,33 @@
   </cover-view>
 
 
-  <!-- 主推商品链接 -->
-  <cover-view class="main-goods" catchtap="toDetail" data-id="{{ main_goods.id }}">
-    <cover-image src="{{ main_goods.cover }}" style="width:180rpx;height:180rpx;border-radius:15rpx;"></cover-image>
-  </cover-view>
+   <!-- 观看人数 -->
+    <cover-view class="watcher">
+      观看人数: {{ online || '50'}}
+    </cover-view>
 
-   <!-- Barrage -->
+    <!-- 主推商品链接 -->
+    <cover-view class="main-goods" catchtap="toDetail" data-id="{{ main_goods.id }}">
+      <cover-image wx:if="{{ main_goods.cover }}" src="{{ main_goods.cover }}" style="width:168rpx;height:168rpx;border-radius:15rpx;"></cover-image>
+    </cover-view>
+
+   <!-- 提示sb进入直播间 -->
+    <cover-view class="tips" wx:if="{{ showTips }}">
+      <cover-view>{{ coming_tips }}</cover-view>
+    </cover-view>
+
+  <!-- Barrage -->
   <cover-view class="barrage" catchtouchmove="preventDefault" scroll-top="{{ scrollTop }}">
     <cover-view class="item-outer">
       <block wx:for='{{ barrageList }}'>
-      <cover-view class="barrage-item">
-        <cover-view class="item-wrap">
-          <cover-image wx:if="{{ item.avatar }}" src="{{ item.avatar }}" class="avatar"></cover-image>
-          <cover-view class="item-nickname" style="color:{{ item.color }};">{{ item.nickname }}</cover-view>
-          <cover-view class="item-words" style="max-width: {{ windowW -150 }}px;">{{ item.words}}</cover-view>
+        <cover-view class="barrage-item">
+          <cover-view class="item-wrap">
+            <cover-image wx:if="{{ item.avatar }}" src="{{ item.avatar }}" class="avatar"></cover-image>
+            <cover-view class="item-nickname" style="color:{{ item.color }};">{{ item.nickname }}</cover-view>
+            <cover-view class="item-words" style="max-width: {{ windowW -150 }}px;">{{ item.words}}</cover-view>
+          </cover-view>
         </cover-view>
-      </cover-view>
-    </block>
+      </block>
     </cover-view>
   </cover-view>
 
@@ -92,13 +103,13 @@
   <cover-view class="item-list">
     <block wx:for='{{ goodsList }}' wx:key='{{ item.id }}'>
       <cover-view class="item flex">
-      <cover-image src="{{ item.cover }}" class="goods-img"></cover-image>
-      <cover-view class="info flex">
-        <cover-view class="goods-title">{{ item.goods_name }}</cover-view>
-        <cover-view class="price">￥{{ item.price }}</cover-view>
+        <cover-image src="{{ item.cover }}" class="goods-img"></cover-image>
+        <cover-view class="info flex">
+          <cover-view class="goods-title">{{ item.goods_name }}</cover-view>
+          <cover-view class="price">￥{{ item.price }}</cover-view>
+        </cover-view>
+        <button class="btn" catchtap="navPurchase" data-id="{{ item.id }}">去购买</button>
       </cover-view>
-      <button class="btn" catchtap="navPurchase" data-id="{{ item.id }}">去购买</button>
-    </cover-view>
     </block>
   </cover-view>
 

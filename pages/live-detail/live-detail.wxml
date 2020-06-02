@@ -7,12 +7,14 @@
 
   <cover-view style="width:100%;height:{{ fullScreenHeight }}px" class="outer" catchtap="hideGoods">
 
+    <!-- 返回图标 -->
     <cover-view style="height:{{ headerH }}px" class="back">
       <cover-view class="icon" bindtap="backTap">
         <cover-image src="/images/back.png" class="back-icon"></cover-image>
       </cover-view>
     </cover-view>
 
+    <!-- 主播信息 -->
     <cover-view class="anchor-info">
       <cover-view class="left">
         <cover-image wx:if="{{ other_info.live_user.avatar }}" src='{{ other_info.live_user.avatar}}' class="avatar"></cover-image>
@@ -32,15 +34,26 @@
       </cover-view>
     </cover-view>
 
+    <!-- 观看人数 -->
+    <cover-view class="watcher">
+      观看人数: {{ online || '50'}}
+    </cover-view>
+
     <!-- 主推商品链接 -->
     <cover-view class="main-goods" catchtap="toDetail" data-id="{{ main_goods.id }}">
       <cover-image wx:if="{{ main_goods.cover }}" src="{{ main_goods.cover }}" style="width:168rpx;height:168rpx;border-radius:15rpx;"></cover-image>
     </cover-view>
 
+
+    <!-- 提示sb进入直播间 -->
+    <!-- <cover-view class="tips" wx:if="{{ showTips }}">
+      <cover-view>{{ coming_tips }}</cover-view>
+    </cover-view> -->
+
     <!-- Barrage -->
     <cover-view class="barrage" style="width: {{ windowW - 50}}px" catchtouchmove="preventDefault" scroll-top="{{ scrollTop }}">
       <cover-view class="item-outer">
-        <block wx:for='{{ barrageList }}'>
+        <block wx:for='{{ barrageList }}' wx:key="index">
           <cover-view class="barrage-item">
             <cover-view class="item-wrap">
               <cover-image wx:if="{{ item.avatar }}" src="{{ item.avatar }}" class="avatar"></cover-image>
@@ -110,7 +123,7 @@
     </cover-view>
 
     <cover-view class="item-list">
-      <block wx:for='{{ goodsList }}' wx:key='{{ item.id }}'>
+      <block wx:for='{{ goodsList }}' wx:key='id'>
         <cover-view class="item flex">
           <cover-image src="{{ item.cover }}" class="goods-img"></cover-image>
           <cover-view class="info flex">

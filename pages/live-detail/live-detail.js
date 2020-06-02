@@ -3,7 +3,9 @@ const app = getApp()
 const api = require('../../utils/api-tp.js')
 import TIM from 'tim-wx-sdk';
 let barrageList = []
-var that;
+let coming_tips = '' // 进入直播间的一个提示
+let showTips = false
+let that;
 let ops = {
   SDKAppID: 1400366158 // 接入时需要将 0 替换为您的云通信应用的 SDKAppID
 };
@@ -30,6 +32,14 @@ tim.on(TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED, function(event) {
   // event.data.type - 群系统通知的类型，详情请参见 GroupSystemNoticePayload 的 <a href="https://imsdk-1252463788.file.myqcloud.com/IM_DOC/Web/Message.html#.GroupSystemNoticePayload"> operationType 枚举值说明</a>
   // event.data.message - Message 对象，可将 event.data.message.content 渲染到到页面
   console.log(event)
+  // 获取提示信息
+  // if(event.data.message.payload) {
+  //   coming_tips = event.data.message.payload.userDefinedField  // 数据如：Ares进入了直播间
+  //   that.setData({ coming_tips, showTips: true })
+  //   setTimeout(() => {
+  //     that.setData({ showTips: false })
+  //   },2000)
+  // }
 });
 
 tim.on(TIM.EVENT.ERROR, function(event) {
@@ -60,13 +70,15 @@ tim.on(TIM.EVENT.MESSAGE_RECEIVED, function(event) {
   // console.log(event.data[0].payload.text)
 
   // 设置弹幕数据 针对别人发弹幕
-  let obj = {}
-  obj.nickname = arr[0].nick
-  obj.words = arr[0].payload.text
-  obj.color = getRandomFontColor()
-  barrageList = [...that.data.barrageList, obj]
-  that.setData({ barrageList })
-  setScrollTop();
+  if (arr[0].nick) {
+    let obj = {}
+    obj.nickname = arr[0].nick
+    obj.words = arr[0].payload.text
+    obj.color = getRandomFontColor()
+    barrageList = [...that.data.barrageList, obj]
+    that.setData({ barrageList })
+    setScrollTop();
+  }
 });
 
 /**
@@ -129,12 +141,16 @@ Page({
     nickname: '', // 当前用户昵称
     scrollTop: '', // 设置cover-view 设置顶部滚动的偏移量
     count: 0, // 点赞数
+    online: '',
+    showTips: false, // 是否显示某个人加入进入直播间
+    coming_tips: ''
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function(options) {
+    wx.showLoading({
+      title: '加载中...',
+    })
+
     that = this;
 
     wx.showLoading({
@@ -320,10 +336,25 @@ Page({
         });
         promise.then(function(imResponse) {
           console.log(imResponse.data); // 登录成功
+          wx.hideLoading()
+          // 用户端模拟发送
+          setTimeout(() => {
+            let arr = []
+            let curObj = {}
+            curObj.nickname = data.nickname
+            curObj.words = '进入了直播间'
+            curObj.color = getRandomFontColor()
+            curObj.avatar = data.avatar
+            arr.push(curObj)
+            that.setData({
+              barrageList: data.barrageList.concat(arr),
+            })
+            // 设置scrollTop的值
+            setScrollTop()
+          }, 500)
         }).catch(function(imError) {
           console.warn('login error:', imError); // 登录失败的相关信息
         });
-
         this.setData({
           userId: res.userid,
           groupId: res.groupid,
@@ -331,6 +362,7 @@ Page({
           other_info: res,
           follow: res.is_follow,
           main_goods: res.main_goods,
+          online: res.online
         })
       }
     })

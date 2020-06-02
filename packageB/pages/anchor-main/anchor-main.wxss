@@ -3,6 +3,42 @@ page {
   overflow: hidden;
 }
 
+.watcher {
+  color: #fff;
+  margin-top: 15rpx;
+  text-align: right;
+  padding: 0 24rpx;
+  font-size: 20rpx;
+}
+
+.tips {
+  position: absolute;
+  top: 598rpx;
+  left: 0;
+  width: 320rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 0 33rpx 33rpx 0;
+  color: #fff;
+  font-size: 24rpx;
+  background: #EF7471;
+  opacity: .4;
+  padding: 0 24rpx;
+  display: flex;
+  align-items: center;
+}
+
+.tips .avatar-img {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+
 live-player {
   z-index: 99999;
   position: relative;

@@ -3,6 +3,41 @@ page {
   overflow: hidden;
 }
 
+.watcher {
+  color: #fff;
+  margin-top: 15rpx;
+  text-align: right;
+  padding: 0 24rpx;
+  font-size: 20rpx;
+}
+
+.tips {
+  position: absolute;
+  top: 598rpx;
+  left: 0;
+  width: 346rpx;
+  height: 66rpx;
+  line-height: 66rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  border-radius: 0 33rpx 33rpx 0;
+  color: #fff;
+  font-size: 24rpx;
+  background: #EF7471;
+  opacity: .4;
+  padding: 0 24rpx;
+  display: flex;
+  align-items: center;
+}
+
+.tips .avatar-img {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
 live-player {
   z-index: 99;
   position: relative;
@@ -73,7 +108,7 @@ live-player {
 }
 
 .outer .anchor-info .left .mid .nickname {
-  max-width: 300rpx;
+  max-width: 180rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -215,6 +250,7 @@ live-player {
   bottom: 140rpx;
   overflow-y: scroll;
   background: transparent;
+  /* background: green; */
 }
 
 .outer .barrage .barrage-item {
@@ -223,23 +259,38 @@ live-player {
 }
 
 .outer .barrage .barrage-item  .item-wrap {
-  border-radius:15rpx;display:inline-block;padding:10rpx;background:rgba(0,0,0,.3)
+  border-radius: 15rpx;
+  display: inline-block;
+  padding: 10rpx;
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .outer .barrage .barrage-item  .item-wrap .avatar {
-  width: 46rpx;height:46rpx; vertical-align:top; display: inline-block;margin-right:4rpx;
+  width: 46rpx;
+  height: 46rpx;
+  vertical-align: top;
+  display: inline-block;
+  margin-right: 4rpx;
   border-radius: 50%;
 }
 
 .outer .barrage .barrage-item  .item-wrap .item-nickname {
-  max-width:90rpx;overflow:hidden;
-  line-height:46rpx;display:inline-block;
+  max-width: 90rpx;
+  overflow: hidden;
+  line-height: 46rpx;
+  display: inline-block;
 }
 
 .outer .barrage .barrage-item  .item-wrap .item-words {
-  display:inline-block;line-height:46rpx;margin-left: 15rpx;word-break:break-all;white-space:nowrap;color:#fff;font-size:26rpx;overflow-x: scroll;
+  display: inline-block;
+  line-height: 46rpx;
+  margin-left: 15rpx;
+  word-break: break-all;
+  white-space: nowrap;
+  color: #fff;
+  font-size: 26rpx;
+  overflow-x: scroll;
 }
-
 
 .left-input {
   width: 12%;

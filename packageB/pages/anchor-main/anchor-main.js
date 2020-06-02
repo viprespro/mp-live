@@ -4,7 +4,9 @@ const api = require('../../../utils/api-tp.js')
 const Config = require('../../../config.js')
 import TIM from 'tim-wx-sdk';
 let barrageList = []
-var that;
+let coming_tips = '' // 进入直播间的一个提示
+let showTips = false
+let that;
 let ops = {
   SDKAppID: 1400366158 // 接入时需要将 0 替换为您的云通信应用的 SDKAppID
 };
@@ -43,6 +45,11 @@ tim.on(TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED, function(event) {
   // event.data.type - 群系统通知的类型，详情请参见 GroupSystemNoticePayload 的 <a href="https://imsdk-1252463788.file.myqcloud.com/IM_DOC/Web/Message.html#.GroupSystemNoticePayload"> operationType 枚举值说明</a>
   // event.data.message - Message 对象，可将 event.data.message.content 渲染到到页面
   console.log(event)
+  // 获取提示信息
+  if (event.data.message.payload) {
+    coming_tips = event.data.message.payload.userDefinedField  // 数据如：Ares进入了直播间
+    that.setData({ coming_tips, showTips: true })
+  }
 });
 
 tim.on(TIM.EVENT.ERROR, function(event) {
@@ -74,15 +81,17 @@ tim.on(TIM.EVENT.MESSAGE_RECEIVED, function(event) {
   // console.log(event.data[0].payload.text)
 
   // 设置弹幕数据 针对别人发弹幕
-  let obj = {}
-  obj.nickname = arr[0].nick
-  // bj.avatar = arr[0].avatar
-  obj.words = arr[0].payload.text
-  obj.color = getRandomFontColor()
-  barrageList = [...that.data.barrageList,obj]
-  that.setData({ barrageList})
-  setScrollTop();
+  if (arr[0].nick) {
+    let obj = {}
+    obj.nickname = arr[0].nick
+    obj.words = arr[0].payload.text
+    obj.color = getRandomFontColor()
+    barrageList = [...that.data.barrageList, obj]
+    that.setData({ barrageList })
+    setScrollTop();
+  }
 });
+
 
 /**
  * 让用户每次发送的数据都能显示在最底部
@@ -137,7 +146,9 @@ Page({
     hasMore: true,
     showGoodsInfo: false,
     showEmpty: false, // 是否展示缺省提示
-    ids: '' // 已经选中的商品id
+    ids: '', // 已经选中的商品id
+    showTips: false, // 是否显示某个人加入进入直播间
+    coming_tips: ''
   },
 
   /**
@@ -270,7 +281,8 @@ Page({
         if (res.code == 0) { // 推流信息
           that.setData({
             info: res.data,
-            main_goods: res.data.main_goods
+            main_goods: res.data.main_goods,
+            online: res.online
           })
 
           console.log(res)

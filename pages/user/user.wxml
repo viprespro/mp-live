@@ -156,7 +156,7 @@
     <view hover-class='none' wx:if="{{ userMsg.type == 1 }}" bindtap="tapToSuper">
       <view class='appoint-wrapper flex-between bottom'>
         <view class='left-item flex'>
-          <image src="/images/user/07.png" style="width:42rpx;height:42rpx;margin-right:25rpx;"></image>
+          <image src="/images/user/09.png" style="width:42rpx;height:42rpx;margin-right:25rpx;"></image>
           我的推荐人
         </view>
         <text class='iconfont icon-forward'></text>
@@ -176,7 +176,7 @@
     <view hover-class='none' wx:if='{{ userMsg.type != 0  }}' bindtap="tapToTeam">
       <view class='appoint-wrapper flex-between bottom'>
         <view class='left-item flex' wx:if="{{ !userMsg.type != 1 }}">
-          <image src="/images/user/03.png" style="width:42rpx;height:36rpx;margin-right:25rpx;"></image>
+          <image src="/images/user/10.png" style="width:38rpx;height:38rpx;margin-right:25rpx;"></image>
           我的团队
         </view>
         <text class='iconfont icon-forward'></text>
