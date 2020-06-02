@@ -24,7 +24,11 @@ Page({
       },
       success: res => {
         console.log(res)
-        this.setData({ info: res.data })
+        if(res.data.length == 0) {
+          wx.navigateBack({ delta: 1 })
+        }else{
+          this.setData({ info: res.data })
+        }
       }
     })
   },

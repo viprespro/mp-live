@@ -124,6 +124,13 @@
 					"id": -1,
 					"name": "packageB/pages/choose-product/index",
 					"pathName": "packageB/pages/choose-product/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packageB/pages/team/team",
+					"pathName": "packageB/pages/team/team",
 					"scene": null
 				}
 			]

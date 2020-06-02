@@ -93,7 +93,8 @@
         "pages/super/super",
         "pages/anchor/anchor",
         "pages/choose-product/index",
-        "pages/explain/explain"
+        "pages/explain/explain",
+        "pages/team/team"
       ]
     }
   ],

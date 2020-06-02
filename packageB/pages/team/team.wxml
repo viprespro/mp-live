@@ -1,0 +1,45 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">我的团队</view>
+</cu-custom>
+
+<view class="wrap" style="display:flex; flex-direction: column;height: 100%;">
+  <block wx:for="{{ list }}" wx:key="avatar"> 
+    <view class="main">
+    <view class="info flex">
+      <view class="left flex">
+        <image src="{{ item.avatar }}"></image>
+        <view class="details">
+          <view class="flex" style="align-items: center" wx:if="{{ item.nickname }}">
+            <image class="img" wx:if="{{ item.gender == 0}}" src="/packageB/imgs/unknow.png"></image>
+            <image class="img" wx:if="{{ item.gender == 1}}" src="/packageB/imgs/man.png"></image>
+            <image class="img" wx:if="{{ item.gender == 2}}" src="/packageB/imgs/sex.png"></image>
+            <text style="color: #fff;">{{ item.nickname }}</text>
+          </view>
+          <view class="flex" style="align-items: center" wx:if="{{ item.mobile }}">
+            <image style="width:23rpx;height: 23rpx;margin-right: 10rpx;" src="/packageB/imgs/cell.png"></image>
+            <text style="color: #fff;">{{ item.mobile }}</text>
+          </view>
+        </view>
+      </view>
+      <view class="right" wx:if="{{ item.type == 2 || item.type == 3 || item.type == 4 }}" >
+        <view wx:if="{{ item.type == 2}}" class="item">
+          <image src="/packageB/imgs/jjr.png"></image>
+          <text>经纪人</text>
+        </view>
+        <view wx:if="{{ item.type == 3}}" class="item">
+          <image src="/packageB/imgs/service.png"></image>
+          <text>服务商</text>
+        </view>
+        <view wx:if="{{ item.type == 4}}" class="item">
+          <image src="/packageB/imgs/hhr.png"></image>
+          <text>合伙人</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  </block>
+
+  <view class="bot" style="flex: 1">
+
+  </view>
+</view>

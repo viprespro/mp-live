@@ -47,7 +47,7 @@
     </view>
 
 
-    <view class='profile-wrapper flex-center' bindtap='navLive' wx:if="{{ userMsg.type == 1 }}">
+    <view class='profile-wrapper flex-center' bindtap='navLive' wx:if="{{ userMsg.type != 0 }}">
       <image src="/images/user/anchor-e.png" style="width:32rpx;height: 30rpx; margin-right: 11rpx;"></image>
       <text class='settled'>主播入口</text>
     </view>
@@ -157,7 +157,7 @@
       <view class='appoint-wrapper flex-between bottom'>
         <view class='left-item flex'>
           <image src="/images/user/07.png" style="width:42rpx;height:42rpx;margin-right:25rpx;"></image>
-          我的上級
+          我的推荐人
         </view>
         <text class='iconfont icon-forward'></text>
       </view>
@@ -173,6 +173,15 @@
       </view>
     </view>
 
+    <view hover-class='none' wx:if='{{ userMsg.type != 1  }}' bindtap="tapToTeam">
+      <view class='appoint-wrapper flex-between bottom'>
+        <view class='left-item flex' wx:if="{{ !userMsg.type != 1 }}">
+          <image src="/images/user/03.png" style="width:42rpx;height:36rpx;margin-right:25rpx;"></image>
+          我的团队
+        </view>
+        <text class='iconfont icon-forward'></text>
+      </view>
+    </view>
 
     <navigator url='/packageB/pages/gifts/gifts' hover-class='none' wx:if="{{ userMsg.type != 0 }}">
       <view class='appoint-wrapper flex-between bottom'>

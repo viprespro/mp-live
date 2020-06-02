@@ -21,6 +21,14 @@ Page({
   onLoad: function(options) {
   },
 
+  /**
+   * @desc 页面跳转到我的团队
+   */
+  tapToTeam() {
+    let url = `/packageB/pages/team/team`
+    wx.navigateTo({ url })
+  },
+
   toExplain() {
     let url = `/packageB/pages/explain/explain`
     wx.navigateTo({ url })
