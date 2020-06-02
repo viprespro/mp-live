@@ -25,7 +25,14 @@ Page({
       success: res => {
         console.log(res)
         if(res.data.length == 0) {
-          wx.navigateBack({ delta: 1 })
+          wx.showToast({
+            title: '无推荐人',
+            icon: 'none',
+            duration: 1500
+          })
+          setTimeout(() => {
+            wx.navigateBack({ delta: 1 })
+          },1500)
         }else{
           this.setData({ info: res.data })
         }

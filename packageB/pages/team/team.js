@@ -34,6 +34,16 @@ Page({
         res = res.data
         let len = res.length
         let moreFlag = true
+        if(index == 1 && !len) {
+          wx.showToast({
+            title: '暂无团队',
+            icon: 'none',
+            duration: 1500
+          })
+          setTimeout(() => {
+            wx.navigateBack({ delta: 1 })
+          },2000)
+        }
         if(len < size) {
           moreFlag = false
         }

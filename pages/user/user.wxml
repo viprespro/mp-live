@@ -173,7 +173,7 @@
       </view>
     </view>
 
-    <view hover-class='none' wx:if='{{ userMsg.type != 1  }}' bindtap="tapToTeam">
+    <view hover-class='none' wx:if='{{ userMsg.type != 0  }}' bindtap="tapToTeam">
       <view class='appoint-wrapper flex-between bottom'>
         <view class='left-item flex' wx:if="{{ !userMsg.type != 1 }}">
           <image src="/images/user/03.png" style="width:42rpx;height:36rpx;margin-right:25rpx;"></image>
