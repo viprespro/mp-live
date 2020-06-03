@@ -3,8 +3,6 @@ const app = getApp()
 const api = require('../../utils/api-tp.js')
 import TIM from 'tim-wx-sdk';
 let barrageList = []
-let coming_tips = '' // 进入直播间的一个提示
-let showTips = false
 let that;
 let ops = {
   SDKAppID: 1400366158 // 接入时需要将 0 替换为您的云通信应用的 SDKAppID
@@ -32,14 +30,31 @@ tim.on(TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED, function(event) {
   // event.data.type - 群系统通知的类型，详情请参见 GroupSystemNoticePayload 的 <a href="https://imsdk-1252463788.file.myqcloud.com/IM_DOC/Web/Message.html#.GroupSystemNoticePayload"> operationType 枚举值说明</a>
   // event.data.message - Message 对象，可将 event.data.message.content 渲染到到页面
   console.log(event)
-  // 获取提示信息
-  // if(event.data.message.payload) {
-  //   coming_tips = event.data.message.payload.userDefinedField  // 数据如：Ares进入了直播间
-  //   that.setData({ coming_tips, showTips: true })
-  //   setTimeout(() => {
-  //     that.setData({ showTips: false })
-  //   },2000)
-  // }
+  if (event.data.message.payload) {
+    let temp = event.data.message.payload.userDefinedField  // 数据如：Ares进入了直播间
+    // 系统消息区分是观看人数还是进入直播间的提示
+    if (temp.indexOf('online_') === -1) { // 进入直播间的提示
+      let obj = {}
+      if (temp.indexOf('进') > -1) {
+        let index = temp.indexOf('进')
+        let nickname = temp.substr(0, index)
+        let strWithNoNickname = temp.substr(index)
+        obj.nickname = nickname
+        obj.words = strWithNoNickname
+      } else {
+        obj.nickname = ''
+        obj.words = temp
+      }
+      obj.color = getRandomFontColor()
+      barrageList = [...that.data.barrageList, obj]
+      that.setData({ barrageList })
+      setScrollTop();
+    } else {  // 观看人数
+      let index = temp.indexOf('_')
+      let final = temp.substr(index + 1)
+      that.setData({ online_people: final })
+    }
+  }
 });
 
 tim.on(TIM.EVENT.ERROR, function(event) {
@@ -143,22 +158,14 @@ Page({
     count: 0, // 点赞数
     online: '',
     showTips: false, // 是否显示某个人加入进入直播间
-    coming_tips: ''
+    online_people: '', // 观看人数 
   },
 
   onLoad: function(options) {
     wx.showLoading({
       title: '加载中...',
     })
-
     that = this;
-
-    wx.showLoading({
-      title: '加载中...',
-    })
-
-    console.log(options)
-
     // 获取用户昵称
     that.getUserInfo()
 
@@ -194,7 +201,7 @@ Page({
 
 
   preventDefault(e) {
-    console.log(e)
+    return;
   },
 
   getUserInfo() {
@@ -311,7 +318,7 @@ Page({
         if (res.code == 1) {
           wx.showToast({
             title: res.message,
-            duration: 1500,
+            duration: 2000,
             icon: 'none'
           })
           setTimeout(() => {
@@ -325,7 +332,7 @@ Page({
                 url: '/pages/live/live',
               })
             }
-          }, 1500)
+          }, 2000)
           return;
         }
         res = res.data
@@ -337,21 +344,14 @@ Page({
         promise.then(function(imResponse) {
           console.log(imResponse.data); // 登录成功
           wx.hideLoading()
-          // 用户端模拟发送
-          setTimeout(() => {
-            let arr = []
-            let curObj = {}
-            curObj.nickname = data.nickname
-            curObj.words = '进入了直播间'
-            curObj.color = getRandomFontColor()
-            curObj.avatar = data.avatar
-            arr.push(curObj)
-            that.setData({
-              barrageList: data.barrageList.concat(arr),
-            })
-            // 设置scrollTop的值
-            setScrollTop()
-          }, 500)
+          // 用户端模拟发送 后备使用这种方式
+          let obj = {}
+          obj.nickname = data.nickname
+          obj.words = '进入了直播间'
+          obj.color = getRandomFontColor()
+          barrageList = [...that.data.barrageList, obj]
+          that.setData({ barrageList })
+          setScrollTop();
         }).catch(function(imError) {
           console.warn('login error:', imError); // 登录失败的相关信息
         });
@@ -362,7 +362,7 @@ Page({
           other_info: res,
           follow: res.is_follow,
           main_goods: res.main_goods,
-          online: res.online
+          online_people: res.online
         })
       }
     })
@@ -395,8 +395,6 @@ Page({
       // 设置scrollTop的值
       setScrollTop()
     }, 500)
-
-
 
     // 1. 创建消息实例，接口返回的实例可以上屏
     let message = tim.createTextMessage({
@@ -467,6 +465,25 @@ Page({
   },
 
   backTap() {
+    // 退出IM服务器
+    let promise = tim.logout();
+    promise.then(function (imResponse) {
+      console.log(imResponse.data); // 登出成功
+      // 访问接口 后端调用IM发送系统消息
+      api.post({
+        url: '/wxsmall/Live/exitLiveByUser',
+        data: {
+          number: that.data.number
+        },
+        success: res => {
+          console.log(res)
+        }
+      })
+
+    }).catch(function (imError) {
+      console.warn('logout error:', imError);
+    });
+
     wx.navigateBack({
       delta: 1
     })
@@ -506,13 +523,8 @@ Page({
     // 设置屏幕亮度 0-1范围
     wx.setScreenBrightness({ value: .8 })
   },
+
   onUnload() {
-    // 隐藏退出登录
-    let promise = tim.logout();
-    promise.then(function (imResponse) {
-      console.log(imResponse.data); // 登出成功
-    }).catch(function (imError) {
-      console.warn('logout error:', imError);
-    });
-  }
+    that.backTap()
+  },
 })

@@ -36,7 +36,11 @@
         <view class='name-col'>
           <text class='nick'>{{userMsg.nickname}}</text>
         </view>
-        <view>{{userMsg.mobile}}</view>
+        <!-- <view>{{userMsg.mobile}}</view> -->
+        <view class="follow-fans">
+          <view class="follows item" bindtap="handleTap" data-type="1">{{ userMsg.follow_total || '0' }} 关注</view>
+          <view class="fans item" bindtap="handleTap" data-type="0">{{ userMsg.fans_total || '0'  }} 粉丝</view>
+        </view>
       </view>
     </view>
 
@@ -153,7 +157,7 @@
       </view>
     </navigator>
 
-    <view hover-class='none' wx:if="{{ userMsg.type == 1 }}" bindtap="tapToSuper">
+    <view hover-class='none' bindtap="tapToSuper">
       <view class='appoint-wrapper flex-between bottom'>
         <view class='left-item flex'>
           <image src="/images/user/09.png" style="width:42rpx;height:42rpx;margin-right:25rpx;"></image>
@@ -163,7 +167,7 @@
       </view>
     </view>
 
-    <view hover-class='none' wx:if='{{ userMsg.type != 0 && userMsg.type != 1  }}' bindtap="tapToAnchor">
+    <!-- <view hover-class='none' wx:if='{{ userMsg.type != 0 && userMsg.type != 1  }}' bindtap="tapToAnchor">
       <view class='appoint-wrapper flex-between bottom'>
         <view class='left-item flex' wx:if="{{ !userMsg.type != 1 }}">
           <image src="/images/user/03.png" style="width:42rpx;height:36rpx;margin-right:25rpx;"></image>
@@ -171,7 +175,7 @@
         </view>
         <text class='iconfont icon-forward'></text>
       </view>
-    </view>
+    </view> -->
 
     <view hover-class='none' wx:if='{{ userMsg.type != 0  }}' bindtap="tapToTeam">
       <view class='appoint-wrapper flex-between bottom'>

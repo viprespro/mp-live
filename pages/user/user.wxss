@@ -142,6 +142,28 @@ page {
   flex: 1;
   position: relative;
   padding-right: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.header .name .nick {
+  margin-top: 15rpx;
+}
+
+.header .name .follow-fans {
+  display: flex;
+}
+
+.header .name .follow-fans .item {
+  height: 40rpx;
+  line-height: 40rpx;
+  border-radius: 10rpx;
+  font-size: 24rpx;
+}
+
+.header .name .follow-fans .follows {
+  margin-right: 15rpx;
 }
 
 .nick {

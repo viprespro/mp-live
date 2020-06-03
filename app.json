@@ -94,7 +94,8 @@
         "pages/anchor/anchor",
         "pages/choose-product/index",
         "pages/explain/explain",
-        "pages/team/team"
+        "pages/team/team",
+        "pages/followers-fans/index"
       ]
     }
   ],

@@ -21,6 +21,12 @@ Page({
   onLoad: function(options) {
   },
 
+  handleTap(e) {
+    let { type } = e.currentTarget.dataset
+    let url =  `/packageB/pages/followers-fans/index?type=${type}`
+    wx.navigateTo({ url })
+  },
+
   /**
    * @desc 页面跳转到我的团队
    */

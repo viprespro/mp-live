@@ -4,8 +4,6 @@ const api = require('../../../utils/api-tp.js')
 const Config = require('../../../config.js')
 import TIM from 'tim-wx-sdk';
 let barrageList = []
-let coming_tips = '' // 进入直播间的一个提示
-let showTips = false
 let that;
 let ops = {
   SDKAppID: 1400366158 // 接入时需要将 0 替换为您的云通信应用的 SDKAppID
@@ -47,8 +45,29 @@ tim.on(TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED, function(event) {
   console.log(event)
   // 获取提示信息
   if (event.data.message.payload) {
-    coming_tips = event.data.message.payload.userDefinedField  // 数据如：Ares进入了直播间
-    that.setData({ coming_tips, showTips: true })
+    let temp = event.data.message.payload.userDefinedField  // 数据如：Ares进入了直播间
+    // 系统消息区分是观看人数还是进入直播间的提示
+    if (temp.indexOf('online_') === -1) { // 进入直播间的提示
+      let obj = {}
+      if(temp.indexOf('进') > -1) {
+        let index = temp.indexOf('进')
+        let nickname = temp.substr(0, index)
+        let strWithNoNickname = temp.substr(index)
+        obj.nickname = nickname
+        obj.words = strWithNoNickname
+      }else {
+        obj.nickname = ''
+        obj.words = temp
+      }
+      obj.color = getRandomFontColor()
+      barrageList = [...that.data.barrageList, obj]
+      that.setData({ barrageList })
+      setScrollTop();
+    }else {  // 观看人数
+      let index = temp.indexOf('_')
+      let final = temp.substr(index + 1)
+      that.setData({ online_people: final })
+    }
   }
 });
 
@@ -148,7 +167,7 @@ Page({
     showEmpty: false, // 是否展示缺省提示
     ids: '', // 已经选中的商品id
     showTips: false, // 是否显示某个人加入进入直播间
-    coming_tips: ''
+    online_people: '', // 观看人数 
   },
 
   /**
@@ -161,7 +180,6 @@ Page({
 
     that = this;
     this.ctx = wx.createLivePusherContext('pusher')
-    console.log(options)
     if (options.object) { // 开启直播传递古来直播间的名称和封面图
       let parse = JSON.parse(options.object)
       let { name, cover, ids } = parse

@@ -36,7 +36,7 @@
 
     <!-- 观看人数 -->
     <cover-view class="watcher">
-      观看人数: {{ online || '50'}}
+      观看人数: {{ online_people || '1'}}
     </cover-view>
 
     <!-- 主推商品链接 -->

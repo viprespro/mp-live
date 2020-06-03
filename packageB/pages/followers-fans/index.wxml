@@ -1,0 +1,33 @@
+<cu-custom bgColor="common-base-bg" isBack="{{true}}">
+  <view slot="content" class="common-title-color">{{ title }}</view>
+</cu-custom>
+
+<view class="wrap">
+
+  <view class="list">
+
+    <block wx:for="{{ list }}" wx:key="avatar">
+      <view class="item">
+        <view class="left">
+          <image src="{{ item.avatar }}"></image>
+          <view class="info">
+            <text class="nickname">{{ item.nickname }}</text>
+            <view class="gender">性别：
+              <text wx:if="{{ item.gender == 0}}">未知</text>
+              <text wx:if="{{ item.gender == 1}}">男</text>
+              <text wx:if="{{ item.gender == 2}}">女</text>
+            </view>
+          </view>
+        </view>
+        <view class="right">
+          <view class="txt">{{ item.time }}</view>
+        </view>
+      </view>
+    </block>
+
+    <view class="loadmore loading" wx:if="{{ hasMore }}">加载中...</view>
+    <view class="loadmore" wx:else>没有更多了~</view>
+
+  </view>
+
+</view>

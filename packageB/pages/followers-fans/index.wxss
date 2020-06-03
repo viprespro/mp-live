@@ -1,0 +1,54 @@
+.list {
+  padding: 20rpx 0;
+}
+
+.item {
+  margin: 0 24rpx;
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 15rpx;
+  padding: 15rpx 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.item .left {
+  display: flex;
+  align-items: center;
+}
+
+.item .left > image {
+  width: 64rpx;
+  height: 64rpx;
+  margin-right: 15rpx;
+  border-radius: 50%;
+}
+
+.item .left .info {
+  display: flex;
+  flex-direction: column;
+}
+
+.item .left .info .nickname {
+  font-size: 32rpx;
+  font-weight: 600;
+}
+
+.item .left .info .gender {
+  display: flex;
+  white-space: nowrap;
+  font-size: 26rpx;
+}
+
+.item .right {
+  font-size: 24rpx;
+  color: #999;
+  position: relative;
+}
+
+.item .right .txt {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  white-space: nowrap;
+}
