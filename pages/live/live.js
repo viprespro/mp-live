@@ -1,6 +1,8 @@
 const app = getApp()
 const api = require('../../utils/api-tp.js')
-import { $api } from '../../common/utils.js'
+import {
+  $api
+} from '../../common/utils.js'
 Page({
   data: {
     loading: true,
@@ -27,8 +29,7 @@ Page({
       }
     ],
     cate_id: '',
-    navList: [
-      {
+    navList: [{
         type: 1,
         iconPath: '/images/live/nav01.png',
         title: '入驻主播'
@@ -49,16 +50,55 @@ Page({
         title: '入驻合伙人'
       }
     ],
-    flashList: [] , // 幻灯片
+    flashList: [], // 幻灯片
     swiperCurIndex: 1,
-    left: 100
+    left: 100,
+    // showjoo: 0
   },
 
   onLoad: function() {
+    var e = this;
+    wx.request({
+      url: "https://kebo.weirong100.com/wxsmall/index/api",
+      header: {
+        "content-type": "application/json"
+      },
+      success: function(t) {
+        console.log(t)
+        e.setData({
+          showjoo: t.data.data
+        });
+      }
+    })
     this.getList()
+    if (this.data.showjoo == 0) {
+      this.getNew()
+    }
   },
 
-  bindscroll(e){
+  goDetail: function (e) {
+    let id = e.currentTarget.dataset.id
+    if (id == 0) {
+      return;
+    }
+    wx.navigateTo({
+      url: '/pages/product-detail/index?id=' + id,
+    })
+  },
+
+  getNew: function () {
+    api.post({
+      url: '/wxsmall/index/getRecommendGoods',
+      success: (res) => {
+        console.log(res)
+        this.setData({
+          newList: res.data || []
+        })
+      }
+    })
+  },
+
+  bindscroll(e) {
     console.log(e)
   },
 
@@ -74,8 +114,14 @@ Page({
    */
   tapItem(e) {
     let url = ''
-    let { type } = e.currentTarget.dataset
-    let { userType, live_status, reason } = app.globalData
+    let {
+      type
+    } = e.currentTarget.dataset
+    let {
+      userType,
+      live_status,
+      reason
+    } = app.globalData
     // console.log('用户当前身份类型' + userType)
     // console.log('想要申请类型' + type)
     // console.log('申请状态' + live_status)
@@ -85,19 +131,23 @@ Page({
       $api.msg('入驻身份不能低于当前身份')
       return;
     }
-    if (live_status == 1 || (live_status == 0  && reason)) { // 入驻主播正在申请中
-      url = `/packageB/pages/apply-status/index?status=${live_status}&reason=${reason}`  
-    }else {
+    if (live_status == 1 || (live_status == 0 && reason)) { // 入驻主播正在申请中
+      url = `/packageB/pages/apply-status/index?status=${live_status}&reason=${reason}`
+    } else {
       url = `/packageB/pages/apply-live/apply-live?type=${type}`
     }
-    wx.navigateTo({ url })
+    wx.navigateTo({
+      url
+    })
   },
 
   // 点击幻灯片去直播间
   toLive(e) {
-    let { id } = e.currentTarget.dataset
+    let {
+      id
+    } = e.currentTarget.dataset
     console.log(id)
-    if(id == 0) return
+    if (id == 0) return
     let like;
     let url;
     setTimeout(() => {
@@ -113,7 +163,7 @@ Page({
       let flag = temp.live
       if (!flag) {
         app.msg('当前未开播')
-      }else {
+      } else {
         let number = temp.number
         let url = temp.url
         let like = temp.like
@@ -138,7 +188,7 @@ Page({
     app.getUserInfo()
     setTimeout(() => {
       wx.stopPullDownRefresh()
-    },200)
+    }, 200)
   },
 
   // 导航切换
@@ -183,13 +233,17 @@ Page({
       },
       success: res => {
         console.log(res)
-        
-        this.setData({ loading: false})
 
-        if(data.pageIndex == 2) {
+        this.setData({
+          loading: false
+        })
+
+        if (data.pageIndex == 2) {
           // 幻灯片
           let flash = res.flash_list
-          this.setData({ flashList: flash })
+          this.setData({
+            flashList: flash
+          })
         }
 
         if (data.pageIndex == 2 && !data.reload) {
@@ -232,7 +286,7 @@ Page({
   onReachBottom() {
     this.getList()
   },
-  
+
   onShareAppMessage: function() {
     return {
       title: '华纳播播',
@@ -244,6 +298,6 @@ Page({
           duration: 1500
         })
       }
-    } 
+    }
   }
 })

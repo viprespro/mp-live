@@ -30,7 +30,8 @@
     "navigationBarTextStyle": "white",
     "backgroundColor": "#F5F5F5",
     "navigationStyle": "custom",
-    "backgroundTextStyle": "dark"
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F5F5F5"
   },
   "subPackages": [
     {

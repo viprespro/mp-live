@@ -473,7 +473,8 @@ Page({
       api.post({
         url: '/wxsmall/Live/exitLiveByUser',
         data: {
-          number: that.data.number
+          number: that.data.number,
+          token: wx.getStorageSync('token')
         },
         success: res => {
           console.log(res)
