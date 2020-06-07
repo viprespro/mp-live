@@ -154,6 +154,12 @@
 					"pathName": "pages/live/live",
 					"query": "scene=62335085",
 					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "packageB/pages/create-poster/index",
+					"pathName": "packageB/pages/create-poster/index",
+					"scene": null
 				}
 			]
 		}

@@ -22,7 +22,7 @@ Page({
       app.globalData.openPages = `/pages/product-detail/index?id=${id}`
     }
 
-    // 纯粹邀请绑定关系
+    // 纯粹邀请绑定关系 eg.二维码
     if(e.invite_code) {
       let { invite_code } = e
       app.globalData.invite_code = invite_code
