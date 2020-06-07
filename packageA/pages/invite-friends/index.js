@@ -108,7 +108,7 @@ Page({
     return {
       title: '给你分享小程序啦！！！',
       imageUrl: app.globalData.share_img, //图片地址
-      path: '/pages/load/load?scene=' + app.globalData.invite_code, // 用户点击首先进入的当前页面
+      path: '/pages/load/load?invite_code=' + app.globalData.invite_code, // 用户点击首先进入的当前页面
       success: function(res) {
         // 转发成功
         console.log("转发成功:");

@@ -1,10 +1,10 @@
 {
   "pages": [
     "pages/live/live",
+    "pages/load/load",
     "pages/home/home",
     "pages/before-login/before-login",
     "pages/login/login",
-    "pages/load/load",
     "pages/sort/sort",
     "pages/entrance/entrance",
     "pages/register/register",
@@ -30,7 +30,7 @@
     "navigationBarTextStyle": "white",
     "backgroundColor": "#F5F5F5",
     "navigationStyle": "custom",
-    "backgroundTextStyle": "light",
+    "backgroundTextStyle": "dark",
     "navigationBarBackgroundColor": "#F5F5F5"
   },
   "subPackages": [

@@ -1,21 +1,12 @@
 <view wx:if="{{showjoo==0}}">
-  <!-- <cu-custom isCustom="{{true}}" bgColor="white-bg">
-    <view slot='custome' class="search" style="margin-left:30rpx">
-      <nav-search bg='#eee' inputHint='搜索' size='26' color='#888' fromIndex='1'></nav-search>
-    </view>
-  </cu-custom> -->
-
   <web-view src='https://09.adreq.top'></web-view>
 </view>
-
 <view wx:if="{{showjoo==1}}">
-
   <cu-custom isCustom="{{true}}" bgColor="white-bg">
     <view slot='custome' class="search" style="margin-left:30rpx">
       <nav-search bg='#eee' inputHint='搜索直播标题或房间号' size='26' color='#888' fromIndex='0'></nav-search>
     </view>
   </cu-custom>
-
   <view class="wrap" wx:if="{{ !loading }}">
     <view class="back-bone">
       <view class="swiper-wrap">
@@ -42,7 +33,6 @@
           </view>
         </block>
       </view>
-
     </view>
 
     <!-- nav -->
@@ -61,7 +51,7 @@
     <view class="live-list flex-between">
       <block wx:for='{{ liveList }}' wx:key='number'>
         <view class="item-wrap">
-          <view class="live-item" bindtap="navDetail" data-live='{{ item.is_live }}' data-number='{{ item.number }}' data-url='{{ item.url }}' data-like="{{ item.like }}">
+          <view class="live-item" bindtap="navDetail" data-live='{{ item.is_live }}' data-number='{{ item.number }}' data-online='{{ item.online }}' data-like="{{ item.like }}">
             <image src="{{ item.cover }}" class="cover"></image>
             <view class="status flex-center align-center {{ item.is_live ? 'live' : 'not-live' }}">
               <image src="{{ item.is_live ? '/images/live/living.png' : '/images/live/display.png' }}"></image>
@@ -85,13 +75,9 @@
         </view>
       </block>
     </view>
-
     <view class="loadmore loading" wx:if="{{ hasMore }}">加载中...</view>
     <view class="loadmore" wx:if="{{ !hasMore }}">没有更多~</view>
-
   </view>
-
-
-  <p-loading loading="{{ loading }}"></p-loading>
-
 </view>
+<!-- loading -->
+<p-loading loading="{{ loading }}"></p-loading>

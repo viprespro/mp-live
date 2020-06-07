@@ -2,7 +2,7 @@
   <view slot="content" class="common-title-color">登录页</view>
 </cu-custom> -->
 
-<view class="btn wechat" bindtap="loginTap">微信快捷登录</view>
+<view class="btn wechat" bindtap="handleWxLogin">微信快捷登录</view>
 
 <!-- <navigator hover-class="none" url="/pages/login/login">
   <view class="btn cell">手机号登录</view>

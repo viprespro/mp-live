@@ -4,7 +4,7 @@
 
 <!-- live-list -->
 <view class="live-list flex-between">
-  <block wx:for='{{ liveList }}' wx:key='{{ item.number }}'>
+  <block wx:for='{{ liveList }}' wx:key='number'>
     <view class="item-wrap">
       <view class="live-item" bindtap="navDetail" data-live='{{ item.is_live }}' data-number='{{ item.number }}' data-url='{{ item.url }}' data-like="{{ item.like }}">
         <image src="{{ item.cover }}" class="cover"></image>
@@ -13,7 +13,6 @@
           <text class="txt">{{ item.is_live ? '直播中' : '未开播' }}</text>
         </view>
         <view class="people">
-          <image src="/images/eye.png"></image>
           <text>{{ item.online }}万</text>
         </view>
 
@@ -23,7 +22,7 @@
             <view class="ellipsis txt">{{ item.nickname }}</view>
           </view>
           <view class="right">
-            <image src="/images/fabulous.png"></image>
+            <image src="/images/live/like.png"></image>
             <text class="txt">{{ item.like }}</text>
           </view>
         </view>

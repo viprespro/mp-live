@@ -63,7 +63,7 @@ Page({
    */
   onPullDownRefresh: function() {
     this.setData({ reload: true })
-    this.getUserMsg()
+    this.getUserInfo()
     setTimeout(() => {
       wx.stopPullDownRefresh()
     },200)
@@ -74,6 +74,7 @@ Page({
       title: '退出中...',
     })
     wx.clearStorageSync()
+    app.globalData.openPages = app.globalData.indexPage
     setTimeout(() => {
       let url = `/pages/before-login/before-login`
       wx.reLaunch({url})
@@ -128,14 +129,14 @@ Page({
    */
   onShow: function() {
     if (api.isLogin(this)) {
-      this.getUserMsg();
+      this.getUserInfo();
     }
   },
 
   /**
    * 获取用户信息
    */
-  getUserMsg: function() {
+  getUserInfo: function() {
     var that = this;
     let { reload } = that.data
     if(reload) {
@@ -157,7 +158,6 @@ Page({
         app.globalData.userType = msg.type
         app.globalData.invite_code = msg.invite_code;
         app.globalData.live_status = msg.live_status
-        
         if(msg.hasOwnProperty('reason')) {
           app.globalData.reason = msg.reason
         }
@@ -209,8 +209,8 @@ Page({
    */
   onShareAppMessage: function () {
     return {
-      title: '好物可播',
-      path: '/pages/live/live',
+      title: app.globalData.indexTitle,
+      path: app.globalData.indexPage,
       success: (res) => {
         wx.showToast({
           title: '分享成功',

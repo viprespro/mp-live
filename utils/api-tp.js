@@ -26,9 +26,10 @@ module.exports = {
         if (ret.code == 0 || ret.code == 1) {
           ops.success(ret); // 执行成功的回调
         } else {
-          if (ret.code == 96) { // token过期
+          console.log(ret)
+          if (ret.code == 96 || ret.code == 98) { // token过期
             wx.clearStorage('token');
-            wx.reLaunch({
+            wx.redirectTo({
               url: '/pages/before-login/before-login',
             })
           } else {

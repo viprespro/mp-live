@@ -35,13 +35,6 @@ Page({
     starIndex1: 4,
   },
 
-  onReady() {
-    wx.showShareMenu()
-  },
-
-  // preventdefault(e) {
-  //   return;
-  // },  
 
   /**
    * 分析：商品可能是普通商品、秒杀商品、拼团商品 根据后端返回数据进行判断
@@ -52,14 +45,13 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-
+    console.log(options)
     // 普通商品购买 只是传id
     if (options.id) {
       this.setData({
         goods_id: options.id
       })
       this.getGoodsDetails(options.id);
-      app.globalData.openPages = '/pages/product-detail/index?id=' + options.id
     }
 
     // 直播间购买
@@ -73,7 +65,6 @@ Page({
         number
       })
       this.getGoodsDetails(id);
-      app.globalData.openPages = '/pages/product-detail/index?id=' + id
     }
 
     // 动态设置swiper的长宽
@@ -119,58 +110,6 @@ Page({
     })
   },
 
-
-  // 通过邀请过来的去参团
-  joinGroupByInvited() {
-    let rep = this.data;
-    if (rep.sku_choose) {
-      this.navigateToLinkJoin();
-      return;
-    }
-    this.setData({
-      join_group_flag: true
-    })
-    this.getAttrInfo();
-  },
-
-  /**
-   * 
-   */
-  joinGroup(e) {
-    // console.log(e)
-    let id = e.currentTarget.dataset.id;
-    this.setData({
-      join_group_flag: true,
-      group_record_id: id //此时的group_record_id
-    })
-    this.getAttrInfo();
-  },
-
-  /**
-   * 立即开团 
-   */
-  launch: function() {
-    // api.isLogin(this); // 判断是否登录
-    this.setData({
-      launch_group_flag: true
-    })
-    this.getAttrInfo();
-  },
-
-  navigateToLinkLaunchGroup() {
-    let rep = this.data,
-      goods_data = [],
-      goods_item = {}
-    // 跳转到订单填写页需要携带参数 选择商品的情况
-    goods_item.goods_id = rep.goods_id
-    goods_item.goods_spec_id = rep.spec_id
-    goods_item.goods_num = rep.num
-    goods_data.push(goods_item)
-    wx.navigateTo({
-      url: '/pages/pay-order/index?goodsInfo=' + JSON.stringify(goods_data) + '&group_id=' + rep.group_id
-    })
-  },
-
   /**
    * 获取特定规格下的商品信息
    */
@@ -195,15 +134,7 @@ Page({
     })
   },
 
-  /**
-   * 跳转拼团说明页
-   */
-  groupGuide: function() {
-    wx.navigateTo({
-      url: '/packageA/pages/group-process/index',
-    })
-  },
-
+ 
   /**
    * 客服咨询
    */
@@ -552,35 +483,6 @@ Page({
     })
   },
 
-  /**
-   * 马上兑换
-   */
-  exchange() {
-    // let rep = this.data;
-    // if (rep.sku_choose) {
-    //   this.navigateToLinkExchange();
-    //   return;
-    // }
-    this.setData({
-      exchange_flag: true
-    })
-    this.getAttrInfo(); //选择商品的规格属性
-  },
-
-  navigateToLinkExchange() {
-    let rep = this.data,
-      goods_data = [],
-      goods_item = {}
-    // 跳转到详情页需要携带参数 选择商品的情况
-    goods_item.goods_id = rep.goods_id
-    goods_item.goods_spec_id = rep.spec_id
-    goods_item.goods_num = rep.num
-    goods_data.push(goods_item)
-    wx.navigateTo({
-      url: '/pages/pay-order/index?goodsInfo=' + JSON.stringify(goods_data),
-    })
-  },
-
   modelbg: function(e) {
     this.setData({
       prostatus: false,
@@ -662,19 +564,7 @@ Page({
     }
   },
 
-  navigateToLinkJoin() {
-    let rep = this.data,
-      goods_data = [],
-      goods_item = {}
-    goods_item.goods_id = rep.goods_id
-    goods_item.goods_spec_id = rep.spec_id
-    goods_item.goods_num = rep.num
-    goods_data.push(goods_item)
-    wx.navigateTo({
-      url: '/pages/pay-order/index?goodsInfo=' + JSON.stringify(goods_data) + '&group_record_id=' + rep.group_record_id,
-    })
-  },
-
+ 
   /**
    * 访问添加到购物车的接口
    */
@@ -719,6 +609,22 @@ Page({
       this.setData({
         num: _num
       })
+    }
+  },
+
+  // 右上角分享
+  onShareAppMessage() {
+    let data = this.data
+    return {
+      title: data.productInfo.goods_name,
+      imageUrl: data.productInfo.flash[0],
+      path: `/pages/load/load?id=${data.goods_id}&invite_code=${app.globalData.invite_code}`,
+      success: function(res) {
+        console.log("分享成功");
+      },
+      fail: function(res) {
+        console.log("分享失败");
+      }
     }
   }
 })

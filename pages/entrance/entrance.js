@@ -26,7 +26,8 @@ Page({
                   code: res.code,
                   version: 2, // 老版本
                   encryptData: encryptedData, 
-                  iv: iv 
+                  iv: iv,
+                  invite_code: app.globalData.invite_code
                 },
                 success: (codeRes) => {
                   // console.log(codeRes)

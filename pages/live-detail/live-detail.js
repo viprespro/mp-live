@@ -166,8 +166,25 @@ Page({
       title: '加载中...',
     })
     that = this;
+    
+    // 设置屏幕常亮 兼容ios
+    wx.setKeepScreenOn({ keepScreenOn: true })
+    // 设置屏幕亮度 0-1范围
+    wx.setScreenBrightness({ value: .6 })
+
     // 获取用户昵称
     that.getUserInfo()
+
+    // 实现登录用户扫码进入直播间返回
+    if (options.backHomeFlag) {
+      this.setData({
+        backHomeFlag: options.backHomeFlag
+      })
+    }
+
+    if(options.like) {
+      this.setData({ count: options.like })
+    }
 
     if (options.number) {
       this.setData({
@@ -314,7 +331,7 @@ Page({
       },
       success: res => {
         console.log(res)
-        // 若未开播 
+        //意外情况
         if (res.code == 1) {
           wx.showToast({
             title: res.message,
@@ -328,7 +345,7 @@ Page({
                 delta: 1
               })
             }else {
-              wx.reLaunch({
+              wx.switchTab({
                 url: '/pages/live/live',
               })
             }
@@ -464,32 +481,6 @@ Page({
     })
   },
 
-  backTap() {
-    // 退出IM服务器
-    let promise = tim.logout();
-    promise.then(function (imResponse) {
-      console.log(imResponse.data); // 登出成功
-      // 访问接口 后端调用IM发送系统消息
-      api.post({
-        url: '/wxsmall/Live/exitLiveByUser',
-        data: {
-          number: that.data.number,
-          token: wx.getStorageSync('token')
-        },
-        success: res => {
-          console.log(res)
-        }
-      })
-
-    }).catch(function (imError) {
-      console.warn('logout error:', imError);
-    });
-
-    wx.navigateBack({
-      delta: 1
-    })
-  },
-
   onReady(res) {
     this.ctx = wx.createLivePlayerContext('player')
   },
@@ -500,32 +491,59 @@ Page({
     console.error('live-player error:', e.detail.errMsg)
   },
 
+
+  onUnload() {
+    this.backTap()
+  },
+
+  backTap() {
+    // 退出IM服务器
+    let promise = tim.logout();
+    if(promise) {
+      promise.then(function (imResponse) {
+        console.log(imResponse.data); // 登出成功
+        // 访问接口 后端调用IM发送系统消息
+        api.post({
+          url: '/wxsmall/Live/exitLiveByUser',
+          data: {
+            number: that.data.number,
+            token: wx.getStorageSync('token')
+          },
+          success: res => {
+            console.log(res)
+          }
+        })
+      }).catch(function (imError) {
+        console.warn('logout error:', imError);
+      });
+    }
+    // 扫码进入退出时候回到首页
+    if (that.data.backHomeFlag) {
+      wx.switchTab({
+        url: '/pages/live/live',
+      })
+    } else {
+      wx.navigateBack({
+        delta: 1
+      })
+    }
+  },
+
   /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function() {
+  * 用户点击右上角分享
+  */
+  onShareAppMessage: function () {
     let { number } = this.data
     return {
       title: '直播间分享啦！',
       imageUrl: '',
-      path: '/pages/live-detail/live-detail?number=' + number,
-      success: function(res) {
+      path: `/pages/load/load?number=${number}&invite_code=${app.globalData.invite_code}`,
+      success: function (res) {
         console.log("转发成功:");
       },
-      fail: function(res) {
+      fail: function (res) {
         console.log("转发失败:");
       }
     }
-  },
-
-  onShow: function(){
-    // 设置屏幕常亮 兼容ios
-    wx.setKeepScreenOn({ keepScreenOn: true })
-    // 设置屏幕亮度 0-1范围
-    wx.setScreenBrightness({ value: .8 })
-  },
-
-  onUnload() {
-    that.backTap()
-  },
+  }
 })

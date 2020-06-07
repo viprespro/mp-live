@@ -145,6 +145,14 @@
 					"id": -1,
 					"name": "packageB/pages/followers-fans/index",
 					"pathName": "packageB/pages/followers-fans/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/live/live",
+					"pathName": "pages/live/live",
+					"query": "scene=62335085",
 					"scene": null
 				}
 			]

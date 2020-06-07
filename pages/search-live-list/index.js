@@ -1,4 +1,5 @@
 const api = require('../../utils/api-tp.js')
+const app = getApp()
 Page({
 
   /**
@@ -32,11 +33,10 @@ Page({
         app.msg('当前未开播')
       } else {
         let number = temp.number
-        let url = temp.url
         let like = temp.like
         setTimeout(() => {
           wx.navigateTo({
-            url: `/pages/live-detail/live-detail?number=${number}&url=${encodeURIComponent(url)}&like=${like}`,
+            url: `/pages/live-detail/live-detail?number=${number}&like=${like}`,
           })
         }, 200)
       }

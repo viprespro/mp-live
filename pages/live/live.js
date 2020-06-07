@@ -1,5 +1,6 @@
 const app = getApp()
 const api = require('../../utils/api-tp.js')
+const Config = require('../../config.js')
 import {
   $api
 } from '../../common/utils.js'
@@ -53,54 +54,31 @@ Page({
     flashList: [], // 幻灯片
     swiperCurIndex: 1,
     left: 100,
-    // showjoo: 0
+    // showjoo: 1
   },
 
   onLoad: function() {
     var e = this;
     wx.request({
-      url: "https://kebo.weirong100.com/wxsmall/index/api",
+      url: `${Config.HTTP_REQUEST_URL}/wxsmall/index/api`,
       header: {
         "content-type": "application/json"
       },
       success: function(t) {
-        console.log(t)
+        // console.log(t)
         e.setData({
           showjoo: t.data.data
+        });
+      },
+      fail: function(err) {
+        e.setData({
+          showjoo: 1
         });
       }
     })
     this.getList()
-    if (this.data.showjoo == 0) {
-      this.getNew()
-    }
   },
 
-  goDetail: function (e) {
-    let id = e.currentTarget.dataset.id
-    if (id == 0) {
-      return;
-    }
-    wx.navigateTo({
-      url: '/pages/product-detail/index?id=' + id,
-    })
-  },
-
-  getNew: function () {
-    api.post({
-      url: '/wxsmall/index/getRecommendGoods',
-      success: (res) => {
-        console.log(res)
-        this.setData({
-          newList: res.data || []
-        })
-      }
-    })
-  },
-
-  bindscroll(e) {
-    console.log(e)
-  },
 
   bindChange(e) {
     let current = e.detail.current
@@ -165,11 +143,10 @@ Page({
         app.msg('当前未开播')
       } else {
         let number = temp.number
-        let url = temp.url
         let like = temp.like
         setTimeout(() => {
           wx.navigateTo({
-            url: `/pages/live-detail/live-detail?number=${number}&url=${encodeURIComponent(url)}&like=${like}`,
+            url: `/pages/live-detail/live-detail?number=${number}&like=${like}`,
           })
         }, 200)
       }
@@ -201,9 +178,6 @@ Page({
     if (id) {
       cate_id = id
     }
-    if (navIndex == 1) { // 关注的时候需要传token
-      api.isLogin(this)
-    }
     this.setData({
       navIndex,
       reload: true,
@@ -214,14 +188,12 @@ Page({
     })
     this.getList()
   },
+
   // 获取直播列表
   getList() {
     let data = this.data
     if (!data.hasMore) return
     let token = wx.getStorageSync('token')
-    // wx.showLoading({
-    //   title: '加载中...',
-    // })
     api.get({
       url: '/wxsmall/Live/getList',
       data: {
@@ -284,13 +256,16 @@ Page({
   },
 
   onReachBottom() {
-    this.getList()
+    const { hasMore } = this.data
+    if(hasMore) {
+      this.getList()
+    }
   },
 
   onShareAppMessage: function() {
     return {
-      title: '华纳播播',
-      path: '/pages/live/live',
+      title: app.globalData.indexTitle,
+      path: app.globalData.indexPage,
       success: (res) => {
         wx.showToast({
           title: '分享成功',

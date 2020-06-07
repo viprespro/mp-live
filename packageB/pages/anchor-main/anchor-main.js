@@ -177,8 +177,12 @@ Page({
     wx.showLoading({
       title: '加载中...',
     })
-
     that = this;
+    // 设置屏幕常亮 兼容ios
+    wx.setKeepScreenOn({ keepScreenOn: true })
+    // 设置屏幕亮度 0-1范围
+    wx.setScreenBrightness({ value: .6 })
+    
     this.ctx = wx.createLivePusherContext('pusher')
     if (options.object) { // 开启直播传递古来直播间的名称和封面图
       let parse = JSON.parse(options.object)
@@ -190,7 +194,6 @@ Page({
       })
       this.getPushInfo()
     }
-
     let query = wx.createSelectorQuery()
     query.select('.barrage').boundingClientRect(function(rect) {
       // console.log(rect)
@@ -219,9 +222,7 @@ Page({
     wx.navigateTo({ url })
   },
 
-  /**
-   * 去购买
-   */
+  // 前往商品详情
   navPurchase(e) {
     let url = `/pages/product-detail/index?id=${e.currentTarget.dataset.id}`
     wx.navigateTo({
@@ -263,11 +264,9 @@ Page({
         if (!len && data.pageIndex == 2) { // 空数组
           emptyFlag = true
         }
-
         if (len < data.pageSize) { // 没有更多数据
           moreFlag = false
         }
-
         let originalList = [...data.goodsList]
         this.setData({
           total: res.total,
@@ -279,6 +278,7 @@ Page({
     })
   },
 
+  // 获取推流信息
   getPushInfo() {
     let data = this.data
     wx.uploadFile({
@@ -302,9 +302,6 @@ Page({
             main_goods: res.data.main_goods,
             online: res.online
           })
-
-          console.log(res)
-
           // 获取推流信息之后登录到IM的服务器
           let promise = tim.login({
             userID: res.data.userid,
@@ -315,7 +312,6 @@ Page({
           }).catch(function (imError) {
             console.warn('login error:', imError); // 登录失败的相关信息
           });
-
         } else {
           app.msg(res.message)
         }
@@ -332,20 +328,9 @@ Page({
   onReady(res) {
     this.ctx = wx.createLivePusherContext('pusher')
   },
+
   statechange(e) {
     console.log('live-pusher code:', e.detail.code)
-  },
-
-  bindStart() {
-    console.log(this.ctx)
-    this.ctx.start({
-      success: res => {
-        console.log('start success')
-      },
-      fail: res => {
-        console.log('start fail')
-      }
-    })
   },
 
   // 旋转相机
@@ -359,7 +344,6 @@ Page({
       }
     })
   },
-
 
   backTap() {
     let token = wx.getStorageSync('token')
@@ -390,65 +374,21 @@ Page({
     }).catch(function (imError) {
       console.warn('logout error:', imError);
     });
-
   },
 
-  onReady(res) {
-    this.ctx = wx.createLivePusherContext('pusher')
-  },
-  statechange(e) {
-    console.log('live-pusher code:', e.detail.code)
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function() {
-    // 设置屏幕常亮 兼容ios
-    wx.setKeepScreenOn({ keepScreenOn: true })
-    // 设置屏幕亮度 0-1范围
-    wx.setScreenBrightness({ value: .8 })
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
+  // 主播分享自己的直播间
   onShareAppMessage: function() {
-
+    let { number } = this.data.info
+    return {
+      title: '直播间分享啦！',
+      imageUrl: '',
+      path: `/pages/load/load?number=${number}&invite_code=${app.globalData.invite_code}`,
+      success: function (res) {
+        console.log("转发成功:");
+      },
+      fail: function (res) {
+        console.log("转发失败:");
+      }
+    }
   }
 })

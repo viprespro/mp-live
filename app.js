@@ -2,19 +2,37 @@
 const api = require('/utils/api-tp.js');
 import TIM from 'tim-wx-sdk';
 App({
-  onLaunch: function(e) {
-    // console.log(e)
-    const scene = e.query.scene // 邀请码
-    if (scene) {
-      this.globalData.invite_code = scene; // 保存全局
-      wx.redirectTo({
-        url: '/pages/live-detail/live-detail?number=' + scene,
-      })
+  onLaunch: function(option) {
+    // console.log(option)
+    const that = this
+    if (option.query.hasOwnProperty('scene')) {
+      switch (option.scene) {
+        //扫描小程序码
+        case 1047:
+          this.globalData.invite_code = option.query.scene;
+          break;
+        //长按图片识别小程序码
+        case 1048:
+          let [number, invite_code] = option.query.scene.split('_')
+          this.globalData.invite_code = invite_code;
+          this.globalData.number = number;
+          this.globalData.openPages = `/pages/live-detail/live-detail?number=${number}&backHomeFlag=true`
+          break;
+        //手机相册选取小程序码
+        case 1049:
+          break;
+        //直接进入小程序
+        case 1001:
+          break;
+      }
     }
 
     // 针对自定义头部添加
     wx.getSystemInfo({
       success: e => {
+        // console.log(e)
+        this.globalData.windowW = e.windowWidth
+        this.globalData.windowH = e.windowHeight
         this.globalData.screenH = e.screenHeight; // 手机屏幕总高度
         this.globalData.StatusBar = e.statusBarHeight;
         let custom = wx.getMenuButtonBoundingClientRect();
@@ -23,8 +41,30 @@ App({
       }
     })
 
-    this.getSysInfo();
-    this.getUserInfo()
+    const updateManager = wx.getUpdateManager();
+    updateManager.onCheckForUpdate(function (res) {
+      // 请求完新版本信息的回调
+    })
+    updateManager.onUpdateReady(function () {
+      wx.showModal({
+        title: '更新提示',
+        content: '新版本已经准备好，是否重启应用？',
+        success: function (res) {
+          if (res.confirm) {
+            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+            updateManager.applyUpdate()
+          }
+        }
+      })
+    });
+    updateManager.onUpdateFailed(function () {
+      return that.msg('新版本下载失败')
+    })
+
+    // 如果用户已登录
+    if(this.hasLogin()) {
+      this.getUserInfo()
+    }
 
     let ops = {
       SDKAppID: 1400310038 // 接入时需要将 0 替换为您的云通信应用的 SDKAppID
@@ -37,40 +77,26 @@ App({
     tim.setLogLevel(1); // release级别，SDK 输出关键信息，生产环境时建议使用
   },
 
-  /**
-   * 获取设备信息
-   */
-  getSysInfo: function() {
-    wx.getSystemInfo({
-      success: (res) => {
-        this.globalData.windowW = res.windowWidth
-        this.globalData.windowH = res.windowHeight
-      },
-    })
-  },
-
   // 获取用户信息
   getUserInfo() {
-    let token = wx.getStorageSync('token')
-    if(token) {
-      api.get({
-        url: '/wxsmall/User/getUserInfo',
-        data: {
-          token,
-        },
-        success: res => {
-          console.log(res)
-          let { type,live_status} =  res.data
-          this.globalData.userType = type
-          this.globalData.live_status = live_status
-          if(res.data.hasOwnProperty('reason')) {
-            this.globalData.reason = res.data.reason
-          }
+    const token = wx.getStorageSync('token')
+    api.get({
+      url: '/wxsmall/User/getUserInfo',
+      data: {
+        token,
+      },
+      success: res => {
+        console.log(res)
+        let { type, live_status, invite_code } = res.data
+        this.globalData.userType = type
+        this.globalData.live_status = live_status
+        this.globalData.invite_code = invite_code
+        if (res.data.hasOwnProperty('reason')) {
+          this.globalData.reason = res.data.reason
         }
-      })
-    }
+      }
+    })
   },
-
 
   msg(title, duration = 1500, mask = true, icon = 'none') {
     if (Boolean(title) === false) return
@@ -106,5 +132,8 @@ App({
     userType: null, // 用户身份标识
     live_status: '', // live_status 0=可申请 1=审核中 3=直播封禁 4=重复申请
     reason:'', // 审核被驳回的原因
+    invite_code: '' , // 用户邀请码
+    indexPage: '/pages/live/live', // tabbar的分享进入的路径
+    indexTitle: '好物可播'
   },
 })
