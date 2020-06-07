@@ -305,8 +305,6 @@ Page({
       return $api.msg('直播时间请填写完整')
     }
     // console.log(posterConfig.jdConfig)
-    console.log('直播时间：' + this.foo(startDate) + ' ' + startTime + '至' + this.foo(endDate) + ' ' + endTime)
-    return;
     let config = posterConfig.jdConfig
     let texts = config.texts
     let imgs = config.images
