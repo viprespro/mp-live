@@ -9,7 +9,7 @@ Page({
 
   onLoad: function(e) {
     console.log(e)
-    // 海报分享 Or 直播间分享
+    //  直播间分享
     if(e.number && e.invite_code) {
       let { number, invite_code} = e
       app.globalData.invite_code = invite_code
@@ -22,11 +22,10 @@ Page({
       app.globalData.openPages = `/pages/product-detail/index?id=${id}`
     }
 
-    // 纯粹邀请绑定关系 eg.二维码
+    // 纯粹邀请绑定关系 
     if(e.invite_code) {
       let { invite_code } = e
       app.globalData.invite_code = invite_code
-      app.globalData.openPages = `/pages/live/live`
     }
     this.getSetting()
   },

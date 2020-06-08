@@ -3,7 +3,7 @@ const api = require('/utils/api-tp.js');
 import TIM from 'tim-wx-sdk';
 App({
   onLaunch: function(option) {
-    console.log(option)
+    // console.log(option)
     const that = this
     if (option.query.hasOwnProperty('scene')) {
       switch (option.scene) {

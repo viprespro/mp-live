@@ -180,8 +180,8 @@ Page({
     that = this;
     // 设置屏幕常亮 兼容ios
     wx.setKeepScreenOn({ keepScreenOn: true })
-    // 设置屏幕亮度 0-1范围
-    wx.setScreenBrightness({ value: .6 })
+    // 设置屏幕亮度 0-1范围 设置了 用户自己去设置调节屏幕的亮度
+    // wx.setScreenBrightness({ value: .6 }) 
     
     this.ctx = wx.createLivePusherContext('pusher')
     if (options.object) { // 开启直播传递古来直播间的名称和封面图
@@ -378,10 +378,10 @@ Page({
 
   // 主播分享自己的直播间
   onShareAppMessage: function() {
-    let { number } = this.data.info
+    let { number, cover } = this.data.info
     return {
       title: '直播间分享啦！',
-      imageUrl: '',
+      imageUrl: cover,
       path: `/pages/load/load?number=${number}&invite_code=${app.globalData.invite_code}`,
       success: function (res) {
         console.log("转发成功:");

@@ -169,8 +169,8 @@ Page({
     
     // 设置屏幕常亮 兼容ios
     wx.setKeepScreenOn({ keepScreenOn: true })
-    // 设置屏幕亮度 0-1范围
-    wx.setScreenBrightness({ value: .6 })
+    // 设置屏幕亮度 0-1范围 当前设置为用户自己调节
+    // wx.setScreenBrightness({ value: .6 })
 
     // 获取用户昵称
     that.getUserInfo()

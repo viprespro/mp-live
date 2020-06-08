@@ -29,7 +29,7 @@
       </cover-view>
     </cover-view>
     <cover-view class="right">
-      <cover-view class="txt">id:{{ info.number }}</cover-view>
+      <cover-view class="txt" wx:if="{{ info.number }}">id:{{ info.number }}</cover-view>
     </cover-view>
   </cover-view>
 

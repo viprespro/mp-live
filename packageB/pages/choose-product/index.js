@@ -31,7 +31,21 @@ Page({
   confirmChoose() {
     let { goodsList } = this.data
     let checked = this.hasChosen()
-    this.setData({ goods_ids: checked.join(',')})
+    let firstCateId 
+    if(checked.length) {
+      firstCateId = checked[0].cate_id
+    }
+    for(var item of checked) {
+      if(item.cate_id != firstCateId) {
+       return app.msg('请选择同类型的产品才可开播')
+      }
+    }
+    // console.log(checked)
+    let final = []
+    for(let item of checked) {
+      final.push(item.id)
+    }
+    this.setData({ goods_ids: final.join(',')})
     // 关闭当前页面并返回
     var pages = getCurrentPages();
     var prevPage = pages[pages.length - 2]; //上一个页面
@@ -50,9 +64,13 @@ Page({
   hasChosen() {
     let arr = [...this.data.goodsList]
     let newArr = []
+    let itemChecked = {}
     arr.map((item) => {
       if (item.checked) {
-        newArr.push(item.id)
+        newArr.push({
+          id: item.id,
+          cate_id: item.category_id
+        })
       }
     })
     return newArr;
