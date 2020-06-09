@@ -3,7 +3,7 @@ const api = require('/utils/api-tp.js');
 import TIM from 'tim-wx-sdk';
 App({
   onLaunch: function(option) {
-    // console.log(option)
+    console.log(option)
     const that = this
     if (option.query.hasOwnProperty('scene')) {
       switch (option.scene) {
@@ -128,13 +128,13 @@ App({
     openPages: '',
     locte_cate: {}, //用于定位分类栏
     logo: '',
-    share_img: '',
+    share_img: 'https://kebo.weirong100.com/static/home/img/shop/img.jpg',
     userType: null, // 用户身份标识
     live_status: '', // live_status 0=可申请 1=审核中 3=直播封禁 4=重复申请
     reason:'', // 审核被驳回的原因
     invite_code: '' , // 用户邀请码
     number: '', // 主播房间号
     indexPage: '/pages/live/live', // tabbar的分享进入的路径
-    indexTitle: '好物可播'
+    indexTitle: '好物可播小程序分享啦'
   },
 })

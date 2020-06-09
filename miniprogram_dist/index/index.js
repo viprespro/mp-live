@@ -136,6 +136,7 @@ const main = {
         });
     }
 }
+
 const handle = {
     /**
      * 画圆角矩形
@@ -259,6 +260,7 @@ const handle = {
         return textWidth;
     },
 }
+
 const helper = {
     /**
       * 下载图片并获取图片信息
@@ -384,6 +386,7 @@ const helper = {
         return rawUrl;
     },
 }
+
 Component({
     properties: {
     },

@@ -24,8 +24,8 @@ page {
   border-radius: 0 33rpx 33rpx 0;
   color: #fff;
   font-size: 24rpx;
-  background: #EF7471;
-  opacity: .4;
+  background: #ef7471;
+  opacity: 0.4;
   padding: 0 24rpx;
   display: flex;
   align-items: center;
@@ -37,7 +37,6 @@ page {
   border-radius: 50%;
   margin-right: 10rpx;
 }
-
 
 live-player {
   z-index: 99999;
@@ -252,10 +251,12 @@ live-player {
 }
 
 .outer .barrage .barrage-item  .item-wrap .item-nickname {
-  max-width: 90rpx;
+  max-width: 220rpx;
   overflow: hidden;
   line-height: 46rpx;
   display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .outer .barrage .barrage-item  .item-wrap .item-words {

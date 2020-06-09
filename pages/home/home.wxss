@@ -314,8 +314,8 @@
 }
 
 .content-wrap_new .item_new .img-box_new {
-  height: 226rpx;
-  width: 355rpx;
+  height: 300rpx;
+  width: 300rpx;
   display: block;
   margin: 0 auto;
 }

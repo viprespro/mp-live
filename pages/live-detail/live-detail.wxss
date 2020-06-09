@@ -274,10 +274,12 @@ live-player {
 }
 
 .outer .barrage .barrage-item  .item-wrap .item-nickname {
-  max-width: 90rpx;
+  max-width: 220rpx;
   overflow: hidden;
   line-height: 46rpx;
   display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .outer .barrage .barrage-item  .item-wrap .item-words {

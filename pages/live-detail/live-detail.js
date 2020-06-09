@@ -32,8 +32,19 @@ tim.on(TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED, function(event) {
   console.log(event)
   if (event.data.message.payload) {
     let temp = event.data.message.payload.userDefinedField  // 数据如：Ares进入了直播间
+
+    if (temp == 'live_exit') { // 直播退出
+      showWarningOffAndExit()
+      
+      setTimeout(() => {
+        wx.switchTab({
+          url: '/pages/live/live',
+        })
+      },60000)
+    }
+
     // 系统消息区分是观看人数还是进入直播间的提示
-    if (temp.indexOf('online_') === -1) { // 进入直播间的提示
+    else if (temp.indexOf('online_') === -1) { // 进入直播间的提示
       let obj = {}
       if (temp.indexOf('进') > -1) {
         let index = temp.indexOf('进')
@@ -106,6 +117,25 @@ function getRandomFontColor() {
   return 'rgb(' + red + ',' + green + ' , ' + blue + ')'
 }
 
+// 主播下播并确认退出
+function showWarningOffAndExit() {
+  wx.showModal({
+    title: '提示',
+    content: '主播已经离开了~',
+    showCancel: false,
+    confirmText: '我知道了',
+    confirmColor: '#FE6889',
+    success: res => {
+      if (res.confirm) {
+        wx.switchTab({
+          url: `/pages/live/live`,
+        })
+      }
+    }
+  })
+}
+
+
 /**
  * 让用户每次发送的数据都能显示在最底部
  */
@@ -159,6 +189,7 @@ Page({
     online: '',
     showTips: false, // 是否显示某个人加入进入直播间
     online_people: '', // 观看人数 
+    anchor_cover: '', // 主播封面
   },
 
   onLoad: function(options) {
@@ -379,7 +410,8 @@ Page({
           other_info: res,
           follow: res.is_follow,
           main_goods: res.main_goods,
-          online_people: res.online
+          online_people: res.online,
+          anchor_cover: res.cover
         })
       }
     })
@@ -533,10 +565,10 @@ Page({
   * 用户点击右上角分享
   */
   onShareAppMessage: function () {
-    let { number } = this.data
+    let { number, anchor_cover } = this.data
     return {
       title: '直播间分享啦！',
-      imageUrl: '',
+      imageUrl: anchor_cover,
       path: `/pages/load/load?number=${number}&invite_code=${app.globalData.invite_code}`,
       success: function (res) {
         console.log("转发成功:");

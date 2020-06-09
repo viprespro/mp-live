@@ -378,10 +378,10 @@ Page({
 
   // 主播分享自己的直播间
   onShareAppMessage: function() {
-    let { number, cover } = this.data.info
+    let { number} = this.data.info
     return {
       title: '直播间分享啦！',
-      imageUrl: cover,
+      imageUrl: this.data.cover,
       path: `/pages/load/load?number=${number}&invite_code=${app.globalData.invite_code}`,
       success: function (res) {
         console.log("转发成功:");

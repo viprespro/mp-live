@@ -47,7 +47,7 @@ Page({
   onLoad: function(options) {
     console.log(options)
     // 普通商品购买 只是传id
-    if (options.id) {
+    if (options.id && !options.hasOwnProperty('number')) {
       this.setData({
         goods_id: options.id
       })

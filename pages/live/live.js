@@ -76,9 +76,11 @@ Page({
         });
       }
     })
+  },
+  
+  onShow() {
     this.getList()
   },
-
 
   bindChange(e) {
     let current = e.detail.current
