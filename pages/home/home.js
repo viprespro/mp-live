@@ -45,10 +45,8 @@ Page({
   },
 
   navSortPage() {
-    let url = `/pages/sort/sort`
-    wx.navigateTo({
-      url,
-    })
+    const url = `/pages/sort/sort`
+    wx.navigateTo({ url })
   },
 
   bindChange(e) {

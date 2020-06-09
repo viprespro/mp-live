@@ -167,3 +167,5 @@
 .content-scroll-view .item-wrap {
   display: inline-block;
 }
+
+@import '../sort-column/index.wxss';

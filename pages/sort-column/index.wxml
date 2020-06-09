@@ -30,7 +30,6 @@
 
 <!-- 商品列表new -->
 <view class="product-wrapper">
-
   <block wx:for="{{productsList}}" wx:key="goods_id">
     <view class='product-item-wrap' bindtap='goDetail' data-id='{{item.goods_id}}'>
       <view class='pro-img-wrap'>
@@ -49,7 +48,6 @@
       </view>
     </view>
   </block>
-
 </view>
 
 

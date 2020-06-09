@@ -18,10 +18,43 @@ Page({
     catesList: [], // 分类列表
     secondCatesList: [], //二级分类列表
     first_come_in: true, // 第一次进入
+    pageIndex: 1,
+    pageSize: 10,
+    hasMore: true,
+    productsList: []
   },
+
   onLoad: function(ops) {
     this.computeScrollViewHeight();
   },
+
+
+  // 1级分类下的商品列表
+  getGoodsList: function () {
+    let rep = this.data;
+    if (!rep.hasMore) return;
+    api.post({
+      url: '/wxsmall/Goods/getGoodsList',
+      data: {
+        page: ++this.data.pageIndex,
+        row: this.data.pageSize,
+        category_id: rep.currentCateId,
+      },
+      success: (res) => {
+        res = res.data
+        if (res.length < this.data.pageSize) {
+          // 说明已经没有更多的数据了
+          this.setData({
+            hasMore: false
+          })
+        }
+        this.setData({
+          productsList: this.data.productsList.concat(res)
+        })
+      }
+    })
+  },
+
   goColumList: function(e) {
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
@@ -36,33 +69,21 @@ Page({
       success: (res) => {
         console.log(res)
         let ret = res.data
-        // 判断全局
-        let obj = app.globalData.locte_cate;
-        if (Object.keys(obj).length > 0) {
-          app.globalData.locte_cate = {}; // 将其情况 切换tab的时候不在更细  只有点击导航那里才会跳转
-          this.setData({
-            currentCateId: obj.topId,
-            currentSecondCateId: obj.category,
-            if_reload: obj.topId, // 判断是否需要重载
-          })
+        this.setData({
+          catesList: ret || []
+        })
 
-
-
-          this.getSecondCates(obj.topId);
-        } else {
-          // 设置默认
+        if(ret.length > 0) {
           this.setData({
             currentCateId: ret[0].category_id
           })
           // 获取默认的二级分类
           this.getSecondCates(ret[0].category_id);
         }
-        this.setData({
-          catesList: ret
-        })
       }
     })
   },
+
   getSecondCates: function(id) {
     api.post({
       url: '/wxsmall/Category/getCategory',
@@ -74,38 +95,42 @@ Page({
         let ret = res.data
         if (res.status == 98) { //说明没有二级分类 & 三级分类
           this.setData({
-            currentSecondCateId: id // 二级id就是传递过来的一级id
+            showSecondColumn: false // 隐藏二级与三级目录
           })
+          // 获取该一级分类下的商品
+          this.getGoodsList() 
 
-          let arr = []
-          // 通过此id找到1级分类
-          for (let i in this.data.catesList) {
-            if (id == this.data.catesList[i].category_id) {
-              arr.push(this.data.catesList[i])
-            }
-          }
+          // let arr = []
+          // for (let i in this.data.catesList) {
+          //   if (id == this.data.catesList[i].category_id) {
+          //     arr.push(this.data.catesList[i])
+          //   }
+          // }
 
-          this.setData({
-            secondCatesList: arr
-          })
+          // this.setData({
+          //   secondCatesList: arr
+          // })
 
-          this.getThirdCates(id);
+          // this.getThirdCates(id);
 
         } else {
           // 设置默认
           this.setData({
-            currentSecondCateId: ret[0].category_id
+            currentSecondCateId: ret[0].category_id,
+            showSecondColumn: true
           })
-          // 获取默认的二级分类
-          this.getThirdCates(ret[0].category_id);
 
           this.setData({
             secondCatesList: ret
           })
+
+          // 获取默认的二级分类
+          this.getThirdCates(ret[0].category_id);
         }
       }
     })
   },
+
   getThirdCates: function(id) {
     api.post({
       url: '/wxsmall/Category/getCategory',
@@ -136,6 +161,7 @@ Page({
       }
     })
   },
+
   //计算 scroll-view 的高度
   computeScrollViewHeight() {
     let that = this
@@ -152,6 +178,7 @@ Page({
       })
     }).exec()
   },
+
   // 一级分类切换
   tabsAlert: function(e) {
     let id = e.currentTarget.dataset.index
@@ -162,10 +189,12 @@ Page({
       currentCateId: id,
       secondCatesList: [],
       thirdCatesList: [],
-      if_reload: id
+      hasMore: true,
+      pageIndex: 1
     })
     this.getSecondCates(id);
   },
+
   // 二级分类切换
   catesAlert: function(e) {
     let id = e.currentTarget.dataset.id
@@ -178,13 +207,10 @@ Page({
     })
     this.getThirdCates(id);
   },
+
   onShow() {
     let rep = this.data;
-    // 判断是否需要重新加载
-    // app.globalData.locte_cate => 存在则代表是从首页导航栏导航过来
-    if (rep.if_reload == rep.currentCateId && Object.keys(app.globalData.locte_cate).length == 0 ) {
-      return;
-    }
     this.getCates();
   },
+
 })

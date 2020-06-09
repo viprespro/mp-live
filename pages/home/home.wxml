@@ -1,8 +1,8 @@
 <cu-custom isCustom="{{true}}" bgColor="common-base-bg">
-  <!-- <view slot='icon' class="sort" bindtap="navSortPage" style="margin-left:24rpx">
-    <image src="/images/sort.png" class="sort-img"></image>
+  <view slot='icon' class="sort" bindtap="navSortPage" style="margin-left:24rpx">
+    <image src="/images/icon-sort.png" class="sort-img"></image>
     <text class="sort-txt">分类</text>
-  </view> -->
+  </view>
   <view slot='custome' class="search" style="">
     <nav-search size='26' fromIndex='1'></nav-search>
   </view>
