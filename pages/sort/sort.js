@@ -21,7 +21,7 @@ Page({
     pageIndex: 1,
     pageSize: 10,
     hasMore: true,
-    productsList: []
+    productsList: [],
   },
 
   onLoad: function(ops) {
@@ -36,7 +36,7 @@ Page({
     api.post({
       url: '/wxsmall/Goods/getGoodsList',
       data: {
-        page: ++this.data.pageIndex,
+        page: this.data.pageIndex,
         row: this.data.pageSize,
         category_id: rep.currentCateId,
       },
@@ -49,18 +49,22 @@ Page({
           })
         }
         this.setData({
-          productsList: this.data.productsList.concat(res)
+          productsList: this.data.productsList.concat(res),
+          pageIndex: this.data.pageIndex + 1,
         })
       }
     })
   },
 
-  goColumList: function(e) {
+
+  // 前往详情
+  goDetail: function (e) {
     let id = e.currentTarget.dataset.id
     wx.navigateTo({
-      url: '/pages/sort-column/index?categoryId=' + id,
+      url: '/pages/product-detail/index?id=' + id,
     })
   },
+
 
   getCates: function() {
     let category_id = this.data.currentCateId;
@@ -189,8 +193,10 @@ Page({
       currentCateId: id,
       secondCatesList: [],
       thirdCatesList: [],
+      productsList: [],
       hasMore: true,
-      pageIndex: 1
+      pageIndex: 1,
+      scrollLeft: id* 40
     })
     this.getSecondCates(id);
   },
@@ -212,5 +218,15 @@ Page({
     let rep = this.data;
     this.getCates();
   },
+
+  // 触底加载函数
+  onReachBottom() {
+    const { hasMore } = this.data
+    if(hasMore) {
+      this.getGoodsList()
+    }else {
+      app.msg('没有更多了~')
+    }
+  }
 
 })

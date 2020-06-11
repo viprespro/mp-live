@@ -7,8 +7,8 @@
 }
 
 .sort-img {
-  width: 42rpx;
-  height: 42rpx;
+  width: 47rpx;
+  height: 47rpx;
 }
 
 .sort-txt {

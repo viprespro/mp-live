@@ -56,7 +56,15 @@
 		},
 		"miniprogram": {
 			"current": -1,
-			"list": []
+			"list": [
+				{
+					"id": 0,
+					"name": "pages/load/load",
+					"pathName": "pages/live/live",
+					"query": "scene=522423_EGLS",
+					"scene": null
+				}
+			]
 		}
 	}
 }

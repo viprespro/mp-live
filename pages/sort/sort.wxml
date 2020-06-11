@@ -4,7 +4,7 @@
 
 <view class="page">
   <view class='nav-bar'>
-    <scroll-view scroll-x="true" style='white-space:nowrap;'>
+    <scroll-view scroll-x="true" style='white-space:nowrap;' scroll-with-animation='true' scroll-left="{{ scrollLeft }}">
       <block wx:for="{{catesList}}" wx:key="{{item.category_id}}">
         <view class='bar-item  {{currentCateId == item.category_id ? "active" : ""}}' data-index='{{item.category_id}}' bindtap='tabsAlert'>{{item.name}}</view>
       </block>

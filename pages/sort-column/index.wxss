@@ -169,7 +169,7 @@ page {
 /* 新列表样式 */
 
 .product-wrapper {
-  margin: 220rpx 24rpx;
+  margin: 15rpx 24rpx;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;

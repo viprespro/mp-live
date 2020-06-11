@@ -230,14 +230,14 @@ live-player {
 }
 
 .outer .barrage .barrage-item {
-  padding: 10rpx 20rpx;
+  padding: 5rpx 20rpx;
   border-radius: 10rpx;
 }
 
 .outer .barrage .barrage-item  .item-wrap {
   border-radius: 15rpx;
   display: inline-block;
-  padding: 10rpx;
+  padding: 6rpx;
   background: rgba(0, 0, 0, 0.3);
 }
 

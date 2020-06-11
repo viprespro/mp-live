@@ -29,16 +29,6 @@ Page({
       app.globalData.openPages = `/pages/live/live`
     }
 
-    // 做一个保险的判断 海波分享可能会走 不确定
-    if(e.scene) {
-      if(e.scene.indexOf('_') > -1) {
-        let [number, invite_code] = e.scene.split('_')
-        app.globalData.invite_code = invite_code;
-        app.globalData.number = number;
-        app.globalData.openPages = `/pages/live-detail/live-detail?number=${number}&backHomeFlag=true`
-      }
-    }
-
     this.getSetting()
   },
 

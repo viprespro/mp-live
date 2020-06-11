@@ -5,28 +5,6 @@ App({
   onLaunch: function(option) {
     console.log(option)
     const that = this
-    if (option.query.hasOwnProperty('scene')) {
-      switch (option.scene) {
-        //扫描小程序码
-        case 1047:
-          this.globalData.invite_code = option.query.scene;
-          break;
-        //长按图片识别小程序码
-        case 1048:
-          let [number, invite_code] = option.query.scene.split('_')
-          this.globalData.invite_code = invite_code;
-          this.globalData.number = number;
-          this.globalData.openPages = `/pages/live-detail/live-detail?number=${number}&backHomeFlag=true`
-          break;
-        //手机相册选取小程序码
-        case 1049:
-          break;
-        //直接进入小程序
-        case 1001:
-          break;
-      }
-    }
-
     // 针对自定义头部添加
     wx.getSystemInfo({
       success: e => {
@@ -60,6 +38,38 @@ App({
     updateManager.onUpdateFailed(function () {
       return that.msg('新版本下载失败')
     })
+
+    if(that.globalData.CustomBar && that.globalData.StatusBar) {
+      if (option.query.hasOwnProperty('scene')) {
+        switch (option.scene) {
+          //扫描小程序码
+          case 1047:
+            this.globalData.invite_code = option.query.scene;
+            break;
+          //长按图片识别小程序码
+          case 1048:
+            var scene = decodeURIComponent(option.query.scene); // 参数形如： 565256_EGJLS
+            if (scene.indexOf('_') > -1) { // 传递房间号与邀请码
+              let [number, invite_code] = scene.split('_')
+              app.globalData.invite_code = invite_code;
+              app.globalData.number = number;
+              app.globalData.openPages = `/pages/live-detail/live-detail?number=${number}&backHomeFlag=true`
+              wx.redirectTo({ url: `/pages/load/load` })
+            } else { // 只是传递房间号 进入房间即可 // 参数形如： 565256
+              app.globalData.number = scene;
+              app.globalData.openPages = `/pages/live-detail/live-detail?number=${number}&backHomeFlag=true`
+              wx.redirectTo({ url: `/pages/load/load` })
+            }
+            break;
+          //手机相册选取小程序码
+          case 1049:
+            break;
+          //直接进入小程序
+          case 1001:
+            break;
+        }
+      }
+    }
 
     // 如果用户已登录
     if(this.hasLogin()) {

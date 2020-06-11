@@ -57,7 +57,23 @@ Page({
     // showjoo: 1
   },
 
-  onLoad: function() {
+  onLoad: function(opts) {
+    // 这是进入的首页 虽然后端在设置海报分享的时候配置的是load/load
+    // 以防万一会走这里
+    if (opts.scene) {
+      var scene = decodeURIComponent(opts.scene); // 参数形如： 565256_EGJLS
+      if (scene.indexOf('_') > -1) { // 传递房间号与邀请码
+        let [number, invite_code] = scene.split('_')
+        app.globalData.invite_code = invite_code;
+        app.globalData.number = number;
+        app.globalData.openPages = `/pages/live-detail/live-detail?number=${number}&backHomeFlag=true`
+        wx.redirectTo({ url: `/pages/load/load` })
+      } else { // 只是传递房间号 进入房间即可 // 参数形如： 565256
+        app.globalData.number = scene;
+        app.globalData.openPages = `/pages/live-detail/live-detail?number=${number}&backHomeFlag=true`
+        wx.redirectTo({ url: `/pages/load/load` })
+      }
+    }
     var e = this;
     wx.request({
       url: `${Config.HTTP_REQUEST_URL}/wxsmall/index/api`,
