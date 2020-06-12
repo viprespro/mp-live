@@ -1,5 +1,7 @@
 const util = require('../../../utils/util.js')
-import { $api } from '../../../common/utils.js'
+import {
+  $api
+} from '../../../common/utils.js'
 import Poster from '../../../miniprogram_dist/poster/poster';
 const api = require('../../../utils/api-tp.js')
 const Config = require('../../../config.js')
@@ -11,8 +13,7 @@ const posterConfig = {
     backgroundColor: '#fff',
     debug: false,
     pixelRatio: 1,
-    blocks: [
-      {
+    blocks: [{
         width: 690,
         height: 708,
         x: 30,
@@ -31,8 +32,7 @@ const posterConfig = {
         zIndex: 100,
       },
     ],
-    texts: [
-      {
+    texts: [{
         x: 113,
         y: 61,
         baseLine: 'middle',
@@ -126,8 +126,7 @@ const posterConfig = {
         color: '#929292',
       },
     ],
-    images: [
-      {
+    images: [{
         width: 62,
         height: 62,
         x: 30,
@@ -163,24 +162,26 @@ Page({
     title: '', // 直播间标题
     cover: '', // 直播间封面
     time: '', // 直播时间
-    avatar:'',
+    avatar: '',
     nickname: '',
     number: '', // 直播的房间好
     path: '', // 封面的网络地址
-    qrCode: '',// 小程序二维码
+    qrCode: '', // 小程序二维码
     startDate: '',
     startTime: '',
-    endDate: '', 
+    endDate: '',
     endTime: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (opts) {
+  onLoad: function(opts) {
     console.log(opts)
-    if(opts.number) {
-      this.setData({ number: opts.number })
+    if (opts.number) {
+      this.setData({
+        number: opts.number
+      })
     }
 
     // 若是自定义的时间
@@ -190,10 +191,14 @@ Page({
     this.getUserInfo()
   },
 
-  bindTimeChange: function (e) {
-    let { index } = e.currentTarget.dataset
-    let { value } = e.detail; 
-    if(index == 1) {
+  bindTimeChange: function(e) {
+    let {
+      index
+    } = e.currentTarget.dataset
+    let {
+      value
+    } = e.detail;
+    if (index == 1) {
       this.setData({
         startTime: value
       })
@@ -205,10 +210,14 @@ Page({
     }
   },
 
-  bindDateChange: function (e) {
-    let { index } = e.currentTarget.dataset
-    let { value } = e.detail; 
-    if(index == 0) {
+  bindDateChange: function(e) {
+    let {
+      index
+    } = e.currentTarget.dataset
+    let {
+      value
+    } = e.detail;
+    if (index == 0) {
       this.setData({
         startDate: value
       })
@@ -226,7 +235,10 @@ Page({
       title: '上传中...',
       mask: false
     })
-    let { cover, number } = this.data
+    let {
+      cover,
+      number
+    } = this.data
     wx.uploadFile({
       url: Config.HTTP_REQUEST_URL + '/wxsmall/live/getWxCode',
       filePath: cover,
@@ -260,20 +272,30 @@ Page({
       },
       success: res => {
         // console.log(res)
-        let { avatar, nickname } = res.data
-        this.setData({ avatar, nickname})
+        let {
+          avatar,
+          nickname
+        } = res.data
+        this.setData({
+          avatar,
+          nickname
+        })
       }
     })
   },
 
   // 绑定直播时间
   bindTime(e) {
-    this.setData({ time: e.detail.value })
+    this.setData({
+      time: e.detail.value
+    })
   },
 
   // 绑定直播间的标题
   bindTitle(e) {
-    this.setData({ title: e.detail.value })
+    this.setData({
+      title: e.detail.value
+    })
   },
 
   // 上传图片
@@ -283,7 +305,7 @@ Page({
       count: 1, // 默认9
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
+      success: function(res) {
         let tempFilePaths = res.tempFilePaths
         _this.setData({
           cover: tempFilePaths[0]
@@ -296,10 +318,21 @@ Page({
 
   // 生成海报
   onCreateOtherPoster() {
-    let { title, cover, avatar, nickname, path, qrCode, startDate, startTime, endDate, endTime} = this.data
-    if(!title) {
+    let {
+      title,
+      cover,
+      avatar,
+      nickname,
+      path,
+      qrCode,
+      startDate,
+      startTime,
+      endDate,
+      endTime
+    } = this.data
+    if (!title) {
       return $api.msg('直播标题不能为空')
-    }else if(!cover) {
+    } else if (!cover) {
       return $api.msg('直播封面不能为空')
     } else if (!startDate || !startTime || !endDate || !endTime) {
       return $api.msg('直播时间请填写完整')
@@ -308,37 +341,38 @@ Page({
     let config = posterConfig.jdConfig
     let texts = config.texts
     let imgs = config.images
-    imgs[0].url = avatar  //  设置头像
-    imgs[1].url = path  //  设置头像
+    imgs[0].url = avatar //  设置头像
+    imgs[1].url = path //  设置头像
     imgs[2].url = qrCode
     texts[0].text = nickname // 设置昵称
-    texts[1].text = '直播时间：' + this.foo(startDate) + ' ' + startTime + '至' +  this.foo(endDate) + ' ' + endTime  // 设置直播时间
+    texts[1].text = '直播时间：' + this.getCusTime(startDate) + ' ' + startTime + '至' + this.getCusTime(endDate) + ' ' + endTime // 设置直播时间
     texts[2].text = title // 设置直播标题
 
-    this.setData({ posterConfig: config }, () => {
-      Poster.create();    // 入参：true为抹掉重新生成 
+    this.setData({
+      posterConfig: config
+    }, () => {
+      Poster.create(); // 入参：true为抹掉重新生成 
     });
   },
 
   // 2020-04-28 转为4-28
-  foo(argus) {
-    let index = argus.indexOf('-')
-    let ret1 = argus.slice(index + 1)
-    let index2 = ret1.indexOf('-')
-    let ret2 = ret1.slice(0, index2)
-    let ret3 = ret1.slice(index2)
-    if (ret2 < 10) {
-      ret2 = ret2.slice(1)
+  getCusTime(str) {
+    let index = str.indexOf('-') // -的index
+    let remain = str.slice(index + 1)
+    let arr = remain.split('-')
+    for (let i = 0; i < arr.length; i++) {
+      if (arr[i] < 10 && arr[i].length == 2) {
+        arr[i] = arr[i].slice(1)
+      }
     }
-    if (ret3 < 10) {
-      ret3 = ret3.slice(1)
-    }
-    ret3 = ret3.slice(1)
-    return ret2 + '月' + ret3
+    const [month, day] = arr
+    return month + '月' + day + '日'
   },
 
   onPosterSuccess(e) {
-    const { detail } = e;
+    const {
+      detail
+    } = e;
     wx.previewImage({
       current: detail,
       urls: [detail]
@@ -351,7 +385,7 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
 
   }
 })
