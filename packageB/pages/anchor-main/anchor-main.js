@@ -323,11 +323,13 @@ Page({
   // 退出登录 登出IM服务器
   handleIMLogout() {
     let promise = tim.logout();
-    promise.then(function (imResponse) {
-      console.log(imResponse.data); // 登出成功
-    }).catch(function (imError) {
-      console.warn('logout error:', imError);
-    });
+    if(promise) {
+      promise.then(function (imResponse) {
+        console.log(imResponse.data); // 登出成功
+      }).catch(function (imError) {
+        console.warn('logout error:', imError);
+      });
+    }
   },
 
   /**
