@@ -10,7 +10,7 @@
 
 <cover-view style="width:100%;height:{{ fullScreenHeight }}px" class="outer" catchtap="hideGoods">
   <cover-view style="height:{{ headerH }}px" class="back">
-    <cover-view class="icon" bindtap="backTap">
+    <cover-view class="icon" bindtap="handleBackTap">
       <cover-image src="/images/back.png" class="back-icon"></cover-image>
     </cover-view>
   </cover-view>

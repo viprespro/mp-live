@@ -32,19 +32,14 @@ tim.on(TIM.EVENT.GROUP_SYSTEM_NOTICE_RECEIVED, function(event) {
   console.log(event)
   if (event.data.message.payload) {
     let temp = event.data.message.payload.userDefinedField  // 数据如：Ares进入了直播间
-
     if (temp == 'live_exit') { // 直播退出
       showWarningOffAndExit()
-      
       setTimeout(() => {
         wx.switchTab({
           url: '/pages/live/live',
         })
       },60000)
-    }
-
-    // 系统消息区分是观看人数还是进入直播间的提示
-    else if (temp.indexOf('online_') === -1) { // 进入直播间的提示
+    } else if (temp.indexOf('online_') === -1) { // 进入直播间的提示
       let obj = {}
       if (temp.indexOf('进') > -1) {
         let index = temp.indexOf('进')
@@ -135,7 +130,6 @@ function showWarningOffAndExit() {
   })
 }
 
-
 /**
  * 让用户每次发送的数据都能显示在最底部
  */
@@ -190,45 +184,6 @@ Page({
     showTips: false, // 是否显示某个人加入进入直播间
     online_people: '', // 观看人数 
     anchor_cover: '', // 主播封面
-  },
-
-  onLoad: function(options) {
-    wx.showLoading({
-      title: '加载中...',
-    })
-    that = this;
-    
-    // 设置屏幕常亮 兼容ios
-    wx.setKeepScreenOn({ keepScreenOn: true })
-    // 设置屏幕亮度 0-1范围 当前设置为用户自己调节
-    // wx.setScreenBrightness({ value: .6 })
-
-    // 获取用户昵称
-    that.getUserInfo()
-
-    // 实现登录用户扫码进入直播间返回
-    if (options.backHomeFlag) {
-      this.setData({
-        backHomeFlag: options.backHomeFlag
-      })
-    }
-
-    if(options.like) {
-      this.setData({ count: options.like })
-    }
-
-    if (options.number) {
-      this.setData({
-        number: options.number
-      })
-      this.getLiveInfo()
-    }
-
-    let query = wx.createSelectorQuery()
-    query.select('.barrage').boundingClientRect(function(rect) {
-      console.log(rect)
-    }).exec();
-
   },
 
   // 主推商品详情
@@ -375,7 +330,7 @@ Page({
               wx.navigateBack({
                 delta: 1
               })
-            }else {
+            } else {
               wx.switchTab({
                 url: '/pages/live/live',
               })
@@ -389,7 +344,7 @@ Page({
           userID: res.userid,
           userSig: res.usersig
         });
-        promise.then(function(imResponse) {
+        promise.then(function (imResponse) {
           console.log(imResponse.data); // 登录成功
           wx.hideLoading()
           // 用户端模拟发送 后备使用这种方式
@@ -400,7 +355,7 @@ Page({
           barrageList = [...that.data.barrageList, obj]
           that.setData({ barrageList })
           setScrollTop();
-        }).catch(function(imError) {
+        }).catch(function (imError) {
           console.warn('login error:', imError); // 登录失败的相关信息
         });
         this.setData({
@@ -427,7 +382,7 @@ Page({
       wx.showToast({ title: '发送内容不能为空', duration: 1500, icon: 'none', mask: true })
       return;
     }
-    
+
     // 针对自己发送的弹幕
     setTimeout(() => {
       let arr = []
@@ -456,10 +411,10 @@ Page({
 
     // 2. 发送消息
     let promise = tim.sendMessage(message);
-    promise.then(function(imResponse) {
+    promise.then(function (imResponse) {
       // 发送成功
       console.log(imResponse);
-    }).catch(function(imError) {
+    }).catch(function (imError) {
       // 发送失败
       console.warn('sendMessage error:', imError);
     });
@@ -502,7 +457,7 @@ Page({
       },
       success: res => {
         console.log(res)
-        if(res.code != 0) {
+        if (res.code != 0) {
           app.msg(res.message)
         }
       }
@@ -516,22 +471,12 @@ Page({
   onReady(res) {
     this.ctx = wx.createLivePlayerContext('player')
   },
-  statechange(e) {
-    console.log('live-player code:', e.detail.code)
-  },
-  error(e) {
-    console.error('live-player error:', e.detail.errMsg)
-  },
 
-
-  onUnload() {
-    this.backTap()
-  },
 
   backTap() {
     // 退出IM服务器
     let promise = tim.logout();
-    if(promise) {
+    if (promise) {
       promise.then(function (imResponse) {
         console.log(imResponse.data); // 登出成功
         // 访问接口 后端调用IM发送系统消息
@@ -559,6 +504,52 @@ Page({
         delta: 1
       })
     }
+  },
+
+  /**
+   * 监听页面加载
+   */
+  onLoad: function (options) {
+    wx.showLoading({
+      title: '加载中...',
+    })
+    that = this;
+
+    // 设置屏幕常亮 兼容ios
+    wx.setKeepScreenOn({ keepScreenOn: true })
+    // 设置屏幕亮度 0-1范围 当前设置为用户自己调节
+    // wx.setScreenBrightness({ value: .6 })
+
+    // 获取用户昵称
+    that.getUserInfo()
+
+    // 实现登录用户扫码进入直播间返回
+    if (options.backHomeFlag) {
+      this.setData({
+        backHomeFlag: options.backHomeFlag
+      })
+    }
+
+    if (options.like) {
+      this.setData({ count: options.like })
+    }
+
+    if (options.number) {
+      this.setData({
+        number: options.number
+      })
+      this.getLiveInfo()
+    }
+
+    let query = wx.createSelectorQuery()
+    query.select('.barrage').boundingClientRect(function (rect) {
+      console.log(rect)
+    }).exec();
+
+  },
+
+  onUnload() {
+    this.backTap()
   },
 
   /**

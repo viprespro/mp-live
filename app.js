@@ -2,8 +2,8 @@
 const api = require('/utils/api-tp.js');
 import TIM from 'tim-wx-sdk';
 App({
-  onLaunch: function(option) {
-    console.log(option)
+  onLaunch: function(opts) {
+    // console.log(opts)
     const that = this
     // 针对自定义头部添加
     wx.getSystemInfo({
@@ -40,15 +40,15 @@ App({
     })
 
     if(that.globalData.CustomBar && that.globalData.StatusBar) {
-      if (option.query.hasOwnProperty('scene')) {
-        switch (option.scene) {
+      if (opts.query.hasOwnProperty('scene')) {
+        switch (opts.scene) {
           //扫描小程序码
           case 1047:
-            this.globalData.invite_code = option.query.scene;
+            this.globalData.invite_code = opts.query.scene;
             break;
           //长按图片识别小程序码
           case 1048:
-            var scene = decodeURIComponent(option.query.scene); // 参数形如： 565256_EGJLS
+            var scene = decodeURIComponent(opts.query.scene); // 参数形如： 565256_EGJLS
             if (scene.indexOf('_') > -1) { // 传递房间号与邀请码
               let [number, invite_code] = scene.split('_')
               app.globalData.invite_code = invite_code;

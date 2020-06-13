@@ -91,14 +91,7 @@ tim.on(TIM.EVENT.MESSAGE_RECEIVED, function(event) {
   // event.name - TIM.EVENT.MESSAGE_RECEIVED
   // event.data - 存储 Message 对象的数组 - [Message]
   // console.log(event.data)
-
   let arr = event.data
-
-  // 获取是谁发的
-  // console.log(event.data[0].nick)
-  // 获取到的文字信息
-  // console.log(event.data[0].payload.text)
-
   // 设置弹幕数据 针对别人发弹幕
   if (arr[0].nick) {
     let obj = {}
@@ -168,36 +161,6 @@ Page({
     ids: '', // 已经选中的商品id
     showTips: false, // 是否显示某个人加入进入直播间
     online_people: '', // 观看人数 
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-    wx.showLoading({
-      title: '加载中...',
-    })
-    that = this;
-    // 设置屏幕常亮 兼容ios
-    wx.setKeepScreenOn({ keepScreenOn: true })
-    // 设置屏幕亮度 0-1范围 设置了 用户自己去设置调节屏幕的亮度
-    // wx.setScreenBrightness({ value: .6 }) 
-    
-    this.ctx = wx.createLivePusherContext('pusher')
-    if (options.object) { // 开启直播传递古来直播间的名称和封面图
-      let parse = JSON.parse(options.object)
-      let { name, cover, ids } = parse
-      this.setData({
-        live_name: name,
-        cover,
-        ids,
-      })
-      this.getPushInfo()
-    }
-    let query = wx.createSelectorQuery()
-    query.select('.barrage').boundingClientRect(function(rect) {
-      // console.log(rect)
-    }).exec();
   },
 
   // 主推商品详情
@@ -294,7 +257,7 @@ Page({
         title: data.live_name,
         goods_ids: data.ids
       },
-      success: function(res) {
+      success: function (res) {
         res = JSON.parse(res.data)
         if (res.code == 0) { // 推流信息
           that.setData({
@@ -316,21 +279,13 @@ Page({
           app.msg(res.message)
         }
       },
-      fail: function(res) {
+      fail: function (res) {
         console.log(res)
       },
-      complete: function() {
+      complete: function () {
         wx.hideLoading()
       }
     })
-  },
-
-  onReady(res) {
-    this.ctx = wx.createLivePusherContext('pusher')
-  },
-
-  statechange(e) {
-    console.log('live-pusher code:', e.detail.code)
   },
 
   // 旋转相机
@@ -345,8 +300,8 @@ Page({
     })
   },
 
-  backTap() {
-    let token = wx.getStorageSync('token')
+  // 点击返回
+  handleBackTap() {
     wx.showModal({
       title: '提示',
       content: '返回即代表结束直播，确定退出吗？',
@@ -355,25 +310,60 @@ Page({
           wx.navigateBack({
             delta: 1
           })
-
-          let promise = tim.logout();
-          promise.then(function (imResponse) {
-            console.log(imResponse.data); // 退出
-          }).catch(function (imError) {
-            console.warn('logout error:', imError);
-          });
+          // 退出
+          that.handleIMLogout()
         }
       }
     })
   },
 
-  onUnload() {
+  /**
+   * 通过IM的api调用
+   */
+  // 退出登录 登出IM服务器
+  handleIMLogout() {
     let promise = tim.logout();
     promise.then(function (imResponse) {
       console.log(imResponse.data); // 登出成功
     }).catch(function (imError) {
       console.warn('logout error:', imError);
     });
+  },
+
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function(options) {
+    wx.showLoading({
+      title: '加载中...',
+    })
+    that = this;
+    // 设置屏幕常亮 兼容ios
+    wx.setKeepScreenOn({ keepScreenOn: true })
+    // 设置屏幕亮度 0-1范围 设置了 用户自己去设置调节屏幕的亮度
+    // wx.setScreenBrightness({ value: .6 }) 
+    
+    that.ctx = wx.createLivePusherContext('pusher')
+    if (options.object) {
+      let parse = JSON.parse(options.object)
+      let { name, cover, ids } = parse
+      that.setData({
+        live_name: name,
+        cover,
+        ids,
+      })
+      that.getPushInfo()
+    }
+  },
+
+
+  onReady(res) {
+    this.ctx = wx.createLivePusherContext('pusher')
+  },
+
+  // 页面销毁
+  onUnload() {
+    that.handleIMLogout()
   },
 
   // 主播分享自己的直播间
